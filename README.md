@@ -7,9 +7,10 @@ This project contains a web service, and associated tools and services, for anal
 These are the subprojects:
 
 1. [MetaMap Tagger](metamap-tagger)
-2. [SNOMED CT Lookup](snomedct-lookup)
-3. [SNOMED CT Coder Web Service](snomed-coder-web)
-4. [SNOMED CT Coder Web User Interface](snomed-coder-ui-web)
+2. [MetaMap XML](metamap-xml)
+3. [SNOMED CT Lookup](snomedct-lookup)
+4. [SNOMED CT Coder Web Service](snomed-coder-web)
+5. [SNOMED CT Coder Web User Interface](snomed-coder-ui-web)
 
 # Installation
 
