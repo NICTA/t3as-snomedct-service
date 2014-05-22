@@ -1,0 +1,189 @@
+<!--=========================================================================
+
+Special DTD Notation:
+    * = 0 or more occurrences (optional element and repeatable)
+    ? = 0 or 1 occurrences (optional element at most 1)
+    + = 1 or more occurrences (required element and repeatable)
+    | = choice, one or the other but not both
+   
+Note: 
+* MMO stands for MetaMap Machine Output.
+
+* Root element is MMOlist.
+
+* The MMOlist element can contain multiple MMO subelements. 
+
+* Each "List" requires a count of how many elements are in the list, even
+  if the number is zero.
+
+* IsHead is either "yes" or "no".
+
+* IsOverMatch is either "yes" or "no".
+
+===========================================================================-->
+
+<!ELEMENT MMOs              (MMO+)>
+
+<!ELEMENT MMO               (CmdLine, AAs, Negations, Utterances)>
+
+<!ELEMENT CmdLine           (Command, Options)>
+<!ELEMENT Command           (#PCDATA)>
+<!ELEMENT Options           (Option*)>
+<!ATTLIST Options
+	Count CDATA #REQUIRED
+>
+<!ELEMENT Option            (OptName, OptValue?)>
+<!ELEMENT OptName           (#PCDATA)>
+<!ELEMENT OptValue          (#PCDATA)>
+
+<!ELEMENT AAs               (AA*)>
+<!ATTLIST AAs
+	Count CDATA #REQUIRED
+>
+<!ELEMENT AA                (AAText, AAExp, AATokenNum, AALen,
+                             AAExpTokenNum, AAExpLen, AACUIs)>
+<!ELEMENT AAText            (#PCDATA)>
+<!ELEMENT AAExp             (#PCDATA)>
+<!ELEMENT AATokenNum        (#PCDATA)>
+<!ELEMENT AALen             (#PCDATA)>
+<!ELEMENT AAExpTokenNum     (#PCDATA)>
+<!ELEMENT AAExpLen          (#PCDATA)>
+<!ELEMENT AACUIs            (AACUI*)>
+<!ATTLIST AACUIs
+	Count CDATA #REQUIRED
+>
+<!ELEMENT AACUI             (#PCDATA)>
+
+<!ELEMENT Negations         (Negation*)>
+<!ATTLIST Negations
+	Count CDATA #REQUIRED
+>
+<!ELEMENT Negation          (NegType, NegTrigger, NegTriggerPIs, NegConcepts, NegConcPIs)>
+<!ELEMENT NegType           (#PCDATA)>
+<!ELEMENT NegTrigger        (#PCDATA)>
+<!ELEMENT NegTriggerPIs     (NegTriggerPI+)>
+<!ATTLIST NegTriggerPIs
+	Count CDATA #REQUIRED
+>
+<!ELEMENT NegTriggerPI      (StartPos, Length)>
+
+<!ELEMENT StartPos          (#PCDATA)>
+<!ELEMENT Length            (#PCDATA)>
+
+<!ELEMENT NegConcepts       (NegConcept+)>
+<!ATTLIST NegConcepts
+	Count CDATA #REQUIRED
+>
+
+<!ELEMENT NegConcPIs        (NegConcPI+)>
+<!ATTLIST NegConcPIs
+	Count CDATA #REQUIRED
+>
+<!ELEMENT NegConcPI         (StartPos, Length)>
+<!ELEMENT NegConcept        (NegConcCUI, NegConcMatched)>
+
+<!ELEMENT NegConcCUI        (#PCDATA)>
+<!ELEMENT NegConcMatched    (#PCDATA)>
+
+
+<!ELEMENT Utterances        (Utterance+)>
+<!ATTLIST Utterances
+	Count CDATA #REQUIRED
+>
+
+<!ELEMENT Utterance         (PMID, UttSection, UttNum, UttText, UttStartPos,
+                             UttLength, Phrases)>
+<!ELEMENT PMID              (#PCDATA)>
+<!ELEMENT UttSection        (#PCDATA)>
+<!ELEMENT UttNum            (#PCDATA)>
+<!ELEMENT UttText           (#PCDATA)>
+<!ELEMENT UttStartPos       (#PCDATA)>
+<!ELEMENT UttLength         (#PCDATA)>
+<!ELEMENT Phrases           (Phrase+)>
+<!ATTLIST Phrases
+	Count CDATA #REQUIRED
+>
+
+<!ELEMENT Phrase            (PhraseText, SyntaxUnits, PhraseStartPos, PhraseLength,
+                             Candidates, Mappings)>
+<!ELEMENT PhraseText        (#PCDATA)>
+<!ELEMENT SyntaxUnits              (SyntaxUnit+)>
+<!ATTLIST SyntaxUnits
+	Count CDATA #REQUIRED
+>
+<!ELEMENT SyntaxUnit        (SyntaxType, LexMatch?, InputMatch, LexCat?, Tokens)>
+<!ELEMENT SyntaxType        (#PCDATA)>
+<!ELEMENT LexMatch          (#PCDATA)>
+<!ELEMENT InputMatch        (#PCDATA)>
+<!ELEMENT LexCat            (#PCDATA)>
+<!ELEMENT Tokens            (Token*)>
+<!ATTLIST Tokens
+	Count CDATA #REQUIRED
+>
+<!ELEMENT Token             (#PCDATA)>
+<!ELEMENT PhraseStartPos    (#PCDATA)>
+<!ELEMENT PhraseLength      (#PCDATA)>
+
+<!ELEMENT Candidates        (Candidate*)>
+<!ATTLIST Candidates
+	Total     CDATA #REQUIRED
+	Excluded  CDATA #REQUIRED
+	Pruned    CDATA #REQUIRED
+	Remaining CDATA #REQUIRED
+>
+<!ELEMENT MappingCandidates        (Candidate*)>
+<!ATTLIST MappingCandidates
+	Total     CDATA #REQUIRED
+>
+<!ELEMENT Candidate         (CandidateScore, CandidateCUI, CandidateMatched, CandidatePreferred,
+                             MatchedWords, SemTypes, MatchMaps, IsHead, IsOverMatch,
+                             Sources, ConceptPIs, Status, Negated)>
+<!ELEMENT CandidateScore       (#PCDATA)>
+<!ELEMENT CandidateCUI         (#PCDATA)>
+<!ELEMENT CandidateMatched     (#PCDATA)>
+<!ELEMENT CandidatePreferred   (#PCDATA)>
+<!ELEMENT MatchedWords         (MatchedWord+)>
+<!ATTLIST MatchedWords
+	Count CDATA #REQUIRED
+>
+<!ELEMENT MatchedWord       (#PCDATA)>
+
+<!ELEMENT SemTypes  (SemType+)>
+<!ATTLIST SemTypes
+	Count CDATA #REQUIRED
+>
+<!ELEMENT SemType      (#PCDATA)>
+
+<!ELEMENT MatchMaps      (MatchMap*)>
+<!ATTLIST MatchMaps
+	Count CDATA #REQUIRED
+>
+<!ELEMENT MatchMap          (TextMatchStart,   TextMatchEnd,
+	  		     ConcMatchStart, ConcMatchEnd, LexVariation)>
+<!ELEMENT TextMatchStart     (#PCDATA)>
+<!ELEMENT TextMatchEnd       (#PCDATA)>
+<!ELEMENT ConcMatchStart     (#PCDATA)>
+<!ELEMENT ConcMatchEnd       (#PCDATA)>
+<!ELEMENT LexVariation       (#PCDATA)>
+
+<!ELEMENT IsHead            (#PCDATA)>
+<!ELEMENT IsOverMatch       (#PCDATA)>
+<!ELEMENT Sources           (Source+)>
+<!ATTLIST Sources
+	Count CDATA #REQUIRED
+>
+<!ELEMENT Source            (#PCDATA)>
+
+<!ELEMENT ConceptPIs        (ConceptPI+)>
+<!ATTLIST ConceptPIs
+	Count CDATA #REQUIRED
+>
+<!ELEMENT ConceptPI         (StartPos, Length)>
+<!ELEMENT Status            (#PCDATA)>
+<!ELEMENT Negated           (#PCDATA)>
+<!ELEMENT Mappings      (Mapping*)>
+<!ATTLIST Mappings
+	Count CDATA #REQUIRED
+>
+<!ELEMENT Mapping           (MappingScore, MappingCandidates)>
+<!ELEMENT MappingScore      (#PCDATA)>

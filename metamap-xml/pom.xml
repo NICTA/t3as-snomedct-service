@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.t3as</groupId>
+        <artifactId>metamap</artifactId>
+        <version>1.1.3-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>metamap-xml</artifactId>
+    <packaging>jar</packaging>
+
+    <name>MetaMap XML JAXB</name>
+    <description>
+        Parse MetaMap '--XMLf1' output using JAXB into an object graph.
+    </description>
+
+    <scm>
+        <connection>scm:git:https://github.it.nicta.com.au/nbacon/taas.git</connection>
+        <developerConnection>scm:git:https://github.it.nicta.com.au/nbacon/taas.git</developerConnection>
+        <url>https://github.it.nicta.com.au/nbacon/taas</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.t3as.metamap.cmdline.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

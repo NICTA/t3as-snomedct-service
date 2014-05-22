@@ -1,4 +1,24 @@
-t3as-snomedct-service
-=====================
+# NICTA t3as SNOMED CT Coder Web Service
 
-Web service to analyse blocks of clinical text and pick out all SNOMED CT concepts.
+This project contains a web service, and associated tools and services, for analysing some free text and returning matching SNOMED CT codes. To do this it makes use of [NLM MetaMap](http://metamap.nlm.nih.gov/) and [NLM UMLS](http://www.nlm.nih.gov/research/umls/).
+
+## Sub-projects
+
+These are the subprojects:
+
+1. [MetaMap Tagger](metamap-tagger)
+2. [SNOMED CT Lookup](snomedct-lookup)
+3. [SNOMED CT Coder Web Service](snomed-coder-web)
+4. [SNOMED CT Coder Web User Interface](snomed-coder-ui-web)
+
+# Installation
+
+For operation of the web service the first three subprojects must be properly installed and configured, the User Interface is optional.
+
+# Building
+
+Simply run Maven without arguments in the top level directory:
+
+    mvn
+
+This downloads all Java dependencies and builds all of the subprojects. (NLM MetaMap and UMLS are external dependencies that you will have to install manually, see subprojects.) Two WAR files are generated, one in `snomed-coder-web/target/`, and another in `snomed-coder-ui-web/target/` (optional). Please also see the installation instructions for the MetaMap Tagger and the SNOMED CT Lookup projects, as these are required for proper operation.
