@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>metamap</artifactId>
+        <artifactId>t3as-snomedct-service</artifactId>
         <groupId>org.t3as</groupId>
         <version>1.1.3-SNAPSHOT</version>
     </parent>
@@ -13,7 +13,7 @@
     <artifactId>snomed-coder-ui-web</artifactId>
     <packaging>war</packaging>
 
-    <name>t3as SNOMED CT GWT UI</name>
+    <name>NICTA t3as SNOMED CT GWT UI</name>
     <description>A Google Web Toolkit user interface for the t3as SNOMED CT coder service.</description>
 
     <properties>

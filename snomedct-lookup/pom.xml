@@ -6,14 +6,14 @@
 
     <parent>
         <groupId>org.t3as</groupId>
-        <artifactId>metamap</artifactId>
+        <artifactId>t3as-snomedct-service</artifactId>
         <version>1.1.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>snomedct-lookup</artifactId>
     <packaging>jar</packaging>
 
-    <name>UMLS CUI to SNOMED CT Lookup</name>
+    <name>NICTA t3as UMLS CUI to SNOMED CT Lookup</name>
     <description>
         A simple tool to look up UMLS CUI codes to SNOMED CT codes.
     </description>

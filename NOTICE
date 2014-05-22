@@ -56,12 +56,12 @@ This program links to the following software:
   JUnit under Common Public License Version 1.0
   Lucene Common Analyzers under Apache 2
   Lucene Core under Apache 2
-  MetaMap SNOMED CT Service under GNU GENERAL PUBLIC LICENSE Version 3
-  MetaMap Tagger under GNU GENERAL PUBLIC LICENSE Version 3
-  MetaMap XML JAXB under GNU GENERAL PUBLIC LICENSE Version 3
-  SNOMED CT web service under GNU GENERAL PUBLIC LICENSE Version 3
+  NICTA t3as MetaMap Tagger under GNU GENERAL PUBLIC LICENSE Version 3
+  NICTA t3as MetaMap XML JAXB under GNU GENERAL PUBLIC LICENSE Version 3
+  NICTA t3as SNOMED CT GWT UI under GNU GENERAL PUBLIC LICENSE Version 3
+  NICTA t3as SNOMED CT Service under GNU GENERAL PUBLIC LICENSE Version 3
+  NICTA t3as SNOMED CT web service under GNU GENERAL PUBLIC LICENSE Version 3
+  NICTA t3as UMLS CUI to SNOMED CT Lookup under GNU GENERAL PUBLIC LICENSE Version 3
   Streaming API for XML under GNU General Public Library or COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
-  t3as SNOMED CT GWT UI under GNU GENERAL PUBLIC LICENSE Version 3
-  UMLS CUI to SNOMED CT Lookup under GNU GENERAL PUBLIC LICENSE Version 3
   Xml Compatibility extensions for Jackson under The Apache Software License, Version 2.0 or GNU Lesser General Public License (LGPL), Version 2.1
 
