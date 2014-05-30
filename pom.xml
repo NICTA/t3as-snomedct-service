@@ -10,14 +10,20 @@
     <packaging>pom</packaging>
 
     <name>NICTA t3as SNOMED CT Service</name>
-    <description>
-        Find the SNOMED CT concepts in clinical text.
-    </description>
+    <description>Find the SNOMED CT concepts in clinical text.</description>
     <inceptionYear>2014</inceptionYear>
     <organization>
         <name>NICTA</name>
         <url>http://nicta.com.au/</url>
     </organization>
+    <developers>
+        <developer>
+            <name>Mats Henrikson</name>
+            <email>mats.henrikson@nicta.com.au</email>
+            <organization>NICTA</organization>
+            <organizationUrl>http://nicta.com.au/</organizationUrl>
+        </developer>
+    </developers>
     <licenses>
         <license>
             <name>GNU GENERAL PUBLIC LICENSE Version 3</name>
