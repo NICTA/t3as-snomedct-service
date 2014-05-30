@@ -26,6 +26,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.rootdir>${basedir}/..</project.rootdir>
     </properties>
 
     <build>
@@ -71,6 +72,22 @@
                 </executions>
             </plugin>
 
+            <!-- Don't run licensing plugins in sub-projects - these do their work from the parent project. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions><execution><phase>none</phase></execution></executions>
+            </plugin>
+            <!--
+                        <plugin>
+                            <groupId>org.jasig.maven</groupId>
+                            <artifactId>maven-notice-plugin</artifactId>
+                            <version>1.0.6.1</version>
+                            <executions><execution><phase>none</phase></execution></executions>
+                        </plugin>
+            -->
+
         </plugins>
     </build>
 
@@ -97,6 +114,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

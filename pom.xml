@@ -47,6 +47,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.rootdir>${basedir}</project.rootdir>
     </properties>
 
     <build>
@@ -76,7 +77,7 @@
                 <version>1.7</version>
                 <configuration>
                     <licenseName>gpl_v3_specified_lib_exceptions</licenseName>
-                    <licenseResolver>file:licensing</licenseResolver>
+                    <licenseResolver>file:${project.rootdir}/licensing</licenseResolver>
                 </configuration>
                 <executions>
                     <execution>
@@ -93,10 +94,10 @@
                 <artifactId>maven-notice-plugin</artifactId>
                 <version>1.0.6.1</version>
                 <configuration>
-                    <generateChildNotices>false</generateChildNotices>
-                    <noticeTemplate>licensing/notice-template</noticeTemplate>
+                    <generateChildNotices>true</generateChildNotices>
+                    <noticeTemplate>${project.rootdir}/licensing/notice-template</noticeTemplate>
                     <licenseMapping>
-                        <param>licensing/license-mappings.xml</param>
+                        <param>${project.rootdir}/licensing/license-mappings.xml</param>
                     </licenseMapping>
                 </configuration>
                 <executions>
@@ -109,15 +110,7 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    </build>
 
 </project>
