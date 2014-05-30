@@ -2,7 +2,7 @@ package org.t3as.snomedct.gwt.client.gwt;
 
 /*
  * #%L
- * t3as SNOMED CT GWT UI
+ * NICTA t3as SNOMED CT GWT UI
  * %%
  * Copyright (C) 2014 NICTA
  * %%

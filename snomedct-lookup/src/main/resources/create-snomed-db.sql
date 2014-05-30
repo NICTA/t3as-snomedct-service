@@ -1,6 +1,6 @@
 ---
 -- #%L
--- UMLS CUI to SNOMED CT Lookup
+-- NICTA t3as UMLS CUI to SNOMED CT Lookup
 -- %%
 -- Copyright (C) 2014 NICTA
 -- %%

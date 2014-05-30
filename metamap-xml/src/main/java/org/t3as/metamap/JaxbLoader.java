@@ -2,7 +2,7 @@ package org.t3as.metamap;
 
 /*
  * #%L
- * MetaMap XML JAXB
+ * NICTA t3as MetaMap XML JAXB
  * %%
  * Copyright (C) 2014 NICTA
  * %%

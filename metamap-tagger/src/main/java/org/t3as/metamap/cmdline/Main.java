@@ -2,7 +2,7 @@ package org.t3as.metamap.cmdline;
 
 /*
  * #%L
- * MetaMap Tagger
+ * NICTA t3as MetaMap Tagger
  * %%
  * Copyright (C) 2014 NICTA
  * %%

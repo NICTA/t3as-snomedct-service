@@ -2,7 +2,7 @@ package org.t3as.snomedct.service;
 
 /*
  * #%L
- * SNOMED CT web service
+ * NICTA t3as SNOMED CT web service
  * %%
  * Copyright (C) 2014 NICTA
  * %%
