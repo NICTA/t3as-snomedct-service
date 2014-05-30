@@ -40,9 +40,9 @@
     </modules>
 
     <scm>
-        <connection>scm:git:https://github.it.nicta.com.au/nbacon/taas.git</connection>
-        <developerConnection>scm:git:https://github.it.nicta.com.au/nbacon/taas.git</developerConnection>
-        <url>https://github.it.nicta.com.au/nbacon/taas</url>
+        <connection>scm:git:https://github.com/NICTA/t3as-snomedct-service.git</connection>
+        <developerConnection>scm:git:https://github.com/NICTA/t3as-snomedct-service.git</developerConnection>
+        <url>https://github.com/NICTA/t3as-snomedct-service</url>
     </scm>
 
     <properties>
