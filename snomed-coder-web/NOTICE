@@ -32,14 +32,10 @@ This program links to or is a derivative of:
   Apache Commons IO (for Apache Directory Studio) under The Apache Software License, Version 2.0
   Apache Commons Lang under The Apache Software License, Version 2.0
   ASM Core under BSD 3-Clause License
-  Bean Validation API under Apache License, Version 2.0
   Commons IO under The Apache Software License, Version 2.0
   CORS Filter under The Apache Software License, Version 2.0
   Data Mapper for Jackson under The Apache Software License, Version 2.0
-  GWT Math 2.0.3 under The Apache Software License, Version 2.0
-  gwt-user under GWT Terms
   H2 Database Engine under The H2 License, Version 1.0
-  Hamcrest Core under New BSD License
   Jackson under The Apache Software License, Version 2.0
   Java Property Utility under The Apache Software License, Version 2.0
   JavaBeans Activation Framework (JAF) under Common Development and Distribution License (CDDL) v1.0
@@ -52,14 +48,10 @@ This program links to or is a derivative of:
   jersey-server under CDDL 1.1 or GPL2 w/ CPE
   jersey-servlet under CDDL 1.1 or GPL2 w/ CPE
   Jettison under Apache License, Version 2.0
-  JSON (JavaScript Object Notation) under provided without support or warranty
-  JUnit under Common Public License Version 1.0
   Lucene Common Analyzers under Apache 2
   Lucene Core under Apache 2
   NICTA t3as MetaMap Tagger under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as MetaMap XML JAXB under GNU GENERAL PUBLIC LICENSE Version 3
-  NICTA t3as SNOMED CT GWT UI under GNU GENERAL PUBLIC LICENSE Version 3
-  NICTA t3as SNOMED CT Service under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as SNOMED CT web service under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as UMLS CUI to SNOMED CT Lookup under GNU GENERAL PUBLIC LICENSE Version 3
   Streaming API for XML under GNU General Public Library or COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
