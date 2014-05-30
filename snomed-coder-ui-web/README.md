@@ -2,6 +2,8 @@
 
 This is a simple interface for using the SNOMED CT Coder web service in a web browser.
 
+This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+
 ## Installation
 
 This app requires the SNOMED CT Coder web service to be running somewhere, but it doesn't necessarily have to be on the same server (the SNOMED CT Coder web service allows Cross Origin Resource Sharing).

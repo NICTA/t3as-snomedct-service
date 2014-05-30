@@ -2,6 +2,8 @@
 
 This web service takes some free text and tries to determine what SNOMED CT codes can be extracted from it.
 
+This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+
 
 
 ## Installation

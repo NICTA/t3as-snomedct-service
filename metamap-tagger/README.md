@@ -2,6 +2,8 @@
 
 The t3as MetaMap Tagger is a wrapper around [NLM MetaMap](http://metamap.nlm.nih.gov/). It can be used to identify medical (and other) concepts in text.
 
+This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+
 ## Installation
 
 Download and install MetaMap for your OS from the link above. To make things as simple as possible and make use of all the pre-defined options then install MetaMap at the path `/opt/snomed-coder-web/metamap/`. If running the [SNOMED CT Coder web service](../snomed-coder-web) then the MetaMap installation must be available locally to the web service.

@@ -2,6 +2,8 @@
 
 A library containing mostly Java classes auto-generated from the MetaMap XML DTD using the Java XML Binding Compiler (`xjc`).
 
+This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+
 The DTD is available here:
 
 <http://metamap.nlm.nih.gov/DTD/MMOtoXML_v5.dtd>

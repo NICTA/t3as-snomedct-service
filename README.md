@@ -2,6 +2,8 @@
 
 This project contains a web service, and associated tools and services, for analysing some free text and returning matching SNOMED CT codes. To do this it makes use of [NLM MetaMap](http://metamap.nlm.nih.gov/) and [NLM UMLS](http://www.nlm.nih.gov/research/umls/).
 
+This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+
 ## Sub-projects
 
 These are the subprojects:

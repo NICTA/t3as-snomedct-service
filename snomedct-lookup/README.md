@@ -2,6 +2,8 @@
 
 t3as SNOMED CT Lookup tool uses the [NLM UMLS](http://www.nlm.nih.gov/research/umls/) to lookup SNOMED CT concept codes when given a UMLS CUI code and description.
 
+This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+
 ## Installation
 
 Download the UMLS from the link above. Run the MetamorphoSys tool and install only the SNOMED CT data into some directory. Make a note of the directory path, as you need to specify where this is when running. If running the [SNOMED CT Coder web service](../snomed-coder-web) then the UMLS SNOMED CT index must be available locally to the web service.
