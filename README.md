@@ -2,6 +2,10 @@
 
 This project contains a web service, and associated tools and services, for analysing some free text and returning matching SNOMED CT codes. To do this it makes use of [NLM MetaMap](http://metamap.nlm.nih.gov/) and [NLM UMLS](http://www.nlm.nih.gov/research/umls/).
 
+This project is funded by National ICT Australia ([NICTA](http://nicta.com.au/)), and is developed by the Text Analytics as a Service ([t3as](http://t3as.org/)) team. We run a demo of this service at:
+ 
+<http://snomedct.t3as.org/>
+
 This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
 
 ## Sub-projects
