@@ -4,6 +4,11 @@ The t3as MetaMap Tagger is a wrapper around [NLM MetaMap](http://metamap.nlm.nih
 
 This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
 
+This project is also available on Maven Central under the `org.t3as` group id, as artifact id `metamap-tagger`:
+
+<http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22metamap-tagger%22>
+
+
 ## Installation
 
 Download and install MetaMap for your OS from the link above. To make things as simple as possible and make use of all the pre-defined options then install MetaMap at the path `/opt/snomed-coder-web/metamap/`. If running the [SNOMED CT Coder web service](../snomed-coder-web) then the MetaMap installation must be available locally to the web service.

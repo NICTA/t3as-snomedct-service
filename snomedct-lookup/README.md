@@ -4,6 +4,10 @@ t3as SNOMED CT Lookup tool uses the [NLM UMLS](http://www.nlm.nih.gov/research/u
 
 This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
 
+This project is also available on Maven Central under the `org.t3as` group id, as artifact id `snomedct-lookup`:
+
+<http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22snomedct-lookup%22>
+
 ## Installation
 
 Download the UMLS from the link above. Run the MetamorphoSys tool and install only the SNOMED CT data into some directory. Make a note of the directory path, as you need to specify where this is when running. If running the [SNOMED CT Coder web service](../snomed-coder-web) then the UMLS SNOMED CT index must be available locally to the web service.

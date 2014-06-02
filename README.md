@@ -8,6 +8,10 @@ This project is funded by National ICT Australia ([NICTA](http://nicta.com.au/))
 
 This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
 
+Parts of this project are also available on Maven Central under the `org.t3as` group id:
+
+<http://search.maven.org/#search%7Cga%7C1%7Corg.t3as>
+
 ## Sub-projects
 
 These are the subprojects:
