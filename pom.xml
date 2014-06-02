@@ -51,6 +51,17 @@
         <project.rootdir>${basedir}</project.rootdir>
     </properties>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <defaultGoal>install</defaultGoal>
 
@@ -170,6 +181,9 @@
                     <value>true</value>
                 </property>
             </activation>
+            <properties>
+                <gpg.executable>gpg2</gpg.executable>
+            </properties>
             <build>
                 <plugins>
 
