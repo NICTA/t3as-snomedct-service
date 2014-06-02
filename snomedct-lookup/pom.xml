@@ -44,6 +44,9 @@
                         <manifest>
                             <mainClass>org.t3as.snomedct.lookup.cmdline.Main</mainClass>
                         </manifest>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
                     </archive>
                 </configuration>
             </plugin>
