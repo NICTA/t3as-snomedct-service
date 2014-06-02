@@ -11,6 +11,7 @@
 
     <name>NICTA t3as SNOMED CT Service</name>
     <description>Find the SNOMED CT concepts in clinical text.</description>
+    <url>http://t3as.org/</url>
     <inceptionYear>2014</inceptionYear>
     <organization>
         <name>NICTA</name>
@@ -186,7 +187,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    
+
                 </plugins>
             </build>
         </profile>
