@@ -47,6 +47,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.rootdir>${basedir}</project.rootdir>
+        <maven-notice-plugin.version>1.0.6.1</maven-notice-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.2</nexus-staging-maven-plugin.version>
     </properties>
 
     <distributionManagement>
@@ -145,7 +147,7 @@
             <plugin>
                 <groupId>org.jasig.maven</groupId>
                 <artifactId>maven-notice-plugin</artifactId>
-                <version>1.0.6.1</version>
+                <version>${maven-notice-plugin.version}</version>
                 <configuration>
                     <generateChildNotices>true</generateChildNotices>
                     <noticeTemplate>${project.rootdir}/licensing/notice-template</noticeTemplate>
@@ -187,13 +189,9 @@
 
                     <!-- to deploy a release to Maven Central run with the release-sign-artifacts profile -->
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <executions> <execution> <phase>none</phase> </execution> </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
                         <executions> <execution> <phase>none</phase> </execution> </executions>
                     </plugin>
 
@@ -235,7 +233,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.2</version>
+                        <version>${nexus-staging-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -248,6 +246,7 @@
                     <plugin>
                         <groupId>org.jasig.maven</groupId>
                         <artifactId>maven-notice-plugin</artifactId>
+                        <version>${maven-notice-plugin.version}</version>
                         <executions> <execution> <phase>none</phase> </execution> </executions>
                     </plugin>
 
