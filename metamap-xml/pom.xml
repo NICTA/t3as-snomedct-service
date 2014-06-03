@@ -18,12 +18,6 @@
         Parse MetaMap '--XMLf1' output using JAXB into an object graph.
     </description>
 
-    <scm>
-        <connection>scm:git:https://github.it.nicta.com.au/nbacon/taas.git</connection>
-        <developerConnection>scm:git:https://github.it.nicta.com.au/nbacon/taas.git</developerConnection>
-        <url>https://github.it.nicta.com.au/nbacon/taas</url>
-    </scm>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.rootdir>${basedir}/..</project.rootdir>
