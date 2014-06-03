@@ -31,7 +31,6 @@ This program links to or is a derivative of:
 
   Apache Commons IO (for Apache Directory Studio) under The Apache Software License, Version 2.0
   Apache Commons Lang under The Apache Software License, Version 2.0
-  ASM Core under BSD 3-Clause License
   Bean Validation API under Apache License, Version 2.0
   Commons IO under The Apache Software License, Version 2.0
   CORS Filter under The Apache Software License, Version 2.0

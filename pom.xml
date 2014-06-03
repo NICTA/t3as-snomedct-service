@@ -49,6 +49,7 @@
         <project.rootdir>${basedir}</project.rootdir>
         <maven-notice-plugin.version>1.0.6.1</maven-notice-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.2</nexus-staging-maven-plugin.version>
+        <com.sun.jersey.version>1.18.1</com.sun.jersey.version>
     </properties>
 
     <distributionManagement>
