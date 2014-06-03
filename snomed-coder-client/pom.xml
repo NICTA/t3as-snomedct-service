@@ -85,14 +85,6 @@
             <version>${com.sun.jersey.version}</version>
         </dependency>
 
-<!--
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-json</artifactId>
-            <version>${com.sun.jersey.version}</version>
-        </dependency>
--->
-
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-jaxrs</artifactId>
