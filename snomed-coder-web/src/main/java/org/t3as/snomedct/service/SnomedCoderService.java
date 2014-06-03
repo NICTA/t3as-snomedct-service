@@ -41,6 +41,7 @@ import org.t3as.metamap.jaxb.MMOs;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.Utterance;
 import org.t3as.metamap.options.Option;
+import org.t3as.snomedct.client.AnalysisRequest;
 import org.t3as.snomedct.lookup.SnomedLookup;
 import org.xml.sax.SAXException;
 
@@ -114,11 +115,11 @@ public class SnomedCoderService {
 
         // metamap options, if nothing was passed used the defaults
         final Collection<Option> opts = new ArrayList<>();
-        if (r.options == null) {
+        if (r.getOptions() == null) {
             opts.addAll(MetaMap.DEFAULT_MM_OPTIONS);
         }
         else {
-            for (final String o : r.options) {
+            for (final String o : r.getOptions()) {
                 final Option opt = Option.strToOpt(o);
                 if (opt != null) opts.add(opt);
             }
@@ -128,7 +129,7 @@ public class SnomedCoderService {
         final File infile = File.createTempFile("metamap-input-", ".txt");
         final File outfile = File.createTempFile("metamap-output-", ".xml");
         try (Writer w = new BufferedWriter(new FileWriter(infile))) {
-            final String s = r.text + (r.text.endsWith("\n") ? "" : "\n");
+            final String s = r.getText() + (r.getText().endsWith("\n") ? "" : "\n");
             IOUtils.write(MetaMap.decomposeToAscii(URLDecoder.decode(s, "UTF-8")), w);
         }
         // we don't want too much data for a free service
@@ -141,8 +142,8 @@ public class SnomedCoderService {
         }
 
         // process the data with MetaMap
-        final Collection<String> semanticTypes = r.semanticTypes != null
-                                                 ? Arrays.asList(r.semanticTypes)
+        final Collection<String> semanticTypes = r.getSemanticTypes() != null
+                                                 ? Arrays.asList(r.getSemanticTypes())
                                                  : Collections.<String>emptyList();
         final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, semanticTypes);
         if (!metaMap.process(infile, outfile, opts.toArray(new Option[opts.size()]))) {
@@ -181,31 +182,5 @@ public class SnomedCoderService {
             }
         }
         return utterances;
-    }
-
-    @SuppressWarnings("UnusedDeclaration")
-    private static class AnalysisRequest {
-        String text;
-        String[] semanticTypes;
-        String[] options;
-
-        AnalysisRequest() { }
-
-        AnalysisRequest(final String text) { this.text = text; }
-
-        void setText(final String text) { this.text = text; }
-
-        void setSemanticTypes(final String[] semanticTypes) { this.semanticTypes = semanticTypes; }
-
-        void setOptions(final String[] options) { this.options = options; }
-
-        @Override
-        public String toString() {
-            return "AnalysisRequest{" +
-                   "text='" + text + '\'' +
-                   ", semanticTypes=" + Arrays.toString(semanticTypes) +
-                   ", options=" + Arrays.toString(options) +
-                   '}';
-        }
     }
 }

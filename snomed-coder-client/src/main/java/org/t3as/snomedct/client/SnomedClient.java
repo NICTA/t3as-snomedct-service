@@ -83,9 +83,9 @@ public class SnomedClient {
         final Client client = Client.create(config);
         final WebResource service = client.resource(url + SNOMED_SERVICE_PATH);
 
-        final ClientResponse response = service.type(MediaType.APPLICATION_FORM_URLENCODED)
+        final ClientResponse response = service.type(MediaType.APPLICATION_JSON)
                                                .accept(MediaType.APPLICATION_JSON)
-                                               .post(ClientResponse.class, text);
+                                               .post(ClientResponse.class, new AnalysisRequest(text));
         return response.getEntity(new GenericType<Collection<Utterance>>() {});
     }
 }
