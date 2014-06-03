@@ -56,7 +56,6 @@ public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
 
     @Override
     public ObjectMapper getContext(final Class<?> type) {
-        System.out.println("annotationIntrospector");
         return OBJECT_MAPPER;
     }
 }
