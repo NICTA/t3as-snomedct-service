@@ -21,6 +21,7 @@ These are the subprojects:
 3. [SNOMED CT Lookup](snomedct-lookup)
 4. [SNOMED CT Coder Web Service](snomed-coder-web)
 5. [SNOMED CT Coder Web User Interface](snomed-coder-ui-web)
+6. [SNOMED CT service Java REST client](snomed-coder-client)
 
 # Installation
 
