@@ -1,4 +1,4 @@
-package org.t3as.snomedct.client.cmdline.Main;
+package org.t3as.snomedct.client.cmdline;
 
 /*
  * #%L
@@ -34,6 +34,7 @@ package org.t3as.snomedct.client.cmdline.Main;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import org.t3as.snomedct.client.SnomedClient;
 
 public class Main {
 
@@ -50,9 +51,17 @@ public class Main {
             System.exit(0);
         }
 
+        final SnomedClient c = new SnomedClient(opts.url);
+        c.call(opts.text);
     }
     private static class Options {
         @Parameter(help = true, names = {"-h", "--help"}, description = "Show this help message.")
         boolean showUsage = false;
+
+        @Parameter(names = "-url", description = "The base URL of the SNOMED web service to access.")
+        String url = SnomedClient.DEFAULT_BASE_URL;
+
+        @Parameter(names = "-text", required = true, description = "The text to analyse for SNOMED CT codes.")
+        String text;
     }
 }
