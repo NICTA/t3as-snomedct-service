@@ -71,6 +71,11 @@ public class SnomedClient {
         this.url = url;
     }
 
+    /**
+     * Call the webservice with some text to analyse for SNOMED CT codes.
+     * @param text text to analyse
+     * @return object graph containing all the details about the analysis
+     */
     public Collection<Utterance> call(final String text) {
         final ClientConfig config = new DefaultClientConfig();
         config.getClasses().add(JacksonJsonProvider.class);
