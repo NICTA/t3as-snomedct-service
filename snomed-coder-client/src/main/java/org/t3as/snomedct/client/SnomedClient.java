@@ -39,18 +39,10 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;
-import org.t3as.metamap.jaxb.Candidate;
-import org.t3as.metamap.jaxb.Mapping;
-import org.t3as.metamap.jaxb.Phrase;
-import org.t3as.metamap.jaxb.SemType;
 import org.t3as.metamap.jaxb.Utterance;
+import org.t3as.snomedct.client.jaxb.ObjectMapperProvider;
 
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.ext.ContextResolver;
-import javax.ws.rs.ext.Provider;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -89,53 +81,6 @@ public class SnomedClient {
         final ClientResponse response = service.type(MediaType.APPLICATION_FORM_URLENCODED)
                                                .accept(MediaType.APPLICATION_JSON)
                                                .post(ClientResponse.class, text);
-        final Collection<Utterance> c = response.getEntity(new GenericType<Collection<Utterance>>() {});
-
-        for (final Utterance u : c) {
-            for (final Phrase phrase : u.getPhrases().getPhrase()) {
-                System.out.printf("Phrase: %s\n", phrase.getPhraseText());
-                for (final Mapping mapping : phrase.getMappings().getMapping()) {
-                    System.out.printf("Score: %s\n", mapping.getMappingScore());
-                    for (final Candidate candidate : mapping.getMappingCandidates().getCandidate()) {
-                        final Collection<String> semTypes = new ArrayList<>();
-                        for (final SemType st : candidate.getSemTypes().getSemType()) {
-                            semTypes.add(st.getvalue());
-                        }
-
-                        System.out.printf("  %-5s %-9s %s %s %s\n",
-                                          candidate.getCandidateScore(),
-                                          candidate.getCandidateCUI(),
-                                          candidate.getSnomedId(),
-                                          candidate.getCandidatePreferred(),
-                                          semTypes);
-                    }
-                }
-                System.out.println();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * We need to register the a JaxbAnnotationIntrospector with the Jackson ObjectMapper so that we can deserialize
-     * JSON using the metamap-xml JAXB annotations.
-     */
-    @Provider
-    public static class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
-
-        private static final ObjectMapper OBJECT_MAPPER;
-
-        static {
-            final ObjectMapper om = new ObjectMapper();
-            om.setDeserializationConfig(
-                    om.getDeserializationConfig().withAnnotationIntrospector(new JaxbAnnotationIntrospector()));
-            OBJECT_MAPPER = om;
-        }
-
-        @Override
-        public ObjectMapper getContext(final Class<?> type) {
-            System.out.println("annotationIntrospector");
-            return OBJECT_MAPPER;
-        }
+        return response.getEntity(new GenericType<Collection<Utterance>>() {});
     }
 }

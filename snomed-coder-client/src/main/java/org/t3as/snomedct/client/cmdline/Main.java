@@ -34,7 +34,15 @@ package org.t3as.snomedct.client.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import org.t3as.metamap.jaxb.Candidate;
+import org.t3as.metamap.jaxb.Mapping;
+import org.t3as.metamap.jaxb.Phrase;
+import org.t3as.metamap.jaxb.SemType;
+import org.t3as.metamap.jaxb.Utterance;
 import org.t3as.snomedct.client.SnomedClient;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Main {
 
@@ -52,8 +60,33 @@ public class Main {
         }
 
         final SnomedClient c = new SnomedClient(opts.url);
-        c.call(opts.text);
+        final Collection<Utterance> utterances = c.call(opts.text);
+
+        // just print out the info we are interested in
+        for (final Utterance u : utterances) {
+            for (final Phrase phrase : u.getPhrases().getPhrase()) {
+                System.out.printf("Phrase: %s\n", phrase.getPhraseText());
+                for (final Mapping mapping : phrase.getMappings().getMapping()) {
+                    System.out.printf("Score: %s\n", mapping.getMappingScore());
+                    for (final Candidate candidate : mapping.getMappingCandidates().getCandidate()) {
+                        final Collection<String> semTypes = new ArrayList<>();
+                        for (final SemType st : candidate.getSemTypes().getSemType()) {
+                            semTypes.add(st.getvalue());
+                        }
+
+                        System.out.printf("  %-5s %-9s %s %s %s\n",
+                                          candidate.getCandidateScore(),
+                                          candidate.getCandidateCUI(),
+                                          candidate.getSnomedId(),
+                                          candidate.getCandidatePreferred(),
+                                          semTypes);
+                    }
+                }
+                System.out.println();
+            }
+        }
     }
+
     private static class Options {
         @Parameter(help = true, names = {"-h", "--help"}, description = "Show this help message.")
         boolean showUsage = false;
