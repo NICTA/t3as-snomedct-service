@@ -50,6 +50,7 @@
         <maven-notice-plugin.version>1.0.6.1</maven-notice-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.2</nexus-staging-maven-plugin.version>
         <com.sun.jersey.version>1.18.1</com.sun.jersey.version>
+        <com.beust.jcommander.version>1.35</com.beust.jcommander.version>
     </properties>
 
     <distributionManagement>
@@ -183,6 +184,7 @@
                 <module>snomedct-lookup</module>
                 <module>snomed-coder-web</module>
                 <module>snomed-coder-ui-web</module>
+                <module>snomed-coder-client</module>
             </modules>
 
             <build>
