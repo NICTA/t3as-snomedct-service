@@ -42,7 +42,6 @@ import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.Utterance;
 import org.t3as.metamap.options.Option;
 import org.t3as.metamap.options.Options;
-import org.t3as.snomedct.client.AnalysisRequest;
 import org.t3as.snomedct.lookup.SnomedLookup;
 import org.xml.sax.SAXException;
 

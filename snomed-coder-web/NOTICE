@@ -42,7 +42,6 @@ This program links to or is a derivative of:
   JAXB API bundle for GlassFish V3 under CDDL 1.1 or GPL2 w/ CPE
   JAXB RI under CDDL 1.1 or GPL2 w/ CPE
   JCommander under The Apache Software License, Version 2.0
-  jersey-client under CDDL 1.1 or GPL2 w/ CPE
   jersey-core under CDDL 1.1 or GPL2 w/ CPE
   jersey-json under CDDL 1.1 or GPL2 w/ CPE
   jersey-server under CDDL 1.1 or GPL2 w/ CPE
@@ -51,7 +50,6 @@ This program links to or is a derivative of:
   Lucene Common Analyzers under Apache 2
   Lucene Core under Apache 2
   NICTA t3as MetaMap Tagger under GNU GENERAL PUBLIC LICENSE Version 3
-  NICTA t3as SNOMED CT service REST client under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as SNOMED CT web service under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as SNOMED service common classes under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as UMLS CUI to SNOMED CT Lookup under GNU GENERAL PUBLIC LICENSE Version 3

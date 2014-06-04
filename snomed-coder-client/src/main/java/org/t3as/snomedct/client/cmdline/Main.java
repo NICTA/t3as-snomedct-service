@@ -40,8 +40,8 @@ import org.t3as.metamap.jaxb.Mapping;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.SemType;
 import org.t3as.metamap.jaxb.Utterance;
-import org.t3as.snomedct.client.AnalysisRequest;
 import org.t3as.snomedct.client.SnomedClient;
+import org.t3as.snomedct.service.AnalysisRequest;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package org.t3as.snomedct.client;
+package org.t3as.snomedct.service;
 
 /*
  * #%L

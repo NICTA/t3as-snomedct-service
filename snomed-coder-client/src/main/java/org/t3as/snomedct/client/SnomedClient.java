@@ -40,6 +40,7 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.t3as.metamap.jaxb.Utterance;
+import org.t3as.snomedct.service.AnalysisRequest;
 import org.t3as.snomedct.client.jaxb.ObjectMapperProvider;
 
 import javax.ws.rs.core.MediaType;
