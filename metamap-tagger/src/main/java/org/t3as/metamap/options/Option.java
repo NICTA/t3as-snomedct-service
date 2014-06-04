@@ -85,4 +85,9 @@ public abstract class Option {
         final Option opt = OPTS.get(name);
         return opt == null ? null : opt.newInstance(param);
     }
+
+    @Override
+    public String toString() {
+        return name();
+    }
 }

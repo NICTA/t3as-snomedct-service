@@ -78,17 +78,17 @@ public class SnomedClient {
     }
 
     /**
-     * Call the webservice with some text to analyse for SNOMED CT codes - this method can be used repeatedly on the
-     * same instance.
-     * @param text text to analyse
-     * @return object graph containing all the details about the analysis
+     * Call the webservice with some request to analyse for SNOMED CT codes - this method can be used repeatedly on the
+     * same SnomedClient instance.
+     * @param request request to analyse
+     * @return object graph containing all the analysis output
      */
-    public Collection<Utterance> call(final String text) {
+    public Collection<Utterance> call(final AnalysisRequest request) {
         ClientResponse response = null;
         try {
             response = service.type(MediaType.APPLICATION_JSON)
                               .accept(MediaType.APPLICATION_JSON)
-                              .post(ClientResponse.class, new AnalysisRequest(text));
+                              .post(ClientResponse.class, request);
             return response.getEntity(new GenericType<Collection<Utterance>>() {});
         }
         finally {

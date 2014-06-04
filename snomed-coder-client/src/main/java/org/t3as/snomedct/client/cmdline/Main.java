@@ -34,18 +34,21 @@ package org.t3as.snomedct.client.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import org.apache.commons.io.FileUtils;
+import org.t3as.metamap.MetaMap;
 import org.t3as.metamap.jaxb.Candidate;
 import org.t3as.metamap.jaxb.Mapping;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.SemType;
 import org.t3as.metamap.jaxb.Utterance;
+import org.t3as.snomedct.client.AnalysisRequest;
 import org.t3as.snomedct.client.SnomedClient;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import static org.apache.commons.io.FileUtils.readFileToString;
 
 /**
  * Command line implementation of the SNOMED CT web service client.
@@ -62,22 +65,26 @@ public class Main {
         final SnomedClient client = new SnomedClient(opts.url);
 
         // call the webservice with the text and any passed options
-        if (!opts.text.isEmpty()) System.out.println(callService(opts.text, client));
+        if (!opts.text.isEmpty()) System.out.println(callService(opts.text, opts, client));
         else processFiles(opts, client);
     }
 
     private static void processFiles(final Options opts, final SnomedClient client) throws IOException {
         // read each file and call the web service
         for (final File f : opts.files) {
-            final String input = FileUtils.readFileToString(f);
+            final String input = readFileToString(f);
             System.out.printf("%s:\n", f);
-            System.out.println(callService(input, client));
+            System.out.println(callService(input, opts, client));
         }
     }
 
-    private static String callService(final String text, final SnomedClient client) {
+    private static String callService(final String text, final Options opts, final SnomedClient client) {
+        // create a request
+        final AnalysisRequest request = new AnalysisRequest(text);
+        request.setOptions(opts.splitOptions());
+        request.setSemanticTypes(opts.splitSemTypes());
         // perform the call and get the output
-        final Collection<Utterance> utterances = client.call(text);
+        final Collection<Utterance> utterances = client.call(request);
         // turn the output into a human readable string
         return toString(utterances);
     }
@@ -154,7 +161,28 @@ public class Main {
         @Parameter(names = "-text", description = "The text to analyse for SNOMED CT codes.")
         String text = "";
 
+        @Parameter(names = "-options", description = "Comma separated list of options to pass to the SNOMED CT coder " +
+                                                     "- see web service documentation for which ones are supported.")
+        String options = MetaMap.DEFAULT_MM_OPTIONS.toString().replaceAll("[\\[\\]]", "");
+
+        @Parameter(names = "-semTypes", description = "Comma separated list of semantic types to look for.")
+        String semTypes = MetaMap.DEFAULT_MM_SEMANTIC_TYPES.toString().replaceAll("[\\[\\]]", "");
+
         @Parameter(description = "[files]")
         Collection<File> files = new ArrayList<>();
+
+        String[] splitOptions() {
+            // split on comma and trim off any surrounding whitespace
+            final String[] split = options.split(",");
+            for (int i = 0; i < split.length; i++) split[i] = split[i].trim();
+            return split;
+        }
+
+        String[] splitSemTypes() {
+            // split on comma and trim off any surrounding whitespace
+            final String[] split = semTypes.split(",");
+            for (int i = 0; i < split.length; i++) split[i] = split[i].trim();
+            return split;
+        }
     }
 }

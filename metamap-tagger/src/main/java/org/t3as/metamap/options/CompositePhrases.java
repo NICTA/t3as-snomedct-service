@@ -70,4 +70,9 @@ public class CompositePhrases extends Option {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return NAME + " " + numPhrases;
+    }
 }
