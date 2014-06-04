@@ -34,6 +34,7 @@ package org.t3as.snomedct.client.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import org.apache.commons.io.FileUtils;
 import org.t3as.metamap.jaxb.Candidate;
 import org.t3as.metamap.jaxb.Mapping;
 import org.t3as.metamap.jaxb.Phrase;
@@ -41,12 +42,79 @@ import org.t3as.metamap.jaxb.SemType;
 import org.t3as.metamap.jaxb.Utterance;
 import org.t3as.snomedct.client.SnomedClient;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Command line implementation of the SNOMED CT web service client.
+ */
 public class Main {
 
-    public static void main(final String[] args) throws Exception {
+    /**
+     * Get the relevant options from the command line and invoke the client.
+     */
+    public static void main(final String[] args) throws IOException {
+        final Options opts = getOptions(args);
+
+        // create a web service client
+        final SnomedClient client = new SnomedClient(opts.url);
+
+        // call the webservice with the text and any passed options
+        if (!opts.text.isEmpty()) System.out.println(callService(opts.text, client));
+        else processFiles(opts, client);
+    }
+
+    private static void processFiles(final Options opts, final SnomedClient client) throws IOException {
+        // read each file and call the web service
+        for (final File f : opts.files) {
+            final String input = FileUtils.readFileToString(f);
+            System.out.printf("%s:\n", f);
+            System.out.println(callService(input, client));
+        }
+    }
+
+    private static String callService(final String text, final SnomedClient client) {
+        // perform the call and get the output
+        final Collection<Utterance> utterances = client.call(text);
+        // turn the output into a human readable string
+        return toString(utterances);
+    }
+
+    /**
+     * Turn utterances into MetaMap-ish output.
+     * @param utterances Utterances to get data from
+     * @return a MetaMap-ish string meant for printing
+     */
+    public static String toString(final Collection<Utterance> utterances) {
+        final StringBuilder sb = new StringBuilder();
+        for (final Utterance u : utterances) {
+            for (final Phrase phrase : u.getPhrases().getPhrase()) {
+                sb.append(String.format("Phrase: %s\n", phrase.getPhraseText()));
+                for (final Mapping mapping : phrase.getMappings().getMapping()) {
+                    sb.append(String.format("Score: %s\n", mapping.getMappingScore()));
+                    for (final Candidate candidate : mapping.getMappingCandidates().getCandidate()) {
+                        final Collection<String> semTypes = new ArrayList<>();
+                        for (final SemType st : candidate.getSemTypes().getSemType()) {
+                            semTypes.add(st.getvalue());
+                        }
+
+                        sb.append(String.format("  %-5s %-9s %s %s %s\n",
+                                          candidate.getCandidateScore(),
+                                          candidate.getCandidateCUI(),
+                                          candidate.getSnomedId(),
+                                          candidate.getCandidatePreferred(),
+                                          semTypes));
+                    }
+                }
+                sb.append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    private static Options getOptions(final String[] args) {
         final Options opts = new Options();
         JCommander jc = null;
         try { jc = new JCommander(opts, args); }
@@ -58,33 +126,22 @@ public class Main {
             jc.usage();
             System.exit(0);
         }
-
-        final SnomedClient c = new SnomedClient(opts.url);
-        final Collection<Utterance> utterances = c.call(opts.text);
-
-        // just print out the info we are interested in
-        for (final Utterance u : utterances) {
-            for (final Phrase phrase : u.getPhrases().getPhrase()) {
-                System.out.printf("Phrase: %s\n", phrase.getPhraseText());
-                for (final Mapping mapping : phrase.getMappings().getMapping()) {
-                    System.out.printf("Score: %s\n", mapping.getMappingScore());
-                    for (final Candidate candidate : mapping.getMappingCandidates().getCandidate()) {
-                        final Collection<String> semTypes = new ArrayList<>();
-                        for (final SemType st : candidate.getSemTypes().getSemType()) {
-                            semTypes.add(st.getvalue());
-                        }
-
-                        System.out.printf("  %-5s %-9s %s %s %s\n",
-                                          candidate.getCandidateScore(),
-                                          candidate.getCandidateCUI(),
-                                          candidate.getSnomedId(),
-                                          candidate.getCandidatePreferred(),
-                                          semTypes);
-                    }
-                }
-                System.out.println();
+        if (opts.text.isEmpty() && opts.files.isEmpty()) {
+            System.err.println("Pass either text to analyse or files to read text from.");
+            System.exit(1);
+        }
+        if (!opts.text.isEmpty() && !opts.files.isEmpty()) {
+            System.err.println("Pass either text to analyse or files to read text from, not both.");
+            System.exit(1);
+        }
+        // do nothing unless all files are readable
+        for (final File f : opts.files) {
+            if (!f.canRead()) {
+                System.err.printf("Can not read file '%s'\n", f);
+                System.exit(1);
             }
         }
+        return opts;
     }
 
     private static class Options {
@@ -94,7 +151,10 @@ public class Main {
         @Parameter(names = "-url", description = "The base URL of the SNOMED web service to access.")
         String url = SnomedClient.DEFAULT_BASE_URL;
 
-        @Parameter(names = "-text", required = true, description = "The text to analyse for SNOMED CT codes.")
-        String text;
+        @Parameter(names = "-text", description = "The text to analyse for SNOMED CT codes.")
+        String text = "";
+
+        @Parameter(description = "[files]")
+        Collection<File> files = new ArrayList<>();
     }
 }
