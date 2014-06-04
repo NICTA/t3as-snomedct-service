@@ -55,7 +55,7 @@ import javax.xml.bind.annotation.XmlType;
     "optName",
     "optValue"
 })
-@XmlRootElement(name = "Option")
+@XmlRootElement(name = "Options")
 public class Option {
 
     @XmlElement(name = "OptName", required = true)

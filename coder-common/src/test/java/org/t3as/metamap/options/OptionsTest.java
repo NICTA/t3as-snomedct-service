@@ -1,4 +1,4 @@
-package org.t3as.metamap;
+package org.t3as.metamap.options;
 
 /*
  * #%L
@@ -34,23 +34,36 @@ package org.t3as.metamap;
 
 import org.junit.Test;
 
-import java.util.Collections;
-
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
-import static org.t3as.metamap.SemanticTypes.sanitiseSemanticTypes;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-public class MetaMapTest {
+public class OptionsTest {
 
     @Test
-    public void testDecomposeToAscii() throws Exception {
-        assertEquals("xyaaaoooxy", MetaMap.decomposeToAscii("xyâåäöốởxy"));
-        assertEquals("a  b", MetaMap.decomposeToAscii("a µ b"));
-        assertEquals("1234567890abcdefghijklmnopqrstuvwxyz\"!@#$%^&*()?",
-                     MetaMap.decomposeToAscii("1234567890abcdefghijklmnopqrstuvwxyz\"!@#$%^&*()?"));
-        assertEquals("", MetaMap.decomposeToAscii("Ƣ"));
-        assertEquals("ae", MetaMap.decomposeToAscii("ǽ"));
-        assertEquals("O", MetaMap.decomposeToAscii("Ǿ"));
-        assertEquals("t", MetaMap.decomposeToAscii("ȶ"));
+    public void test() throws Exception {
+        final Option o1 = Options.strToOpt("foobar");
+        assertNull(o1);
+
+        final Option o2 = Options.strToOpt("word_sense_disambiguation");
+        assertNotNull(o2);
+        assertEquals(WordSenseDisambiguation.class, o2.getClass());
+        assertEquals("word_sense_disambiguation", o2.name());
+        assertNull(o2.param());
+        assertEquals("--word_sense_disambiguation", o2.toMmOptStr());
+
+        final Option o3 = Options.strToOpt("composite_phrases");
+        assertNull(o3);
+
+        final Option o4 = Options.strToOpt("composite_phrases X");
+        assertNull(o4);
+
+        final Option o5 = Options.strToOpt("composite_phrases 20");
+        assertNull(o5);
+
+        final Option o6 = Options.strToOpt("composite_phrases 4");
+        assertNotNull(o6);
+        assertEquals(CompositePhrases.class, o6.getClass());
+        assertEquals("--composite_phrases 4", o6.toMmOptStr());
     }
 }

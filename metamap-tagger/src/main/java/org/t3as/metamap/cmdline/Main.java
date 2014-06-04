@@ -35,7 +35,7 @@ package org.t3as.metamap.cmdline;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.t3as.metamap.MetaMap;
-import org.t3as.metamap.options.Option;
+import org.t3as.metamap.SemanticTypes;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -43,7 +43,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import static org.t3as.metamap.MetaMap.DEFAULT_MM_OPTIONS;
+import static org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS;
 
 /**
  * Command line tool to exercise MetaMap. Produces output that can then be passed to the snomedct-lookup tool.
@@ -76,9 +76,9 @@ public final class Main {
         }
 
         // process the data with MetaMap
-        final MetaMap metaMap = new MetaMap(opts.publicMm, MetaMap.DEFAULT_MM_SEMANTIC_TYPES);
+        final MetaMap metaMap = new MetaMap(opts.publicMm, SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES);
         if (!metaMap.process(sanitised, opts.output,
-                             DEFAULT_MM_OPTIONS.toArray(new Option[DEFAULT_MM_OPTIONS.size()]))) {
+                             DEFAULT_MM_OPTIONS.toArray(new org.t3as.metamap.options.Option[DEFAULT_MM_OPTIONS.size()]))) {
             System.err.println("MetaMap processing failed, aborting.");
             System.exit(1);
         }

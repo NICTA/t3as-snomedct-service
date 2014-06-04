@@ -2,7 +2,7 @@ package org.t3as.metamap.options;
 
 /*
  * #%L
- * NICTA t3as MetaMap Tagger
+ * NICTA t3as SNOMED service common classes
  * %%
  * Copyright (C) 2014 NICTA
  * %%
@@ -32,29 +32,9 @@ package org.t3as.metamap.options;
  * #L%
  */
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Option {
 
-    private static final Map<String, Option> OPTS;
-
-    static {
-        final Map<String, Option> m = new HashMap<>();
-
-        // PUT NEW OPTIONS IN THIS LIST
-        m.put(WordSenseDisambiguation.NAME, new WordSenseDisambiguation());
-        m.put(CompositePhrases.NAME, new CompositePhrases());
-        m.put(NoDerivationalVariants.NAME, new NoDerivationalVariants());
-        m.put(StrictModel.NAME, new StrictModel());
-        m.put(IgnoreWordOrder.NAME, new IgnoreWordOrder());
-        m.put(AllowLargeN.NAME, new AllowLargeN());
-        m.put(IgnoreStopPhrases.NAME, new IgnoreStopPhrases());
-        m.put(AllAcrosAbbrs.NAME, new AllAcrosAbbrs());
-
-        OPTS = Collections.unmodifiableMap(m);
-    }
+    protected Option() {}
 
     protected abstract String name();
 
@@ -71,19 +51,6 @@ public abstract class Option {
 
     public String toMmOptStr() {
         return "--" + name() + (param() == null ? "" : " " + param());
-    }
-
-    /**
-     * Parse an option string (without the leading double hyphens) into an option to pass to MetaMap,
-     * e.g. "word_sense_disambiguation".
-     */
-    public static Option strToOpt(final String optStr) {
-        final String[] parts = optStr.split(" ", 2);
-        final String name = parts[0];
-        final String param = 1 < parts.length ? parts[1] : null;
-
-        final Option opt = OPTS.get(name);
-        return opt == null ? null : opt.newInstance(param);
     }
 
     @Override

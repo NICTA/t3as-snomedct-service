@@ -34,7 +34,7 @@ package org.t3as.snomedct.client.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import org.t3as.metamap.MetaMap;
+import org.t3as.metamap.SemanticTypes;
 import org.t3as.metamap.jaxb.Candidate;
 import org.t3as.metamap.jaxb.Mapping;
 import org.t3as.metamap.jaxb.Phrase;
@@ -163,10 +163,10 @@ public class Main {
 
         @Parameter(names = "-options", description = "Comma separated list of options to pass to the SNOMED CT coder " +
                                                      "- see web service documentation for which ones are supported.")
-        String options = MetaMap.DEFAULT_MM_OPTIONS.toString().replaceAll("[\\[\\]]", "");
+        String options = org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS.toString().replaceAll("[\\[\\]]", "");
 
         @Parameter(names = "-semTypes", description = "Comma separated list of semantic types to look for.")
-        String semTypes = MetaMap.DEFAULT_MM_SEMANTIC_TYPES.toString().replaceAll("[\\[\\]]", "");
+        String semTypes = SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES.toString().replaceAll("[\\[\\]]", "");
 
         @Parameter(description = "[files]")
         Collection<File> files = new ArrayList<>();

@@ -34,78 +34,22 @@ package org.t3as.metamap;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
-import org.t3as.metamap.options.AllowLargeN;
-import org.t3as.metamap.options.CompositePhrases;
-import org.t3as.metamap.options.IgnoreWordOrder;
-import org.t3as.metamap.options.NoDerivationalVariants;
 import org.t3as.metamap.options.Option;
-import org.t3as.metamap.options.StrictModel;
-import org.t3as.metamap.options.WordSenseDisambiguation;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import static org.t3as.metamap.JaxbLoader.loadResource;
 
 public final class MetaMap {
-
-    /**
-     * This has to be downloaded from the NLM MetaMap site. Last known URL was:
-     * http://metamap.nlm.nih.gov/Docs/SemanticTypes_2013AA.txt
-     */
-    private static final String SEMANTIC_TYPES_FILE = "SemanticTypes_2013AA.txt";
-    private static final String DEFAULT_SEMANTIC_TYPES_FILE = "defaultSemanticTypes.txt";
-
-    @SuppressWarnings("PublicStaticCollectionField")
-    public static final Collection<String> DEFAULT_MM_SEMANTIC_TYPES;
-    @SuppressWarnings("PublicStaticCollectionField")
-    public static final Map<String, String> SEMANTIC_TYPES_CODE_TO_DESCRIPTION;
-    @SuppressWarnings("PublicStaticCollectionField")
-    public static final Collection<Option> DEFAULT_MM_OPTIONS;
 
     private final File publicMm;
     private final Collection<String> semanticTypes;
 
-    static {
-        final Map<String, String> semanticTypes = new TreeMap<>();
-        final Collection<String> defaultSemanticTypes = new ArrayList<>();
-        try {
-            Collections.addAll(defaultSemanticTypes, loadResource(DEFAULT_SEMANTIC_TYPES_FILE));
-
-            // load all the MetaMap Semantic Types and make a static map out of the code and descriptions
-            final String[] semanticTypeLines = loadResource(SEMANTIC_TYPES_FILE);
-            for (final String line : semanticTypeLines) {
-                final String[] parts = line.split("\\|");
-                semanticTypes.put(parts[0], parts[2]);
-            }
-        }
-        catch (final IOException e) {
-            System.err.println("Could not load MetaMap Semantic Types: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        DEFAULT_MM_SEMANTIC_TYPES = Collections.unmodifiableCollection(defaultSemanticTypes);
-        SEMANTIC_TYPES_CODE_TO_DESCRIPTION = Collections.unmodifiableMap(semanticTypes);
-
-        final Collection<Option> o = new ArrayList<>();
-        o.add(new WordSenseDisambiguation());
-        o.add(new CompositePhrases(8));
-        o.add(new NoDerivationalVariants());
-        o.add(new StrictModel());
-        o.add(new IgnoreWordOrder());
-        o.add(new AllowLargeN());
-        DEFAULT_MM_OPTIONS = Collections.unmodifiableCollection(o);
-    }
-
     public MetaMap(final File publicMm, final Collection<String> semanticTypes) {
         this.publicMm = publicMm;
-        this.semanticTypes = sanitiseSemanticTypes(semanticTypes);
+        this.semanticTypes = SemanticTypes.sanitiseSemanticTypes(semanticTypes);
     }
 
     public boolean process(final File input, final File output, final Option[] opts)
@@ -167,18 +111,5 @@ public final class MetaMap {
         }
 
         return sb.toString();
-    }
-
-    /*package-private*/
-    static Collection<String> sanitiseSemanticTypes(final Collection<String> semanticTypes) {
-        if (semanticTypes == null) return DEFAULT_MM_SEMANTIC_TYPES;
-
-        // check that each of the given types are in the map we have, otherwise throw it away
-        final Collection<String> types = new ArrayList<>(semanticTypes.size());
-        for (final String t : semanticTypes) {
-            if (SEMANTIC_TYPES_CODE_TO_DESCRIPTION.containsKey(t)) types.add(t);
-        }
-
-        return types.size() > 0 ? types : DEFAULT_MM_SEMANTIC_TYPES;
     }
 }

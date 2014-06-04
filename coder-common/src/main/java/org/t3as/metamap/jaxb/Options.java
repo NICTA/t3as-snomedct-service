@@ -65,7 +65,7 @@ public class Options {
     @XmlAttribute(name = "Count", required = true)
     @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String count;
-    @XmlElement(name = "Option")
+    @XmlElement(name = "Options")
     protected List<Option> option;
 
     /**

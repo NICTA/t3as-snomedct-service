@@ -1,8 +1,8 @@
-package org.t3as.metamap.options;
+package org.t3as.metamap;
 
 /*
  * #%L
- * NICTA t3as MetaMap Tagger
+ * NICTA t3as SNOMED service common classes
  * %%
  * Copyright (C) 2014 NICTA
  * %%
@@ -34,36 +34,23 @@ package org.t3as.metamap.options;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import java.util.Collections;
 
-public class OptionTest {
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertEquals;
+import static org.t3as.metamap.SemanticTypes.sanitiseSemanticTypes;
+
+public class SemanticTypesTest {
+
 
     @Test
-    public void test() throws Exception {
-        final Option o1 = Option.strToOpt("foobar");
-        assertNull(o1);
+    public void testSanitiseSemanticTypes() {
+        assertEquals(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES, sanitiseSemanticTypes(null));
+        assertEquals(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES, sanitiseSemanticTypes(Collections.<String>emptyList()));
+        assertEquals(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES, sanitiseSemanticTypes(Collections.singleton("foobar")));
 
-        final Option o2 = Option.strToOpt("word_sense_disambiguation");
-        assertNotNull(o2);
-        assertEquals(WordSenseDisambiguation.class, o2.getClass());
-        assertEquals("word_sense_disambiguation", o2.name());
-        assertNull(o2.param());
-        assertEquals("--word_sense_disambiguation", o2.toMmOptStr());
-
-        final Option o3 = Option.strToOpt("composite_phrases");
-        assertNull(o3);
-
-        final Option o4 = Option.strToOpt("composite_phrases X");
-        assertNull(o4);
-
-        final Option o5 = Option.strToOpt("composite_phrases 20");
-        assertNull(o5);
-
-        final Option o6 = Option.strToOpt("composite_phrases 4");
-        assertNotNull(o6);
-        assertEquals(CompositePhrases.class, o6.getClass());
-        assertEquals("--composite_phrases 4", o6.toMmOptStr());
+        assertEquals(asList("dsyn"), sanitiseSemanticTypes(Collections.singleton("dsyn")));
+        assertEquals(asList("dsyn"), sanitiseSemanticTypes(asList("dsyn", "foobar")));
+        assertEquals(asList("dsyn", "fish"), sanitiseSemanticTypes(asList("dsyn", "foobar", "fish")));
     }
 }

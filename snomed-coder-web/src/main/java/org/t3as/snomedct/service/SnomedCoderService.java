@@ -41,6 +41,7 @@ import org.t3as.metamap.jaxb.MMOs;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.Utterance;
 import org.t3as.metamap.options.Option;
+import org.t3as.metamap.options.Options;
 import org.t3as.snomedct.client.AnalysisRequest;
 import org.t3as.snomedct.lookup.SnomedLookup;
 import org.xml.sax.SAXException;
@@ -116,11 +117,11 @@ public class SnomedCoderService {
         // metamap options, if nothing was passed used the defaults
         final Collection<Option> opts = new ArrayList<>();
         if (r.getOptions() == null) {
-            opts.addAll(MetaMap.DEFAULT_MM_OPTIONS);
+            opts.addAll(Options.DEFAULT_MM_OPTIONS);
         }
         else {
             for (final String o : r.getOptions()) {
-                final Option opt = Option.strToOpt(o);
+                final Option opt = Options.strToOpt(o);
                 if (opt != null) opts.add(opt);
             }
         }

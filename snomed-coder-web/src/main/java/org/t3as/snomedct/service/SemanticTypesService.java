@@ -32,7 +32,7 @@ package org.t3as.snomedct.service;
  * #L%
  */
 
-import org.t3as.metamap.MetaMap;
+import org.t3as.metamap.SemanticTypes;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -50,10 +50,10 @@ public class SemanticTypesService {
     private static final Collection<SemanticType> SEMANTIC_TYPES;
 
     static {
-        final Collection<SemanticType> types = new ArrayList<>(MetaMap.SEMANTIC_TYPES_CODE_TO_DESCRIPTION.size());
-        for (final Map.Entry<String, String> entry : MetaMap.SEMANTIC_TYPES_CODE_TO_DESCRIPTION.entrySet()) {
+        final Collection<SemanticType> types = new ArrayList<>(SemanticTypes.SEMANTIC_TYPES_CODE_TO_DESCRIPTION.size());
+        for (final Map.Entry<String, String> entry : SemanticTypes.SEMANTIC_TYPES_CODE_TO_DESCRIPTION.entrySet()) {
             types.add(new SemanticType(entry.getKey(), entry.getValue(),
-                                       MetaMap.DEFAULT_MM_SEMANTIC_TYPES.contains(entry.getKey())));
+                                       SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES.contains(entry.getKey())));
         }
         SEMANTIC_TYPES = Collections.unmodifiableCollection(types);
     }
