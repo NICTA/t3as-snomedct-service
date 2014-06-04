@@ -46,21 +46,23 @@ import javax.ws.rs.core.MediaType;
 import java.util.Collection;
 
 /**
- * A simple client implementation that will call the REST web service with some text and return the results.
+ * A simple client implementation that will call the REST web service with some text and return the results. The 'call'
+ * method can be reused repeatedly.
  */
 public class SnomedClient {
 
     public static final String DEFAULT_BASE_URL = "http://snomedct.t3as.org/snomed-coder-web/";
     private static final String SNOMED_SERVICE_PATH = "rest/v1.0/snomedctCodes";
 
-    private final String url;
+    private final WebResource service;
 
     /**
-     * Create a new client that calls the existing demo web service - @see DEFAULT_BASE_URL.
+     * Create a new client that calls the existing demo web service - this will use the default base URL
+     * "{@value #DEFAULT_BASE_URL}".
      */
     @SuppressWarnings("UnusedDeclaration")
     public SnomedClient() {
-        this.url = DEFAULT_BASE_URL;
+        this(DEFAULT_BASE_URL);
     }
 
     /**
@@ -68,24 +70,33 @@ public class SnomedClient {
      * @param url the base URL of the web service to be used
      */
     public SnomedClient(final String url) {
-        this.url = url;
-    }
-
-    /**
-     * Call the webservice with some text to analyse for SNOMED CT codes.
-     * @param text text to analyse
-     * @return object graph containing all the details about the analysis
-     */
-    public Collection<Utterance> call(final String text) {
         final ClientConfig config = new DefaultClientConfig();
         config.getClasses().add(JacksonJsonProvider.class);
         config.getClasses().add(ObjectMapperProvider.class);
         final Client client = Client.create(config);
-        final WebResource service = client.resource(url + SNOMED_SERVICE_PATH);
+        service = client.resource(url + SNOMED_SERVICE_PATH);
+    }
 
-        final ClientResponse response = service.type(MediaType.APPLICATION_JSON)
-                                               .accept(MediaType.APPLICATION_JSON)
-                                               .post(ClientResponse.class, new AnalysisRequest(text));
-        return response.getEntity(new GenericType<Collection<Utterance>>() {});
+    /**
+     * Call the webservice with some text to analyse for SNOMED CT codes - this method can be used repeatedly on the
+     * same instance.
+     * @param text text to analyse
+     * @return object graph containing all the details about the analysis
+     */
+    public Collection<Utterance> call(final String text) {
+        ClientResponse response = null;
+        try {
+            response = service.type(MediaType.APPLICATION_JSON)
+                              .accept(MediaType.APPLICATION_JSON)
+                              .post(ClientResponse.class, new AnalysisRequest(text));
+            return response.getEntity(new GenericType<Collection<Utterance>>() {});
+        }
+        finally {
+            // belt and braces
+            if (response != null) {
+                try { response.close(); }
+                catch (final Throwable t) { /* do nothing */ }
+            }
+        }
     }
 }

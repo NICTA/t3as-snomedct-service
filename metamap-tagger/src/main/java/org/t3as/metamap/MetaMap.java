@@ -66,7 +66,7 @@ public final class MetaMap {
     public static final Collection<String> DEFAULT_MM_SEMANTIC_TYPES;
     @SuppressWarnings("PublicStaticCollectionField")
     public static final Map<String, String> SEMANTIC_TYPES_CODE_TO_DESCRIPTION;
-
+    @SuppressWarnings("PublicStaticCollectionField")
     public static final Collection<Option> DEFAULT_MM_OPTIONS;
 
     private final File publicMm;
