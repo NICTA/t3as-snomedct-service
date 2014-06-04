@@ -29,11 +29,7 @@ permission to convey the resulting work.
 
 This program links to or is a derivative of:
 
-  Apache Commons Lang under The Apache Software License, Version 2.0
-  H2 Database Engine under The H2 License, Version 1.0
   Hamcrest Core under New BSD License
-  JCommander under The Apache Software License, Version 2.0
   JUnit under Common Public License Version 1.0
   NICTA t3as SNOMED service common classes under GNU GENERAL PUBLIC LICENSE Version 3
-  NICTA t3as UMLS CUI to SNOMED CT Lookup under GNU GENERAL PUBLIC LICENSE Version 3
 

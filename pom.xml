@@ -136,7 +136,7 @@
 
             <!-- when adding/removing modules don't forget to do the same in the other profiles -->
             <modules>
-                <module>metamap-xml</module>
+                <module>coder-common</module>
                 <module>metamap-tagger</module>
                 <module>snomedct-lookup</module>
                 <module>snomed-coder-web</module>
@@ -164,7 +164,7 @@
 
             <!-- when adding/removing modules don't forget to do the same in the other profiles -->
             <modules>
-                <module>metamap-xml</module>
+                <module>coder-common</module>
                 <module>metamap-tagger</module>
                 <module>snomedct-lookup</module>
                 <!-- excluding the WAR modules -->

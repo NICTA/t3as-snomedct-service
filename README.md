@@ -17,7 +17,7 @@ Parts of this project are also available on Maven Central under the `org.t3as` g
 These are the subprojects:
 
 1. [MetaMap Tagger](metamap-tagger)
-2. [MetaMap XML](metamap-xml)
+2. [MetaMap XML](coder-common)
 3. [SNOMED CT Lookup](snomedct-lookup)
 4. [SNOMED CT Coder Web Service](snomed-coder-web)
 5. [SNOMED CT Coder Web User Interface](snomed-coder-ui-web)

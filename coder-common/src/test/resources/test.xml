@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  NICTA t3as SNOMED service common classes
+  %%
+  Copyright (C) 2014 NICTA
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  
+  Additional permission under GNU GPL version 3 section 7
+  
+  If you modify this Program, or any covered work, by linking or combining
+  it with H2, GWT, JUnit, or JavaBeans Activation Framework (JAF) (or a
+  modified version of those libraries), containing parts covered by the
+  terms of the H2 License, the GWT Terms, the Common Public License
+  Version 1.0, or the Common Development and Distribution License (CDDL)
+  version 1.0 ,the licensors of this Program grant you additional
+  permission to convey the resulting work.
+  #L%
+  -->
+
+<!DOCTYPE MMOs PUBLIC "-//NLM//DTD MetaMap Machine Output//EN" "http://metamap.nlm.nih.gov/DTD/MMOtoXML_v5.dtd">
+<MMOs>
+ <MMO>
+  <CmdLine>
+   <Command>metamap13.BINARY.Darwin -L 2013 --lexicon db -Z 2013AB --restrict_to_sources SNOMEDCT_US --word_sense_disambiguation --composite_phrases 8 --no_derivational_variants --strict_model --ignore_word_order --allow_large_n --XMLf1 --restrict_to_sts aapp,acab,amas,anab,anst,antb,arch,bacs,bact,bdsu,bdsy,bhvr,biof,blor,bmod,bodm,bpoc,bsoj,celc,celf,cell,cgab,chem,chvf,chvs,clas,clna,clnd,comd,crbs,diap,drdd,dsyn,eico,elii,emod,emst,enty,enzy,euka,ffas,fndg,fngs,food,genf,gngm,grpa,grup,hcpp,hcro,hlca,hops,horm,humn,imft,inbe,inch,inpo,irda,lbpr,lbtr,lipd,mbrt,medd,menp,mobd,moft,mosq,neop,nnon,npop,nsba,nusq,opco,orch,orgm,ortf,patf,phpr,phsf,phsu,rcpt,resa,resd,sbst,socb,sosy,strd,tisu,topp,virs,vita /var/folders/4g/vhlc1cfx0ml7bgggx0p2k1z40000gp/T/metamap-sanitised-3129565008016794152.txt /Users/mats/work/git/taas/metamap/metamap-tagger/output.xml</Command>
+   <Options Count="14">
+    <Option>
+     <OptName>lexicon_year</OptName>
+     <OptValue>2013</OptValue>
+    </Option>
+    <Option>
+     <OptName>lexicon</OptName>
+     <OptValue>db</OptValue>
+    </Option>
+    <Option>
+     <OptName>mm_data_year</OptName>
+     <OptValue>2013AB</OptValue>
+    </Option>
+    <Option>
+     <OptName>restrict_to_sources</OptName>
+     <OptValue>SNOMEDCT_US</OptValue>
+    </Option>
+    <Option>
+     <OptName>word_sense_disambiguation</OptName>
+    </Option>
+    <Option>
+     <OptName>composite_phrases</OptName>
+     <OptValue>8</OptValue>
+    </Option>
+    <Option>
+     <OptName>no_derivational_variants</OptName>
+    </Option>
+    <Option>
+     <OptName>strict_model</OptName>
+    </Option>
+    <Option>
+     <OptName>ignore_word_order</OptName>
+    </Option>
+    <Option>
+     <OptName>allow_large_n</OptName>
+    </Option>
+    <Option>
+     <OptName>XMLf1</OptName>
+    </Option>
+    <Option>
+     <OptName>restrict_to_sts</OptName>
+     <OptValue>aapp,acab,amas,anab,anst,antb,arch,bacs,bact,bdsu,bdsy,bhvr,biof,blor,bmod,bodm,bpoc,bsoj,celc,celf,cell,cgab,chem,chvf,chvs,clas,clna,clnd,comd,crbs,diap,drdd,dsyn,eico,elii,emod,emst,enty,enzy,euka,ffas,fndg,fngs,food,genf,gngm,grpa,grup,hcpp,hcro,hlca,hops,horm,humn,imft,inbe,inch,inpo,irda,lbpr,lbtr,lipd,mbrt,medd,menp,mobd,moft,mosq,neop,nnon,npop,nsba,nusq,opco,orch,orgm,ortf,patf,phpr,phsf,phsu,rcpt,resa,resd,sbst,socb,sosy,strd,tisu,topp,virs,vita</OptValue>
+    </Option>
+    <Option>
+     <OptName>infile</OptName>
+     <OptValue>/var/folders/4g/vhlc1cfx0ml7bgggx0p2k1z40000gp/T/metamap-sanitised-3129565008016794152.txt</OptValue>
+    </Option>
+    <Option>
+     <OptName>outfile</OptName>
+     <OptValue>/Users/mats/work/git/taas/metamap/metamap-tagger/output.xml</OptValue>
+    </Option>
+   </Options>
+  </CmdLine>
+  <AAs Count="0" />
+  <Negations Count="0" />
+  <Utterances Count="1">
+   <Utterance>
+    <PMID>00000000</PMID>
+    <UttSection>tx</UttSection>
+    <UttNum>1</UttNum>
+    <UttText>Asthma.</UttText>
+    <UttStartPos>0</UttStartPos>
+    <UttLength>7</UttLength>
+    <Phrases Count="1">
+     <Phrase>
+      <PhraseText>Asthma.</PhraseText>
+      <SyntaxUnits Count="2">
+       <SyntaxUnit>
+        <SyntaxType>head</SyntaxType>
+        <LexMatch>asthma</LexMatch>
+        <InputMatch>Asthma</InputMatch>
+        <LexCat>noun</LexCat>
+        <Tokens Count="1">
+         <Token>asthma</Token>
+        </Tokens>
+       </SyntaxUnit>
+       <SyntaxUnit>
+        <SyntaxType>punc</SyntaxType>
+        <InputMatch>.</InputMatch>
+        <Tokens Count="0" />
+       </SyntaxUnit>
+      </SyntaxUnits>
+      <PhraseStartPos>0</PhraseStartPos>
+      <PhraseLength>7</PhraseLength>
+      <Candidates Total="1" Excluded="0" Pruned="0" Remaining="1">
+       <Candidate>
+        <CandidateScore>-1000</CandidateScore>
+        <CandidateCUI>C0004096</CandidateCUI>
+        <CandidateMatched>Asthma</CandidateMatched>
+        <CandidatePreferred>Asthma</CandidatePreferred>
+        <MatchedWords Count="1">
+         <MatchedWord>asthma</MatchedWord>
+        </MatchedWords>
+        <SemTypes Count="1">
+         <SemType>dsyn</SemType>
+        </SemTypes>
+        <MatchMaps Count="1">
+         <MatchMap>
+          <TextMatchStart>1</TextMatchStart>
+          <TextMatchEnd>1</TextMatchEnd>
+          <ConcMatchStart>1</ConcMatchStart>
+          <ConcMatchEnd>1</ConcMatchEnd>
+          <LexVariation>0</LexVariation>
+         </MatchMap>
+        </MatchMaps>
+        <IsHead>yes</IsHead>
+        <IsOverMatch>no</IsOverMatch>
+        <Sources Count="14">
+         <Source>CCS</Source>
+         <Source>CHV</Source>
+         <Source>CSP</Source>
+         <Source>ICD10CM</Source>
+         <Source>ICD9CM</Source>
+         <Source>LNC</Source>
+         <Source>MEDLINEPLUS</Source>
+         <Source>MSH</Source>
+         <Source>MTH</Source>
+         <Source>MTHICD9</Source>
+         <Source>NCI</Source>
+         <Source>NDFRT</Source>
+         <Source>OMIM</Source>
+         <Source>SNOMEDCT_US</Source>
+        </Sources>
+        <ConceptPIs Count="1">
+         <ConceptPI>
+          <StartPos>0</StartPos>
+          <Length>6</Length>
+         </ConceptPI>
+        </ConceptPIs>
+        <Status>0</Status>
+        <Negated>0</Negated>
+       </Candidate>
+      </Candidates>
+      <Mappings Count="1">
+       <Mapping>
+        <MappingScore>-1000</MappingScore>
+        <MappingCandidates Total="1">
+         <Candidate>
+          <CandidateScore>-1000</CandidateScore>
+          <CandidateCUI>C0004096</CandidateCUI>
+          <CandidateMatched>Asthma</CandidateMatched>
+          <CandidatePreferred>Asthma</CandidatePreferred>
+          <MatchedWords Count="1">
+           <MatchedWord>asthma</MatchedWord>
+          </MatchedWords>
+          <SemTypes Count="1">
+           <SemType>dsyn</SemType>
+          </SemTypes>
+          <MatchMaps Count="1">
+           <MatchMap>
+            <TextMatchStart>1</TextMatchStart>
+            <TextMatchEnd>1</TextMatchEnd>
+            <ConcMatchStart>1</ConcMatchStart>
+            <ConcMatchEnd>1</ConcMatchEnd>
+            <LexVariation>0</LexVariation>
+           </MatchMap>
+          </MatchMaps>
+          <IsHead>yes</IsHead>
+          <IsOverMatch>no</IsOverMatch>
+          <Sources Count="14">
+           <Source>CCS</Source>
+           <Source>CHV</Source>
+           <Source>CSP</Source>
+           <Source>ICD10CM</Source>
+           <Source>ICD9CM</Source>
+           <Source>LNC</Source>
+           <Source>MEDLINEPLUS</Source>
+           <Source>MSH</Source>
+           <Source>MTH</Source>
+           <Source>MTHICD9</Source>
+           <Source>NCI</Source>
+           <Source>NDFRT</Source>
+           <Source>OMIM</Source>
+           <Source>SNOMEDCT_US</Source>
+          </Sources>
+          <ConceptPIs Count="1">
+           <ConceptPI>
+            <StartPos>0</StartPos>
+            <Length>6</Length>
+           </ConceptPI>
+          </ConceptPIs>
+          <Status>0</Status>
+          <Negated>0</Negated>
+         </Candidate>
+        </MappingCandidates>
+       </Mapping>
+      </Mappings>
+     </Phrase>
+    </Phrases>
+   </Utterance>
+  </Utterances>
+ </MMO>
+</MMOs>

@@ -75,7 +75,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>metamap-xml</artifactId>
+            <artifactId>coder-common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
