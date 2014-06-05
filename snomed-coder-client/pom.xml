@@ -75,7 +75,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>coder-common</artifactId>
+            <artifactId>snomed-coder-common</artifactId>
             <version>${project.version}</version>
         </dependency>
 

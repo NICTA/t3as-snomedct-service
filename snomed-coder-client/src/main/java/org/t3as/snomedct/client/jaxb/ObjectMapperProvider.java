@@ -40,7 +40,7 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * We need to register the a JaxbAnnotationIntrospector with the Jackson ObjectMapper so that we can deserialize
- * JSON using the coder-common JAXB annotations.
+ * JSON using the snomed-coder-common JAXB annotations.
  */
 @Provider
 public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
