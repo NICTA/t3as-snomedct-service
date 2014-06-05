@@ -45,17 +45,17 @@ public class AnalysisRequest {
 
     public AnalysisRequest(final String text) { this.text = text; }
 
-    public String getText() { return text; }
+    public AnalysisRequest(final String text, final String[] options, final String[] semanticTypes) {
+        this.text = text;
+        this.options = options;
+        this.semanticTypes = semanticTypes;
+    }
 
-    void setText(final String text) { this.text = text; }
+    public String getText() { return text; }
 
     public String[] getSemanticTypes() { return semanticTypes; }
 
-    public void setSemanticTypes(final String[] semanticTypes) { this.semanticTypes = semanticTypes; }
-
     public String[] getOptions() { return options; }
-
-    public void setOptions(final String[] options) { this.options = options; }
 
     @Override
     public String toString() {

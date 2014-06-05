@@ -80,9 +80,7 @@ public class Main {
 
     private static String callService(final String text, final Options opts, final SnomedClient client) {
         // create a request
-        final AnalysisRequest request = new AnalysisRequest(text);
-        request.setOptions(opts.splitOptions());
-        request.setSemanticTypes(opts.splitSemTypes());
+        final AnalysisRequest request = new AnalysisRequest(text, opts.splitOptions(), opts.splitSemTypes());
         // perform the call and get the output
         final Collection<Utterance> utterances = client.call(request);
         // turn the output into a human readable string
