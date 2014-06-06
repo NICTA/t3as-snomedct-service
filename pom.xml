@@ -167,6 +167,7 @@
                 <module>snomed-coder-common</module>
                 <module>metamap-tagger</module>
                 <module>snomedct-lookup</module>
+                <module>snomed-coder-client</module>
                 <!-- excluding the WAR modules -->
             </modules>
 
