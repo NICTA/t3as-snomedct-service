@@ -65,7 +65,10 @@ public final class MetaMap {
         }
         o.add("--restrict_to_sources SNOMEDCT_US");
         o.add("--XMLf1");
-        o.add("--restrict_to_sts " + StringUtils.join(semanticTypes, ","));
+        // if we get nothing then don't restrict, i.e. run with all semantic types
+        if (semanticTypes != null && !semanticTypes.isEmpty()) {
+            o.add("--restrict_to_sts " + StringUtils.join(semanticTypes, ","));
+        }
         o.add(input.getAbsolutePath());
         o.add(output.getAbsolutePath());
 

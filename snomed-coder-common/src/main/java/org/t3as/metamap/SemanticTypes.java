@@ -77,15 +77,30 @@ public class SemanticTypes {
         SEMANTIC_TYPES_CODE_TO_DESCRIPTION = Collections.unmodifiableMap(semanticTypes);
     }
 
+    /**
+     * Sanitise semantic types from user input - if there is a single value '[all]' then an empty Collection is
+     * returned.
+     * @param semanticTypes the semantic types to be sanitised
+     * @return a non-null but possibly empty Collection of semantic types - if there is a single value '[all]' then
+     * an empty Collection is returned.
+     */
     /*package-private*/ static Collection<String> sanitiseSemanticTypes(final Collection<String> semanticTypes) {
         if (semanticTypes == null) return DEFAULT_MM_SEMANTIC_TYPES;
 
-        // check that each of the given types are in the map we have, otherwise throw it away
-        final Collection<String> types = new ArrayList<>(semanticTypes.size());
-        for (final String t : semanticTypes) {
-            if (SEMANTIC_TYPES_CODE_TO_DESCRIPTION.containsKey(t)) types.add(t);
+        Collection<String> types;
+        if (semanticTypes.size() == 1 && "[all]".equals(semanticTypes.iterator().next())) {
+            types = Collections.emptyList();
+        }
+        else {
+            // check that each of the given types are in the map we have, otherwise throw it away
+            types = new ArrayList<>(semanticTypes.size());
+            for (final String t : semanticTypes) {
+                if (SEMANTIC_TYPES_CODE_TO_DESCRIPTION.containsKey(t)) types.add(t);
+            }
+            // if no valid types then return the default ones
+            types = types.size() > 0 ? types : DEFAULT_MM_SEMANTIC_TYPES;
         }
 
-        return types.size() > 0 ? types : DEFAULT_MM_SEMANTIC_TYPES;
+        return types;
     }
 }

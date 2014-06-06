@@ -53,6 +53,8 @@ import java.util.Map;
 
 public class AnalyseHandler implements ClickHandler {
 
+    private static final String SPECIAL_ALL_SEM_TYPES_VALUE = "[all]";
+
     private final Messages messages = GWT.create(Messages.class);
     private final String webserviceUrl;
     private final TextArea mainTextArea;
@@ -95,12 +97,19 @@ public class AnalyseHandler implements ClickHandler {
         glassPanel.setPositionAndShow();
 
         // build up the AnalysisRequest JSON object
-        final JSONArray array = new JSONArray();
+        JSONArray array = new JSONArray();
+        boolean all = true;
         int arrayCounter = 0;
         for (final SemanticType t : types) {
             if (t.isSelected()) {
                 array.set(arrayCounter++, new JSONString(t.getCode()));
             }
+            else all = false;
+        }
+        // if all of the types are set then replace them with the special '[all]' value
+        if (all) {
+            array = new JSONArray();
+            array.set(0, new JSONString(SPECIAL_ALL_SEM_TYPES_VALUE));
         }
         final JSONObject analysisRequest = new JSONObject();
         analysisRequest.put("text", new JSONString(text));

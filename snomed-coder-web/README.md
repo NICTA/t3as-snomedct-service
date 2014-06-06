@@ -112,6 +112,16 @@ When using the web service in this way you must set the `Content-Type` header to
 
 
 
+##### Default Semantic types
+
+Note that if you do not pass any semantic types the analysis will be done with the default types (you can find which are part of the default set by calling the Semantic Types service documented below on this page).
+
+##### All Semantic types
+
+If you want all semantic types instead of just the default, or specifying your own set, then the special value '[all]', without the single quotes, can be specified.
+
+
+
 #### Specifying MetaMap options
 
 It is possible to pass specific runtime options for MetaMap. To do this include `options` in a JSON request:
