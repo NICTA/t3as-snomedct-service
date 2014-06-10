@@ -37,8 +37,6 @@
                     <archive>
                         <manifest>
                             <mainClass>org.t3as.metamap.cmdline.Main</mainClass>
-                        </manifest>
-                        <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>

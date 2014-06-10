@@ -38,8 +38,6 @@
                     <archive>
                         <manifest>
                             <mainClass>${main.class}</mainClass>
-                        </manifest>
-                        <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
