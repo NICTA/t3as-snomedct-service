@@ -25,7 +25,7 @@ These are the subprojects:
 
 # Installation
 
-For operation of the web service the first three subprojects must be properly installed and configured, the User Interface is optional.
+For operation of the web service the `MetaMap Tagger`, `SNOMED CT Lookup`, and the `SNOMED CT Coder Web Service` projects must be installed and configured. The `SNOMED CT Coder Web User Interface` project is optional.
 
 # Building
 
