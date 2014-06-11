@@ -17,6 +17,32 @@
     <description>
         A SNOMED CT coding web service.
     </description>
+    <url>https://github.com/NICTA/t3as-snomedct-service/tree/master/snomed-coder-web</url>
+    <inceptionYear>2014</inceptionYear>
+    <organization>
+        <name>NICTA</name>
+        <url>http://nicta.com.au/</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Mats Henrikson</name>
+            <email>mats.henrikson@nicta.com.au</email>
+            <organization>NICTA</organization>
+            <organizationUrl>http://nicta.com.au/</organizationUrl>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE Version 3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/NICTA/t3as-snomedct-service.git</connection>
+        <developerConnection>scm:git:https://github.com/NICTA/t3as-snomedct-service.git</developerConnection>
+        <url>https://github.com/NICTA/t3as-snomedct-service</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
