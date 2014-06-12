@@ -2,7 +2,15 @@
 
 This is a simple interface for using the SNOMED CT Coder web service in a web browser.
 
-This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
+## License
+
+Copyright (c) 2014, National ICT Australia
+All rights reserved.
+
+This software is under the GPL version 3.
+Please see the license file LICENSE.txt
+
+Alternative licensing can be arranged, please contact us.
 
 ## Installation
 

@@ -2,11 +2,19 @@
 
 t3as SNOMED CT Lookup tool uses the [NLM UMLS](http://www.nlm.nih.gov/research/umls/) to lookup SNOMED CT concept codes when given a UMLS CUI code and description.
 
-This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
-
 This project is also available on Maven Central under the `org.t3as` group id, as artifact id `snomedct-lookup`:
 
 <http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22snomedct-lookup%22>
+
+## License
+
+Copyright (c) 2014, National ICT Australia
+All rights reserved.
+
+This software is under the GPL version 3.
+Please see the license file LICENSE.txt
+
+Alternative licensing can be arranged, please contact us.
 
 ## Installation
 

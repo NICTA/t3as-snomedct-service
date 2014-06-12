@@ -2,8 +2,16 @@
 
 This web service takes some free text and tries to determine what SNOMED CT codes can be extracted from it.
 
-This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
 
+## License
+
+Copyright (c) 2014, National ICT Australia
+All rights reserved.
+
+This software is under the GPL version 3.
+Please see the license file LICENSE.txt
+
+Alternative licensing can be arranged, please contact us.
 
 
 ## Installation

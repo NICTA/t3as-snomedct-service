@@ -2,12 +2,19 @@
 
 The t3as MetaMap Tagger is a wrapper around [NLM MetaMap](http://metamap.nlm.nih.gov/). It can be used to identify medical (and other) concepts in text.
 
-This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
-
 This project is also available on Maven Central under the `org.t3as` group id, as artifact id `metamap-tagger`:
 
 <http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22metamap-tagger%22>
 
+## License
+
+Copyright (c) 2014, National ICT Australia
+All rights reserved.
+
+This software is under the GPL version 3.
+Please see the license file LICENSE.txt
+
+Alternative licensing can be arranged, please contact us.
 
 ## Installation
 

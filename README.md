@@ -6,11 +6,19 @@ This project is funded by National ICT Australia ([NICTA](http://nicta.com.au/))
  
 <http://snomedct.t3as.org/>
 
-This code is under the GPLv3 license. Alternative licensing can be arranged, please contact us.
-
 Parts of this project are also available on Maven Central under the `org.t3as` group id:
 
 <http://search.maven.org/#search%7Cga%7C1%7Corg.t3as>
+
+## License
+
+Copyright (c) 2014, National ICT Australia
+All rights reserved.
+
+This software is under the GPL version 3.
+Please see the license file LICENSE.txt
+
+Alternative licensing can be arranged, please contact us.
 
 ## Sub-projects
 
