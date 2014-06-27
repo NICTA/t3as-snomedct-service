@@ -30,18 +30,21 @@
  */
 package org.t3as.metamap.options;
 
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Options {
 
     @SuppressWarnings("PublicStaticCollectionField")
-    public static final Collection<Option> DEFAULT_MM_OPTIONS;
+    public static final ImmutableCollection<Option> DEFAULT_MM_OPTIONS;
 
-    private static final Map<String, Option> OPTS;
+    private static final ImmutableMap<String, Option> OPTS;
 
     static {
         final Map<String, Option> m = new HashMap<>();
@@ -56,7 +59,7 @@ public abstract class Options {
         m.put(IgnoreStopPhrases.NAME, new IgnoreStopPhrases());
         m.put(AllAcrosAbbrs.NAME, new AllAcrosAbbrs());
 
-        OPTS = Collections.unmodifiableMap(m);
+        OPTS = ImmutableMap.copyOf(m);
 
         final Collection<Option> o = new ArrayList<>();
         o.add(new WordSenseDisambiguation());
@@ -65,7 +68,7 @@ public abstract class Options {
         o.add(new StrictModel());
         o.add(new IgnoreWordOrder());
         o.add(new AllowLargeN());
-        DEFAULT_MM_OPTIONS = Collections.unmodifiableCollection(o);
+        DEFAULT_MM_OPTIONS = ImmutableList.copyOf(o);
     }
 
     private Options() {}

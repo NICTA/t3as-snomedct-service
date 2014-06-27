@@ -33,6 +33,7 @@ This program links to or is a derivative of:
   Commons IO under The Apache Software License, Version 2.0
   CORS Filter under The Apache Software License, Version 2.0
   Data Mapper for Jackson under The Apache Software License, Version 2.0
+  Guava: Google Core Libraries for Java under The Apache Software License, Version 2.0
   H2 Database Engine under The H2 License, Version 1.0
   Jackson under The Apache Software License, Version 2.0
   Java Property Utility under The Apache Software License, Version 2.0

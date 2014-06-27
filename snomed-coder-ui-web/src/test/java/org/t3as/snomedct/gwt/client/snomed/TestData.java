@@ -30,25 +30,19 @@
  */
 package org.t3as.snomedct.gwt.client.snomed;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableList;
 
 public final class TestData {
 
     @SuppressWarnings("PublicStaticCollectionField")
-    public static final Collection<SnomedConcept> unmodifiableTestData;
-
-    static {
-        final Collection<SnomedConcept> c = new ArrayList<>();
-        c.add(new SnomedConcept("269363005", "Contusions", false, "6", 6, "ZZ", "6"));
-        c.add(new SnomedConcept("41607009", "Renal cell carcinoma", false, "1", 1, "B", "1"));
-        c.add(new SnomedConcept("194756002", "Hypertensive disease", false, "5", 5, "AB", "5"));
-        c.add(new SnomedConcept("419045004", "Loss of consciousness", false, "7", 7, "AAA", "7"));
-        c.add(new SnomedConcept("60022001", "Possible diagnosis", false, "2", 2, "C", "2"));
-        c.add(new SnomedConcept("129006008", "Walking", false, "4", 4, "AA", "4"));
-        c.add(new SnomedConcept("91251008", "Physiotherapy", false, "3", 3, "H", "3"));
-        c.add(new SnomedConcept("8966001", "Left eye structure", false, "0", 0, "A", "0"));
-        unmodifiableTestData = Collections.unmodifiableCollection(c);
-    }
+    public static final ImmutableCollection<SnomedConcept> TEST_DATA = ImmutableList.of(
+            new SnomedConcept("269363005", "Contusions", false, "6", 6, "ZZ", "6"),
+            new SnomedConcept("41607009", "Renal cell carcinoma", false, "1", 1, "B", "1"),
+            new SnomedConcept("194756002", "Hypertensive disease", false, "5", 5, "AB", "5"),
+            new SnomedConcept("419045004", "Loss of consciousness", false, "7", 7, "AAA", "7"),
+            new SnomedConcept("60022001", "Possible diagnosis", false, "2", 2, "C", "2"),
+            new SnomedConcept("129006008", "Walking", false, "4", 4, "AA", "4"),
+            new SnomedConcept("91251008", "Physiotherapy", false, "3", 3, "H", "3"),
+            new SnomedConcept("8966001", "Left eye structure", false, "0", 0, "A", "0"));
 }

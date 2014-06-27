@@ -30,6 +30,8 @@
  */
 package org.t3as.snomedct.service;
 
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableList;
 import org.t3as.metamap.SemanticTypes;
 
 import javax.ws.rs.GET;
@@ -39,13 +41,12 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
 @Path("/v1.0/semanticTypes")
 public class SemanticTypesService {
 
-    private static final Collection<SemanticType> SEMANTIC_TYPES;
+    private static final ImmutableCollection<SemanticType> SEMANTIC_TYPES;
 
     static {
         final Collection<SemanticType> types = new ArrayList<>(SemanticTypes.SEMANTIC_TYPES_CODE_TO_DESCRIPTION.size());
@@ -53,7 +54,7 @@ public class SemanticTypesService {
             types.add(new SemanticType(entry.getKey(), entry.getValue(),
                                        SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES.contains(entry.getKey())));
         }
-        SEMANTIC_TYPES = Collections.unmodifiableCollection(types);
+        SEMANTIC_TYPES = ImmutableList.copyOf(types);
     }
 
     @GET

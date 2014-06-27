@@ -38,7 +38,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeSet;
 
-import static org.t3as.snomedct.gwt.client.snomed.TestData.unmodifiableTestData;
+import static org.t3as.snomedct.gwt.client.snomed.TestData.TEST_DATA;
 import static org.testng.Assert.assertEquals;
 
 public class SnomedDescriptionComparatorTest {
@@ -47,13 +47,13 @@ public class SnomedDescriptionComparatorTest {
     public void testCompare() throws Exception {
         // sort just the descriptions to get the comparative order
         final Collection<String> sortedDescriptionsColl = new TreeSet<>();
-        for (final SnomedConcept concept : unmodifiableTestData) {
+        for (final SnomedConcept concept : TEST_DATA) {
             sortedDescriptionsColl.add(concept.candidatePreferred);
         }
         final List<String> sortedDescriptions = new ArrayList<>(sortedDescriptionsColl);
 
         // then use the comparator
-        final List<SnomedConcept> sorted = new ArrayList<>(unmodifiableTestData);
+        final List<SnomedConcept> sorted = new ArrayList<>(TEST_DATA);
         Collections.sort(sorted, new SnomedDescriptionComparator());
 
         // then check they concur

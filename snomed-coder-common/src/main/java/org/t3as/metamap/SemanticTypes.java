@@ -30,6 +30,10 @@
  */
 package org.t3as.metamap;
 
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,9 +53,9 @@ public class SemanticTypes {
     private static final String DEFAULT_SEMANTIC_TYPES_FILE = "defaultSemanticTypes.txt";
 
     @SuppressWarnings("PublicStaticCollectionField")
-    public static final Collection<String> DEFAULT_MM_SEMANTIC_TYPES;
+    public static final ImmutableCollection<String> DEFAULT_MM_SEMANTIC_TYPES;
     @SuppressWarnings("PublicStaticCollectionField")
-    public static final Map<String, String> SEMANTIC_TYPES_CODE_TO_DESCRIPTION;
+    public static final ImmutableMap<String, String> SEMANTIC_TYPES_CODE_TO_DESCRIPTION;
 
     static {
         final Map<String, String> semanticTypes = new TreeMap<>();
@@ -71,8 +75,8 @@ public class SemanticTypes {
             e.printStackTrace();
         }
 
-        DEFAULT_MM_SEMANTIC_TYPES = Collections.unmodifiableCollection(defaultSemanticTypes);
-        SEMANTIC_TYPES_CODE_TO_DESCRIPTION = Collections.unmodifiableMap(semanticTypes);
+        DEFAULT_MM_SEMANTIC_TYPES = ImmutableList.copyOf(defaultSemanticTypes);
+        SEMANTIC_TYPES_CODE_TO_DESCRIPTION = ImmutableMap.copyOf(semanticTypes);
     }
 
     /**

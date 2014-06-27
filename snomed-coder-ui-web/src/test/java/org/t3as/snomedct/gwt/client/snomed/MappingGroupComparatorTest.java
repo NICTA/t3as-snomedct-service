@@ -42,7 +42,7 @@ public class MappingGroupComparatorTest {
 
     @Test
     public void testCompare() throws Exception {
-        final List<SnomedConcept> sorted = new ArrayList<>(TestData.unmodifiableTestData);
+        final List<SnomedConcept> sorted = new ArrayList<>(TestData.TEST_DATA);
         Collections.sort(sorted, new MappingGroupComparator());
         for (int i = 0; i < sorted.size(); i++) {
             assertEquals(i, sorted.get(i).candidateScore);

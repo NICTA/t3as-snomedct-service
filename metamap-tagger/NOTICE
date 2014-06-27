@@ -30,6 +30,7 @@ This program links to or is a derivative of:
 
   Apache Commons Lang under The Apache Software License, Version 2.0
   BeanShell under GNU LESSER GENERAL PUBLIC LICENSE
+  Guava: Google Core Libraries for Java under The Apache Software License, Version 2.0
   JCommander under The Apache Software License, Version 2.0
   Lucene Common Analyzers under Apache 2
   Lucene Core under Apache 2
