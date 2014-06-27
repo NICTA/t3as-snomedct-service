@@ -1,5 +1,3 @@
-package org.t3as.metamap;
-
 /*
  * #%L
  * NICTA t3as MetaMap Tagger
@@ -31,14 +29,11 @@ package org.t3as.metamap;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.metamap;
 
 import org.junit.Test;
 
-import java.util.Collections;
-
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
-import static org.t3as.metamap.SemanticTypes.sanitiseSemanticTypes;
 
 public class MetaMapTest {
 

@@ -1,5 +1,3 @@
-package org.t3as.snomedct.gwt.client;
-
 /*
  * #%L
  * NICTA t3as SNOMED CT GWT UI
@@ -31,6 +29,7 @@ package org.t3as.snomedct.gwt.client;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.gwt.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

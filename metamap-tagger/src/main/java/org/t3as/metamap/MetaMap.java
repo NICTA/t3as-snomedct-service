@@ -1,5 +1,3 @@
-package org.t3as.metamap;
-
 /*
  * #%L
  * NICTA t3as MetaMap Tagger
@@ -31,6 +29,7 @@ package org.t3as.metamap;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.metamap;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;

@@ -1,5 +1,3 @@
-package org.t3as.snomedct.client.jaxb;
-
 /*
  * #%L
  * NICTA t3as SNOMED CT service REST client
@@ -31,6 +29,7 @@ package org.t3as.snomedct.client.jaxb;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.client.jaxb;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;

@@ -1,5 +1,3 @@
-package org.t3as.snomedct.service;
-
 /*
  * #%L
  * NICTA t3as SNOMED CT service REST client
@@ -31,6 +29,7 @@ package org.t3as.snomedct.service;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.service;
 
 import java.util.Arrays;
 

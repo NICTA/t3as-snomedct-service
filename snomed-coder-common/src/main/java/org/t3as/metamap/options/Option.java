@@ -1,5 +1,3 @@
-package org.t3as.metamap.options;
-
 /*
  * #%L
  * NICTA t3as SNOMED service common classes
@@ -31,6 +29,7 @@ package org.t3as.metamap.options;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.metamap.options;
 
 public abstract class Option {
 

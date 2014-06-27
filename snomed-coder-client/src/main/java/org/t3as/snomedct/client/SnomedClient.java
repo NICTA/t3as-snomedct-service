@@ -1,5 +1,3 @@
-package org.t3as.snomedct.client;
-
 /*
  * #%L
  * NICTA t3as SNOMED CT service REST client
@@ -31,6 +29,7 @@ package org.t3as.snomedct.client;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.client;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;

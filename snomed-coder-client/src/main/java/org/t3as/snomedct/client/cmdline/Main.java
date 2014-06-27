@@ -1,5 +1,3 @@
-package org.t3as.snomedct.client.cmdline;
-
 /*
  * #%L
  * NICTA t3as SNOMED CT service REST client
@@ -31,6 +29,7 @@ package org.t3as.snomedct.client.cmdline;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.client.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;

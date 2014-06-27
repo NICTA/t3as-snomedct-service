@@ -1,5 +1,3 @@
-package org.t3as.snomedct.lookup;
-
 /*
  * #%L
  * NICTA t3as UMLS CUI to SNOMED CT Lookup
@@ -31,6 +29,7 @@ package org.t3as.snomedct.lookup;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.lookup;
 
 import org.junit.After;
 import org.junit.Before;

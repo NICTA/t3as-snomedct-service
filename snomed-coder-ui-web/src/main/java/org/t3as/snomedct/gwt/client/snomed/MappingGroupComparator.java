@@ -1,5 +1,3 @@
-package org.t3as.snomedct.gwt.client.snomed;
-
 /*
  * #%L
  * NICTA t3as SNOMED CT GWT UI
@@ -31,6 +29,7 @@ package org.t3as.snomedct.gwt.client.snomed;
  * permission to convey the resulting work.
  * #L%
  */
+package org.t3as.snomedct.gwt.client.snomed;
 
 import java.util.Comparator;
 
