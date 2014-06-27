@@ -21,42 +21,42 @@
  * Additional permission under GNU GPL version 3 section 7
  * 
  * If you modify this Program, or any covered work, by linking or combining
- * it with H2, GWT, JUnit, or JavaBeans Activation Framework (JAF) (or a
+ * it with H2, GWT, or JavaBeans Activation Framework (JAF) (or a
  * modified version of those libraries), containing parts covered by the
- * terms of the H2 License, the GWT Terms, the Common Public License
- * Version 1.0, or the Common Development and Distribution License (CDDL)
- * version 1.0 ,the licensors of this Program grant you additional
- * permission to convey the resulting work.
+ * terms of the H2 License, the GWT Terms, or the Common Development and
+ * Distribution License (CDDL) version 1.0 ,the licensors of this Program
+ * grant you additional permission to convey the resulting work.
  * #L%
  */
 package org.t3as.snomedct.gwt.client.gwt;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 public class SnomedRequestCallbackTest {
 
     @Test
     public void testNextMappingGroup() throws Exception {
-        Assert.assertEquals("A", SnomedRequestCallback.nextMappingGroup(null));
-        Assert.assertEquals("A", SnomedRequestCallback.nextMappingGroup(""));
+        assertEquals("A", SnomedRequestCallback.nextMappingGroup(null));
+        assertEquals("A", SnomedRequestCallback.nextMappingGroup(""));
 
-        Assert.assertEquals("B", SnomedRequestCallback.nextMappingGroup("A"));
-        Assert.assertEquals("C", SnomedRequestCallback.nextMappingGroup("B"));
-        Assert.assertEquals("AA", SnomedRequestCallback.nextMappingGroup("Z"));
+        assertEquals("B", SnomedRequestCallback.nextMappingGroup("A"));
+        assertEquals("C", SnomedRequestCallback.nextMappingGroup("B"));
+        assertEquals("AA", SnomedRequestCallback.nextMappingGroup("Z"));
 
-        Assert.assertEquals("AB", SnomedRequestCallback.nextMappingGroup("AA"));
-        Assert.assertEquals("AD", SnomedRequestCallback.nextMappingGroup("AC"));
-        Assert.assertEquals("BA", SnomedRequestCallback.nextMappingGroup("AZ"));
+        assertEquals("AB", SnomedRequestCallback.nextMappingGroup("AA"));
+        assertEquals("AD", SnomedRequestCallback.nextMappingGroup("AC"));
+        assertEquals("BA", SnomedRequestCallback.nextMappingGroup("AZ"));
 
-        Assert.assertEquals("BB", SnomedRequestCallback.nextMappingGroup("BA"));
-        Assert.assertEquals("AAA", SnomedRequestCallback.nextMappingGroup("ZZ"));
+        assertEquals("BB", SnomedRequestCallback.nextMappingGroup("BA"));
+        assertEquals("AAA", SnomedRequestCallback.nextMappingGroup("ZZ"));
 
-        Assert.assertEquals("AAB", SnomedRequestCallback.nextMappingGroup("AAA"));
-        Assert.assertEquals("AZB", SnomedRequestCallback.nextMappingGroup("AZA"));
-        Assert.assertEquals("BAA", SnomedRequestCallback.nextMappingGroup("AZZ"));
-        Assert.assertEquals("AAAA", SnomedRequestCallback.nextMappingGroup("ZZZ"));
+        assertEquals("AAB", SnomedRequestCallback.nextMappingGroup("AAA"));
+        assertEquals("AZB", SnomedRequestCallback.nextMappingGroup("AZA"));
+        assertEquals("BAA", SnomedRequestCallback.nextMappingGroup("AZZ"));
+        assertEquals("AAAA", SnomedRequestCallback.nextMappingGroup("ZZZ"));
 
-        Assert.assertEquals("ACAA", SnomedRequestCallback.nextMappingGroup("ABZZ"));
+        assertEquals("ACAA", SnomedRequestCallback.nextMappingGroup("ABZZ"));
     }
 }

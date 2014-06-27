@@ -21,32 +21,31 @@
  * Additional permission under GNU GPL version 3 section 7
  * 
  * If you modify this Program, or any covered work, by linking or combining
- * it with H2, GWT, JUnit, or JavaBeans Activation Framework (JAF) (or a
+ * it with H2, GWT, or JavaBeans Activation Framework (JAF) (or a
  * modified version of those libraries), containing parts covered by the
- * terms of the H2 License, the GWT Terms, the Common Public License
- * Version 1.0, or the Common Development and Distribution License (CDDL)
- * version 1.0 ,the licensors of this Program grant you additional
- * permission to convey the resulting work.
+ * terms of the H2 License, the GWT Terms, or the Common Development and
+ * Distribution License (CDDL) version 1.0 ,the licensors of this Program
+ * grant you additional permission to convey the resulting work.
  * #L%
  */
 package org.t3as.snomedct.lookup;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.t3as.metamap.JaxbLoader;
 import org.t3as.metamap.jaxb.Candidate;
 import org.t3as.metamap.jaxb.MMOs;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 public class LookupAndCreateTest {
 
@@ -56,7 +55,7 @@ public class LookupAndCreateTest {
     private static final File DB_FILE = new File(DB_DIR, "test_snomedct.h2.db");
     private static final File XML_INPUT = new File(TEST_RESOURCES_DIR, "test.xml");
 
-    @Before
+    @BeforeClass
     public void prepareDb() throws Exception {
         //noinspection ResultOfMethodCallIgnored
         DB_DIR.mkdir();
@@ -70,7 +69,7 @@ public class LookupAndCreateTest {
         }
     }
 
-    @After
+    @AfterClass
     public void removeDb() {
         assertTrue(DB_FILE.delete());
     }

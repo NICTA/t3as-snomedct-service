@@ -21,17 +21,15 @@
  * Additional permission under GNU GPL version 3 section 7
  * 
  * If you modify this Program, or any covered work, by linking or combining
- * it with H2, GWT, JUnit, or JavaBeans Activation Framework (JAF) (or a
+ * it with H2, GWT, or JavaBeans Activation Framework (JAF) (or a
  * modified version of those libraries), containing parts covered by the
- * terms of the H2 License, the GWT Terms, the Common Public License
- * Version 1.0, or the Common Development and Distribution License (CDDL)
- * version 1.0 ,the licensors of this Program grant you additional
- * permission to convey the resulting work.
+ * terms of the H2 License, the GWT Terms, or the Common Development and
+ * Distribution License (CDDL) version 1.0 ,the licensors of this Program
+ * grant you additional permission to convey the resulting work.
  * #L%
  */
 package org.t3as.metamap;
 
-import org.junit.Test;
 import org.t3as.metamap.jaxb.Candidate;
 import org.t3as.metamap.jaxb.MMO;
 import org.t3as.metamap.jaxb.MMOs;
@@ -39,14 +37,15 @@ import org.t3as.metamap.jaxb.Mapping;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.SemType;
 import org.t3as.metamap.jaxb.Utterance;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 public class JaxbLoaderTest {
 

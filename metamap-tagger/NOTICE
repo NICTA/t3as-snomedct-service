@@ -20,21 +20,20 @@ http://www.gnu.org/licenses/gpl-3.0.html.
 Additional permission under GNU GPL version 3 section 7
 
 If you modify this Program, or any covered work, by linking or combining
-it with H2, GWT, JUnit, or JavaBeans Activation Framework (JAF) (or a
+it with H2, GWT, or JavaBeans Activation Framework (JAF) (or a
 modified version of those libraries), containing parts covered by the
-terms of the H2 License, the GWT Terms, the Common Public License
-Version 1.0, or the Common Development and Distribution License (CDDL)
-version 1.0 ,the licensors of this Program grant you additional
-permission to convey the resulting work.
+terms of the H2 License, the GWT Terms, or the Common Development and
+Distribution License (CDDL) version 1.0 ,the licensors of this Program
+grant you additional permission to convey the resulting work.
 
 This program links to or is a derivative of:
 
   Apache Commons Lang under The Apache Software License, Version 2.0
-  Hamcrest Core under New BSD License
+  BeanShell under GNU LESSER GENERAL PUBLIC LICENSE
   JCommander under The Apache Software License, Version 2.0
-  JUnit under Common Public License Version 1.0
   Lucene Common Analyzers under Apache 2
   Lucene Core under Apache 2
   NICTA t3as MetaMap Tagger under GNU GENERAL PUBLIC LICENSE Version 3
   NICTA t3as SNOMED service common classes under GNU GENERAL PUBLIC LICENSE Version 3
+  TestNG under Apache License, Version 2.0
 

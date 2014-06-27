@@ -21,23 +21,22 @@
  * Additional permission under GNU GPL version 3 section 7
  * 
  * If you modify this Program, or any covered work, by linking or combining
- * it with H2, GWT, JUnit, or JavaBeans Activation Framework (JAF) (or a
+ * it with H2, GWT, or JavaBeans Activation Framework (JAF) (or a
  * modified version of those libraries), containing parts covered by the
- * terms of the H2 License, the GWT Terms, the Common Public License
- * Version 1.0, or the Common Development and Distribution License (CDDL)
- * version 1.0 ,the licensors of this Program grant you additional
- * permission to convey the resulting work.
+ * terms of the H2 License, the GWT Terms, or the Common Development and
+ * Distribution License (CDDL) version 1.0 ,the licensors of this Program
+ * grant you additional permission to convey the resulting work.
  * #L%
  */
 package org.t3as.snomedct.gwt.client.snomed;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class MappingGroupComparatorTest {
 
