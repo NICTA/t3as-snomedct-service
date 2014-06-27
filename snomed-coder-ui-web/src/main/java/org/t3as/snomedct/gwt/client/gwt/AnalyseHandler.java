@@ -72,7 +72,9 @@ public class AnalyseHandler implements ClickHandler {
         this.types = types;
         this.typeCodeToDescription = typeCodeToDescription;
         this.glassPanel = new GlassLoadingPanel();
-        this.webserviceUrl = "http://" + Cookies.getCookie("webserviceHost")
+
+        final String hostAndPort = Cookies.getCookie("webserviceHost");
+        this.webserviceUrl = (hostAndPort.isEmpty() ? "" : "http://" + hostAndPort)
                              + "/snomed-coder-web/rest/v1.0/snomedctCodes";
     }
 

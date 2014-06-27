@@ -217,7 +217,8 @@ public class ConfigureHandler implements ClickHandler {
                                          final Map<String, String> typeCodeToDescription) {
             this.types = types;
             this.typeCodeToDescription = typeCodeToDescription;
-            this.webserviceUrl = "http://" + Cookies.getCookie("webserviceHost")
+            final String hostAndPort = Cookies.getCookie("webserviceHost");
+            this.webserviceUrl = (hostAndPort.isEmpty() ? "" : "http://" + hostAndPort)
                                  + "/snomed-coder-web/rest/v1.0/semanticTypes";
         }
 

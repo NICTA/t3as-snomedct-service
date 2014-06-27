@@ -36,7 +36,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>SNOMED CT Text Analyser</title>
     <script type="text/javascript">
-        document.cookie = "webserviceHost=<%= System.getProperty("webserviceHost", "snomedct.t3as.org") %>"
+        document.cookie = "webserviceHost=<%= System.getProperty("webserviceHost", "") %>"
     </script>
     <script type="text/javascript" language="javascript" src="SnomedCoderUi/SnomedCoderUi.nocache.js"></script>
 </head>
@@ -73,7 +73,7 @@
     Full instructions on how to use the web service will be published in due course, but simple instructions can be
     had from the web service itself:
     <br/>
-    <a href="http://snomedct.t3as.org/snomed-coder-web/rest/v1.0/snomedctCodes">http://snomedct.t3as.org/snomed-coder-web/rest/v1.0/snomedctCodes</a>
+    <a href="/snomed-coder-web/rest/v1.0/snomedctCodes">/snomed-coder-web/rest/v1.0/snomedctCodes</a>
 </p>
 <p>
     <em><b>WARNING:</b></em>
