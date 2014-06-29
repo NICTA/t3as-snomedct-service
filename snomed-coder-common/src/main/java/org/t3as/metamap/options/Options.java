@@ -34,41 +34,32 @@ import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Options {
 
     @SuppressWarnings("PublicStaticCollectionField")
     public static final ImmutableCollection<Option> DEFAULT_MM_OPTIONS;
-
     private static final ImmutableMap<String, Option> OPTS;
 
     static {
-        final Map<String, Option> m = new HashMap<>();
-
         // PUT NEW OPTIONS IN THIS LIST
-        m.put(WordSenseDisambiguation.NAME, new WordSenseDisambiguation());
-        m.put(CompositePhrases.NAME, new CompositePhrases());
-        m.put(NoDerivationalVariants.NAME, new NoDerivationalVariants());
-        m.put(StrictModel.NAME, new StrictModel());
-        m.put(IgnoreWordOrder.NAME, new IgnoreWordOrder());
-        m.put(AllowLargeN.NAME, new AllowLargeN());
-        m.put(IgnoreStopPhrases.NAME, new IgnoreStopPhrases());
-        m.put(AllAcrosAbbrs.NAME, new AllAcrosAbbrs());
+        OPTS = ImmutableMap.<String, Option>builder()
+                           .put(WordSenseDisambiguation.NAME, new WordSenseDisambiguation())
+                           .put(CompositePhrases.NAME, new CompositePhrases())
+                           .put(NoDerivationalVariants.NAME, new NoDerivationalVariants())
+                           .put(StrictModel.NAME, new StrictModel())
+                           .put(IgnoreWordOrder.NAME, new IgnoreWordOrder())
+                           .put(AllowLargeN.NAME, new AllowLargeN())
+                           .put(IgnoreStopPhrases.NAME, new IgnoreStopPhrases())
+                           .put(AllAcrosAbbrs.NAME, new AllAcrosAbbrs())
+                           .build();
 
-        OPTS = ImmutableMap.copyOf(m);
-
-        final Collection<Option> o = new ArrayList<>();
-        o.add(new WordSenseDisambiguation());
-        o.add(new CompositePhrases(8));
-        o.add(new NoDerivationalVariants());
-        o.add(new StrictModel());
-        o.add(new IgnoreWordOrder());
-        o.add(new AllowLargeN());
-        DEFAULT_MM_OPTIONS = ImmutableList.copyOf(o);
+        DEFAULT_MM_OPTIONS = ImmutableList.of(
+                new WordSenseDisambiguation(),
+                new CompositePhrases(8),
+                new NoDerivationalVariants(),
+                new StrictModel(),
+                new IgnoreWordOrder(),
+                new AllowLargeN());
     }
 
     private Options() {}
