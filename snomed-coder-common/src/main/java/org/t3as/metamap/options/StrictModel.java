@@ -35,7 +35,5 @@ public class StrictModel extends Option {
     protected static final String NAME = "strict_model";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }

@@ -35,7 +35,5 @@ public class AllowLargeN extends Option {
     protected static final String NAME = "allow_large_n";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }

@@ -34,25 +34,20 @@ public abstract class Option {
 
     protected Option() {}
 
-    protected abstract String name();
+    public abstract String name();
 
     // IF THE OPTION TAKES A PARAM OVERRIDE THIS
-    @SuppressWarnings("MethodMayBeStatic")
-    protected String param() {
-        return null;
-    }
+    public String param() { return null; }
 
-    // IF THE OPTION TAKES A PARAM OVERRIDE THIS
-    protected Option newInstance(final String param) {
-        return this;
-    }
+    // OVERRIDE IF THE OPTION SHOULD BE SET TO THE METAMAP DEFAULT (i.e. don't include it on the command line)
+    // this is probably only for options that take a parameter
+    public boolean useMetamapDefault() { return false; }
 
-    public String toMmOptStr() {
-        return "--" + name() + (param() == null ? "" : " " + param());
-    }
+    // IF THE OPTION TAKES A PARAM OVERRIDE THIS - MAKE SURE TO SANITISE USER INPUT
+    protected Option newInstance(final String param) { return this; }
+
+    public String toMmOptStr() { return "--" + toString(); }
 
     @Override
-    public String toString() {
-        return name();
-    }
+    public String toString() { return name() + (param() == null ? "" : " " + param()); }
 }

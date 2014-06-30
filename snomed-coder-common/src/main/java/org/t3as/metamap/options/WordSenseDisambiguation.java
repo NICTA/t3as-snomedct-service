@@ -35,7 +35,5 @@ public class WordSenseDisambiguation extends Option {
     protected static final String NAME = "word_sense_disambiguation";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }

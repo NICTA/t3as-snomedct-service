@@ -35,7 +35,5 @@ public class IgnoreWordOrder extends Option {
     protected static final String NAME = "ignore_word_order";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }

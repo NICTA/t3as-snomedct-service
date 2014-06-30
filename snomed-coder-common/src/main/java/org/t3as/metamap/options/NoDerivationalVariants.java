@@ -35,7 +35,5 @@ public class NoDerivationalVariants extends Option {
     protected static final String NAME = "no_derivational_variants";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }

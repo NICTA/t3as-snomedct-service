@@ -32,13 +32,13 @@ package org.t3as.snomedct.service;
 
 import java.util.Arrays;
 
-@SuppressWarnings("UnusedDeclaration")
 public class AnalysisRequest {
 
     private String text;
     private String[] semanticTypes;
     private String[] options;
 
+    @SuppressWarnings("UnusedDeclaration")
     public AnalysisRequest() { }
 
     public AnalysisRequest(final String text) { this.text = text; }

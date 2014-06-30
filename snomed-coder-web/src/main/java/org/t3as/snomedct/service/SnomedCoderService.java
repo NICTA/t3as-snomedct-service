@@ -111,7 +111,7 @@ public class SnomedCoderService {
 
         System.out.println(r);
 
-        // metamap options, if nothing was passed used the defaults
+        // metamap options, if nothing was passed use the defaults
         final Collection<Option> opts = new ArrayList<>();
         if (r.getOptions() == null) {
             opts.addAll(Options.DEFAULT_MM_OPTIONS);
@@ -119,7 +119,7 @@ public class SnomedCoderService {
         else {
             for (final String o : r.getOptions()) {
                 final Option opt = Options.strToOpt(o);
-                if (opt != null) opts.add(opt);
+                if (opt != null && !opt.useMetamapDefault()) opts.add(opt);
             }
         }
 

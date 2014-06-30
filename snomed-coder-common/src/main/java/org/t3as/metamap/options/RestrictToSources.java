@@ -1,6 +1,6 @@
 /*
  * #%L
- * NICTA t3as MetaMap Tagger
+ * NICTA t3as SNOMED service common classes
  * %%
  * Copyright (C) 2014 NICTA
  * %%
@@ -30,32 +30,43 @@
  */
 package org.t3as.metamap.options;
 
-public class CompositePhrases extends Option {
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
 
-    private static final int MIN_COMPOSITE_WORDS = 1;
-    private static final int MAX_COMPOSITE_WORDS = 8;
+import java.util.List;
 
-    protected static final String NAME = "composite_phrases";
-    private final int numPhrases;
+import static com.google.common.base.CharMatcher.JAVA_LETTER_OR_DIGIT;
+import static com.google.common.base.CharMatcher.anyOf;
 
-    protected CompositePhrases() { numPhrases = 8; }
+public class RestrictToSources extends Option {
 
-    public CompositePhrases(final int numPhrases) { this.numPhrases = numPhrases; }
+    protected static final String NAME = "restrict_to_sources";
+    protected static final String SNOMEDCT_US = "SNOMEDCT_US";
+    private static final String USE_METAMAP_DEFAULT_STRING = "[default]";
+
+    private final List<String> sources;
+
+    public RestrictToSources() { sources = ImmutableList.of(SNOMEDCT_US); }
+
+    public RestrictToSources(final List<String> params) { sources = params; }
 
     @Override
     public String name() { return NAME; }
 
     @Override
-    public String param() { return Integer.toString(numPhrases); }
+    public String param() { return Joiner.on(',').skipNulls().join(sources); }
+
+    @Override
+    public boolean useMetamapDefault() {
+        return sources.size() == 1 && USE_METAMAP_DEFAULT_STRING.equals(sources.get(0));
+    }
 
     @Override
     protected Option newInstance(final String param) {
-        try {
-            final int n = Integer.parseInt(param);
-            if (n < MIN_COMPOSITE_WORDS || n > MAX_COMPOSITE_WORDS) return null;
-            return new CompositePhrases(n);
-        }
-        catch (final Throwable ignore) {}
-        return null;
+        // sanitize the user input, only keep letters, digits, and any of a small number of approved params
+        final String sanitized = JAVA_LETTER_OR_DIGIT.or(anyOf(".,_-[]")).retainFrom(param);
+        final List<String> params = Splitter.on(',').trimResults().omitEmptyStrings().splitToList(sanitized);
+        return params.isEmpty() ? null : new RestrictToSources(params);
     }
 }

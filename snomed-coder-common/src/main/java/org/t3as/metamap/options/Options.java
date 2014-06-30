@@ -34,6 +34,8 @@ import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
+import static org.t3as.metamap.options.RestrictToSources.SNOMEDCT_US;
+
 public abstract class Options {
 
     @SuppressWarnings("PublicStaticCollectionField")
@@ -51,6 +53,7 @@ public abstract class Options {
                            .put(AllowLargeN.NAME, new AllowLargeN())
                            .put(IgnoreStopPhrases.NAME, new IgnoreStopPhrases())
                            .put(AllAcrosAbbrs.NAME, new AllAcrosAbbrs())
+                           .put(RestrictToSources.NAME, new RestrictToSources())
                            .build();
 
         DEFAULT_MM_OPTIONS = ImmutableList.of(
@@ -59,7 +62,8 @@ public abstract class Options {
                 new NoDerivationalVariants(),
                 new StrictModel(),
                 new IgnoreWordOrder(),
-                new AllowLargeN());
+                new AllowLargeN(),
+                new RestrictToSources(ImmutableList.of(SNOMEDCT_US)));
     }
 
     private Options() {}

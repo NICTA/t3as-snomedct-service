@@ -35,7 +35,5 @@ public class AllAcrosAbbrs extends Option {
     protected static final String NAME = "all_acros_abbrs";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }

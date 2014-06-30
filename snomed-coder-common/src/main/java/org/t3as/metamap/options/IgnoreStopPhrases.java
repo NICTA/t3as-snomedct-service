@@ -35,7 +35,5 @@ public class IgnoreStopPhrases extends Option {
     protected static final String NAME = "ignore_stop_phrases";
 
     @Override
-    protected String name() {
-        return NAME;
-    }
+    public String name() { return NAME; }
 }
