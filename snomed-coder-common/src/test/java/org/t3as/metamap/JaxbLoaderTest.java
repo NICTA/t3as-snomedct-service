@@ -44,7 +44,6 @@ import java.io.FileNotFoundException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 
 public class JaxbLoaderTest {
@@ -90,11 +89,5 @@ public class JaxbLoaderTest {
             t.printStackTrace();
             fail("There should be no other throwables.");
         }
-    }
-
-    @Test
-    public void testLoadResource() throws Exception {
-        final String[] s = JaxbLoader.loadResource("test.xml");
-        assertTrue(s[0].startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"));
     }
 }

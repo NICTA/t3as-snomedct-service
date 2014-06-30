@@ -41,14 +41,9 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.sax.SAXSource;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class JaxbLoader {
 
@@ -66,19 +61,5 @@ public class JaxbLoader {
         final SAXSource source = new SAXSource(xmlReader, inputSource);
 
         return (MMOs) jaxbUnmarshaller.unmarshal(source);
-    }
-
-    /** Why here? Why not here? */
-    public static String[] loadResource(final String fileResource) throws IOException {
-        final Collection<String> lines = new ArrayList<>();
-        //noinspection ConstantConditions
-        try (final BufferedReader r = new BufferedReader(new InputStreamReader(
-                JaxbLoader.class.getClassLoader().getResource(fileResource).openStream()))
-        ) {
-            for (String line; (line = r.readLine()) != null; ) {
-                lines.add(line);
-            }
-        }
-        return lines.toArray(new String[lines.size()]);
     }
 }

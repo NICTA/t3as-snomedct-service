@@ -30,6 +30,7 @@
  */
 package org.t3as.snomedct.lookup;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Joiner;
 import org.h2.jdbcx.JdbcConnectionPool;
 
@@ -44,7 +45,8 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.t3as.metamap.JaxbLoader.loadResource;
+import static com.google.common.io.Resources.getResource;
+import static com.google.common.io.Resources.readLines;
 
 public class CreateLookupDb implements AutoCloseable {
 
@@ -77,7 +79,7 @@ public class CreateLookupDb implements AutoCloseable {
         }
         // create the table
         try (final Statement statement = connection.createStatement()) {
-            statement.execute(Joiner.on("\n").join(loadResource("create-snomed-db.sql")));
+            statement.execute(Joiner.on("\n").join(readLines(getResource("create-snomed-db.sql"), Charsets.UTF_8)));
         }
 
         // process the UMLS data

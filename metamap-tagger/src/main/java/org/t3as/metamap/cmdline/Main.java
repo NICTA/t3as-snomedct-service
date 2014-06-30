@@ -32,14 +32,12 @@ package org.t3as.metamap.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.google.common.io.Files;
 import org.t3as.metamap.MetaMap;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static org.t3as.metamap.SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES;
 import static org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS;
 
@@ -65,15 +63,8 @@ public final class Main {
 
         // sanitise the input
         final File sanitised = File.createTempFile("metamap-sanitised-", ".txt");
-        try (
-                final BufferedReader in = new BufferedReader(new FileReader(opts.input));
-                final BufferedWriter out = new BufferedWriter(new FileWriter(sanitised))
-        ) {
-            final StringBuilder sb = new StringBuilder((int) opts.input.length());
-            for (String line; (line = in.readLine()) != null; ) sb.append(line).append('\n');
-            final String input = MetaMap.decomposeToAscii(sb.toString());
-            out.write(input);
-        }
+        final String s = Files.toString(opts.input, UTF_8);
+        Files.write(s, sanitised, UTF_8);
 
         // process the data with MetaMap
         final MetaMap metaMap = new MetaMap(opts.publicMm, DEFAULT_MM_SEMANTIC_TYPES, DEFAULT_MM_OPTIONS);

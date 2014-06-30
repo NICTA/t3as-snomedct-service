@@ -33,15 +33,18 @@ package org.t3as.metamap;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-import static org.t3as.metamap.JaxbLoader.loadResource;
+import static com.google.common.base.Charsets.UTF_8;
+import static com.google.common.io.Resources.getResource;
+import static com.google.common.io.Resources.readLines;
 
 public class SemanticTypes {
 
@@ -58,13 +61,13 @@ public class SemanticTypes {
     public static final ImmutableMap<String, String> SEMANTIC_TYPES_CODE_TO_DESCRIPTION;
 
     static {
-        final Map<String, String> semanticTypes = new TreeMap<>();
+        final Map<String, String> semanticTypes = new HashMap<>();
         final Collection<String> defaultSemanticTypes = new ArrayList<>();
         try {
-            Collections.addAll(defaultSemanticTypes, loadResource(DEFAULT_SEMANTIC_TYPES_FILE));
+            defaultSemanticTypes.addAll(readLines(getResource(DEFAULT_SEMANTIC_TYPES_FILE), UTF_8));
 
             // load all the MetaMap Semantic Types and make a static map out of the code and descriptions
-            final String[] semanticTypeLines = loadResource(SEMANTIC_TYPES_FILE);
+            final Collection<String> semanticTypeLines = readLines(getResource(SEMANTIC_TYPES_FILE), UTF_8);
             for (final String line : semanticTypeLines) {
                 final String[] parts = line.split("\\|");
                 semanticTypes.put(parts[0], parts[2]);
@@ -76,7 +79,7 @@ public class SemanticTypes {
         }
 
         DEFAULT_MM_SEMANTIC_TYPES = ImmutableList.copyOf(defaultSemanticTypes);
-        SEMANTIC_TYPES_CODE_TO_DESCRIPTION = ImmutableMap.copyOf(semanticTypes);
+        SEMANTIC_TYPES_CODE_TO_DESCRIPTION = ImmutableSortedMap.copyOf(semanticTypes);
     }
 
     /**
