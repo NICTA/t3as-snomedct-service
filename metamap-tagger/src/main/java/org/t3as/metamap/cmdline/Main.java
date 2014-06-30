@@ -1,5 +1,3 @@
-package org.t3as.metamap.cmdline;
-
 /*
  * #%L
  * NICTA t3as MetaMap Tagger
@@ -30,6 +28,7 @@ package org.t3as.metamap.cmdline;
  * grant you additional permission to convey the resulting work.
  * #L%
  */
+package org.t3as.metamap.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
