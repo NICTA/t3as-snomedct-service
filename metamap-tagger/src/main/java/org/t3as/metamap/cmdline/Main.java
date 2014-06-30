@@ -52,8 +52,10 @@ public final class Main {
     public static void main(final String[] args) throws Exception {
         final CmdOpts opts = new CmdOpts();
         JCommander jc = null;
-        try { jc = new JCommander(opts, args);
-        } catch (final Exception e) {
+        try {
+            jc = new JCommander(opts, args);
+        }
+        catch (final Exception e) {
             System.err.println("Could not parse the options: " + e.getMessage());
             System.exit(1);
         }
@@ -68,16 +70,16 @@ public final class Main {
                 final BufferedReader in = new BufferedReader(new FileReader(opts.input));
                 final BufferedWriter out = new BufferedWriter(new FileWriter(sanitised))
         ) {
-            final StringBuilder sb = new StringBuilder((int)opts.input.length());
+            final StringBuilder sb = new StringBuilder((int) opts.input.length());
             for (String line; (line = in.readLine()) != null; ) sb.append(line).append('\n');
             final String input = MetaMap.decomposeToAscii(sb.toString());
             out.write(input);
         }
 
         // process the data with MetaMap
-        final MetaMap metaMap = new MetaMap(opts.publicMm, SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES);
-        if (!metaMap.process(sanitised, opts.output,
-                             DEFAULT_MM_OPTIONS.toArray(new Option[DEFAULT_MM_OPTIONS.size()]))) {
+        final MetaMap metaMap = new MetaMap(opts.publicMm, SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES,
+                                            DEFAULT_MM_OPTIONS.toArray(new Option[DEFAULT_MM_OPTIONS.size()]));
+        if (!metaMap.process(sanitised, opts.output)) {
             System.err.println("MetaMap processing failed, aborting.");
             System.exit(1);
         }

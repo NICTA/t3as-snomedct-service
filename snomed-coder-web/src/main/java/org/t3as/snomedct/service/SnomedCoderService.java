@@ -143,8 +143,8 @@ public class SnomedCoderService {
         final Collection<String> semanticTypes = r.getSemanticTypes() != null
                                                  ? Arrays.asList(r.getSemanticTypes())
                                                  : Collections.<String>emptyList();
-        final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, semanticTypes);
-        if (!metaMap.process(infile, outfile, opts.toArray(new Option[opts.size()]))) {
+        final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, semanticTypes, opts.toArray(new Option[opts.size()]));
+        if (!metaMap.process(infile, outfile)) {
             throw new WebApplicationException(Response.status(INTERNAL_SERVER_ERROR)
                                                       .entity("Processing failed, aborting.")
                                                       .type("text/plain").build());

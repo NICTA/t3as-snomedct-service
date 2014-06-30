@@ -43,14 +43,16 @@ import java.util.List;
 public final class MetaMap {
 
     private final File publicMm;
+    private final Option[] opts;
     private final Collection<String> semanticTypes;
 
-    public MetaMap(final File publicMm, final Collection<String> semanticTypes) {
+    public MetaMap(final File publicMm, final Collection<String> semanticTypes, final Option[] opts) {
         this.publicMm = publicMm;
+        this.opts = opts;
         this.semanticTypes = SemanticTypes.sanitiseSemanticTypes(semanticTypes);
     }
 
-    public boolean process(final File input, final File output, final Option[] opts)
+    public boolean process(final File input, final File output)
             throws IOException, InterruptedException {
 
         // put the options together
