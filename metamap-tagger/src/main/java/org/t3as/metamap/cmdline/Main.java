@@ -35,6 +35,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.t3as.metamap.MetaMap;
 import org.t3as.metamap.SemanticTypes;
+import org.t3as.metamap.options.Option;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -50,7 +51,7 @@ import static org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS;
 public final class Main {
 
     public static void main(final String[] args) throws Exception {
-        final Options opts = new Options();
+        final CmdOpts opts = new CmdOpts();
         JCommander jc = null;
         try { jc = new JCommander(opts, args);
         } catch (final Exception e) {
@@ -77,7 +78,7 @@ public final class Main {
         // process the data with MetaMap
         final MetaMap metaMap = new MetaMap(opts.publicMm, SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES);
         if (!metaMap.process(sanitised, opts.output,
-                             DEFAULT_MM_OPTIONS.toArray(new org.t3as.metamap.options.Option[DEFAULT_MM_OPTIONS.size()]))) {
+                             DEFAULT_MM_OPTIONS.toArray(new Option[DEFAULT_MM_OPTIONS.size()]))) {
             System.err.println("MetaMap processing failed, aborting.");
             System.exit(1);
         }
@@ -85,7 +86,7 @@ public final class Main {
         sanitised.delete();
     }
 
-    private static class Options {
+    private static class CmdOpts {
         @Parameter(help = true, names = {"-h", "--help"}, description = "Show this help message.")
         boolean showUsage = false;
 

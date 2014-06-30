@@ -30,7 +30,7 @@
  */
 package org.t3as.metamap;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Joiner;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
 import org.t3as.metamap.options.Option;
 
@@ -61,12 +61,13 @@ public final class MetaMap {
                 o.add(opt.toMmOptStr());
             }
         }
-        o.add("--restrict_to_sources SNOMEDCT_US");
-        o.add("--XMLf1");
         // if we get nothing then don't restrict, i.e. run with all semantic types
         if (semanticTypes != null && !semanticTypes.isEmpty()) {
-            o.add("--restrict_to_sts " + StringUtils.join(semanticTypes, ","));
+            o.add("--restrict_to_sts " + Joiner.on(',').join(semanticTypes));
         }
+
+        // set the input and output
+        o.add("--XMLf1");
         o.add(input.getAbsolutePath());
         o.add(output.getAbsolutePath());
 
