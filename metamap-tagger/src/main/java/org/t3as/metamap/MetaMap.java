@@ -31,6 +31,7 @@
 package org.t3as.metamap;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableList;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
 import org.t3as.metamap.options.Option;
 
@@ -43,12 +44,12 @@ import java.util.List;
 public final class MetaMap {
 
     private final File publicMm;
-    private final Option[] opts;
+    private final Collection<Option> opts;
     private final Collection<String> semanticTypes;
 
-    public MetaMap(final File publicMm, final Collection<String> semanticTypes, final Option[] opts) {
+    public MetaMap(final File publicMm, final Collection<String> semanticTypes, final Collection<Option> opts) {
         this.publicMm = publicMm;
-        this.opts = opts;
+        this.opts = ImmutableList.copyOf(opts);
         this.semanticTypes = SemanticTypes.sanitiseSemanticTypes(semanticTypes);
     }
 
@@ -58,10 +59,8 @@ public final class MetaMap {
         // put the options together
         final List<String> o = new ArrayList<>();
         o.add(publicMm.getAbsolutePath() + "/bin/metamap13");
-        if (opts != null) {
-            for (final Option opt : opts) {
-                o.add(opt.toMmOptStr());
-            }
+        for (final Option opt : opts) {
+            o.add(opt.toMmOptStr());
         }
         // if we get nothing then don't restrict, i.e. run with all semantic types
         if (semanticTypes != null && !semanticTypes.isEmpty()) {

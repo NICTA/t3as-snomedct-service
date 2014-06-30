@@ -30,6 +30,7 @@
  */
 package org.t3as.snomedct.service;
 
+import com.google.common.collect.ImmutableList;
 import com.sun.jersey.api.Responses;
 import org.apache.commons.io.IOUtils;
 import org.t3as.metamap.JaxbLoader;
@@ -62,9 +63,7 @@ import java.io.Writer;
 import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
@@ -113,7 +112,7 @@ public class SnomedCoderService {
 
         // metamap options, if nothing was passed use the defaults
         final Collection<Option> opts = new ArrayList<>();
-        if (r.getOptions() == null) {
+        if (r.getOptions().length == 0) {
             opts.addAll(Options.DEFAULT_MM_OPTIONS);
         }
         else {
@@ -140,10 +139,7 @@ public class SnomedCoderService {
         }
 
         // process the data with MetaMap
-        final Collection<String> semanticTypes = r.getSemanticTypes() != null
-                                                 ? Arrays.asList(r.getSemanticTypes())
-                                                 : Collections.<String>emptyList();
-        final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, semanticTypes, opts.toArray(new Option[opts.size()]));
+        final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, ImmutableList.copyOf(r.getSemanticTypes()), opts);
         if (!metaMap.process(infile, outfile)) {
             throw new WebApplicationException(Response.status(INTERNAL_SERVER_ERROR)
                                                       .entity("Processing failed, aborting.")

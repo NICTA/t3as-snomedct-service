@@ -33,8 +33,6 @@ package org.t3as.metamap.cmdline;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.t3as.metamap.MetaMap;
-import org.t3as.metamap.SemanticTypes;
-import org.t3as.metamap.options.Option;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -42,6 +40,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import static org.t3as.metamap.SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES;
 import static org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS;
 
 /**
@@ -77,8 +76,7 @@ public final class Main {
         }
 
         // process the data with MetaMap
-        final MetaMap metaMap = new MetaMap(opts.publicMm, SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES,
-                                            DEFAULT_MM_OPTIONS.toArray(new Option[DEFAULT_MM_OPTIONS.size()]));
+        final MetaMap metaMap = new MetaMap(opts.publicMm, DEFAULT_MM_SEMANTIC_TYPES, DEFAULT_MM_OPTIONS);
         if (!metaMap.process(sanitised, opts.output)) {
             System.err.println("MetaMap processing failed, aborting.");
             System.exit(1);

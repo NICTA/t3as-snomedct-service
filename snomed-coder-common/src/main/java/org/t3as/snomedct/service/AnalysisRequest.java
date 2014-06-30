@@ -35,8 +35,8 @@ import java.util.Arrays;
 public class AnalysisRequest {
 
     private String text;
-    private String[] semanticTypes;
-    private String[] options;
+    private String[] semanticTypes = new String[0];
+    private String[] options = new String[0];
 
     @SuppressWarnings("UnusedDeclaration")
     public AnalysisRequest() { }
