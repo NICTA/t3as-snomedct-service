@@ -38,7 +38,7 @@ public class CompositePhrases extends Option {
     protected static final String NAME = "composite_phrases";
     private final int numPhrases;
 
-    protected CompositePhrases() { numPhrases = 8; }
+    protected CompositePhrases() { numPhrases = 4; }
 
     public CompositePhrases(final int numPhrases) { this.numPhrases = numPhrases; }
 
