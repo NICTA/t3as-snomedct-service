@@ -38,15 +38,16 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.t3as.metamap.jaxb.Utterance;
-import org.t3as.snomedct.service.AnalysisRequest;
 import org.t3as.snomedct.client.jaxb.ObjectMapperProvider;
+import org.t3as.snomedct.service.AnalysisRequest;
 
 import javax.ws.rs.core.MediaType;
 import java.util.Collection;
 
 /**
  * A simple client implementation that will call the REST web service with some text and return the results. The 'call'
- * method can be reused repeatedly.
+ * method can and should be reused repeatedly, since creating the Jersey Client is a relatively time consuming
+ * operation.
  */
 public class SnomedClient {
 

@@ -1,6 +1,8 @@
 # NICTA t3as SNOMED CT service REST client
 
 A client library with a command line implementation - this can be used to call the web service either from the command line, or integrated into your own applications. Use the source of the command line implementation as en example of how to integrate the client library - [org/t3as/snomedct/client/cmdline/Main.java](src/main/java/org/t3as/snomedct/client/cmdline/Main.java).
+
+Note that it is best to reuse `SnomedClient` instances due to the relatively timeconsuming operation of creating the internal Jersey Client.
  
 This project is also available on Maven Central under the `org.t3as` group id, as artifact id `snomed-coder-client`:
 
