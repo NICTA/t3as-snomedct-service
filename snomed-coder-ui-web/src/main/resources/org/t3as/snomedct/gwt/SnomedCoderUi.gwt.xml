@@ -36,6 +36,7 @@
     <inherits name="com.google.gwt.http.HTTP"/>
     <inherits name="com.googlecode.gwt.math.Math"/>
     <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.common.collect.Collect"/>
 
      <!--
      Inherit the default GWT style sheet.  You can change

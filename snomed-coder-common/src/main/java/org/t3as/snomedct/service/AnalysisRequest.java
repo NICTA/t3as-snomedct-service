@@ -31,11 +31,11 @@
 package org.t3as.snomedct.service;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class AnalysisRequest {
 
     private String text;
-    private String[] semanticTypes = new String[0];
     private String[] options = new String[0];
 
     @SuppressWarnings("UnusedDeclaration")
@@ -43,15 +43,12 @@ public class AnalysisRequest {
 
     public AnalysisRequest(final String text) { this.text = text; }
 
-    public AnalysisRequest(final String text, final String[] options, final String[] semanticTypes) {
+    public AnalysisRequest(final String text, final List<String> options) {
         this.text = text;
-        this.options = options;
-        this.semanticTypes = semanticTypes;
+        this.options = options.toArray(new String[options.size()]);
     }
 
     public String getText() { return text; }
-
-    public String[] getSemanticTypes() { return semanticTypes; }
 
     public String[] getOptions() { return options; }
 
@@ -59,7 +56,6 @@ public class AnalysisRequest {
     public String toString() {
         return "AnalysisRequest{" +
                "text='" + text + '\'' +
-               ", semanticTypes=" + Arrays.toString(semanticTypes) +
                ", options=" + Arrays.toString(options) +
                '}';
     }

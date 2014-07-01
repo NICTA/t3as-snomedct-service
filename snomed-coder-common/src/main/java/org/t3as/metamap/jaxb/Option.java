@@ -54,7 +54,7 @@ import javax.xml.bind.annotation.XmlType;
     "optName",
     "optValue"
 })
-@XmlRootElement(name = "Options")
+@XmlRootElement(name = "MetaMapOptions")
 public class Option {
 
     @XmlElement(name = "OptName", required = true)

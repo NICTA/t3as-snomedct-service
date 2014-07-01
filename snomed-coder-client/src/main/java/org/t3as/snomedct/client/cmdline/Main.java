@@ -32,12 +32,16 @@ package org.t3as.snomedct.client.cmdline;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import org.t3as.metamap.SemanticTypes;
+import com.google.common.base.Charsets;
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.io.Files;
 import org.t3as.metamap.jaxb.Candidate;
 import org.t3as.metamap.jaxb.Mapping;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.SemType;
 import org.t3as.metamap.jaxb.Utterance;
+import org.t3as.metamap.options.MetaMapOptions;
 import org.t3as.snomedct.client.SnomedClient;
 import org.t3as.snomedct.service.AnalysisRequest;
 
@@ -45,8 +49,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import static org.apache.commons.io.FileUtils.readFileToString;
+import java.util.List;
 
 /**
  * Command line implementation of the SNOMED CT web service client.
@@ -70,7 +73,7 @@ public class Main {
     private static void processFiles(final Options opts, final SnomedClient client) throws IOException {
         // read each file and call the web service
         for (final File f : opts.files) {
-            final String input = readFileToString(f);
+            final String input = Files.toString(f, Charsets.UTF_8);
             System.out.printf("%s:\n", f);
             System.out.println(callService(input, opts, client));
         }
@@ -78,7 +81,7 @@ public class Main {
 
     private static String callService(final String text, final Options opts, final SnomedClient client) {
         // create a request
-        final AnalysisRequest request = new AnalysisRequest(text, opts.splitOptions(), opts.splitSemTypes());
+        final AnalysisRequest request = new AnalysisRequest(text, opts.splitOptions());
         // perform the call and get the output
         final Collection<Utterance> utterances = client.call(request);
         // turn the output into a human readable string
@@ -149,7 +152,7 @@ public class Main {
 
     private static class Options {
         @Parameter(help = true, names = {"-h", "--help"}, description = "Show this help message.")
-        boolean showUsage = false;
+        boolean showUsage;
 
         @Parameter(names = "-url", description = "The base URL of the SNOMED web service to access.")
         String url = SnomedClient.DEFAULT_BASE_URL;
@@ -157,28 +160,17 @@ public class Main {
         @Parameter(names = "-text", description = "The text to analyse for SNOMED CT codes.")
         String text = "";
 
-        @Parameter(names = "-options", description = "Comma separated list of options to pass to the SNOMED CT coder " +
-                                                     "- see web service documentation for which ones are supported.")
-        String options = org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS.toString().replaceAll("[\\[\\]]", "");
-
-        @Parameter(names = "-semTypes", description = "Comma separated list of semantic types to look for.")
-        String semTypes = SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES.toString().replaceAll("[\\[\\]]", "");
+        @Parameter(names = "-options", description = "Semicolon separated list of options to pass to the SNOMED CT "
+                                                     + "coder - see web service documentation for which ones are "
+                                                     + "supported.")
+        String options = Joiner.on("; ").join(MetaMapOptions.DEFAULT_MM_OPTIONS);
 
         @Parameter(description = "[files]")
         Collection<File> files = new ArrayList<>();
 
-        String[] splitOptions() {
+        List<String> splitOptions() {
             // split on comma and trim off any surrounding whitespace
-            final String[] split = options.split(",");
-            for (int i = 0; i < split.length; i++) split[i] = split[i].trim();
-            return split;
-        }
-
-        String[] splitSemTypes() {
-            // split on comma and trim off any surrounding whitespace
-            final String[] split = semTypes.split(",");
-            for (int i = 0; i < split.length; i++) split[i] = split[i].trim();
-            return split;
+            return Splitter.on(';').omitEmptyStrings().trimResults().splitToList(options);
         }
     }
 }

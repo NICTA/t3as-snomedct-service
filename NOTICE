@@ -28,7 +28,6 @@ grant you additional permission to convey the resulting work.
 
 This program links to or is a derivative of:
 
-  Apache Commons IO (for Apache Directory Studio) under The Apache Software License, Version 2.0
   Bean Validation API under Apache License, Version 2.0
   BeanShell under GNU LESSER GENERAL PUBLIC LICENSE
   Commons IO under The Apache Software License, Version 2.0

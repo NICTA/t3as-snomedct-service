@@ -30,17 +30,25 @@
  */
 package org.t3as.metamap.options;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import org.t3as.metamap.SemanticTypes;
 
+import java.util.List;
+import java.util.regex.Pattern;
+
+import static com.google.common.base.CharMatcher.JAVA_LETTER_OR_DIGIT;
+import static com.google.common.base.CharMatcher.anyOf;
 import static org.t3as.metamap.options.RestrictToSources.SNOMEDCT_US;
 
-public abstract class Options {
+public abstract class MetaMapOptions {
 
     @SuppressWarnings("PublicStaticCollectionField")
     public static final ImmutableCollection<Option> DEFAULT_MM_OPTIONS;
     private static final ImmutableMap<String, Option> OPTS;
+    private static final Pattern SPACE = Pattern.compile(" ");
 
     static {
         // PUT NEW OPTIONS IN THIS LIST
@@ -54,6 +62,7 @@ public abstract class Options {
                            .put(IgnoreStopPhrases.NAME, new IgnoreStopPhrases())
                            .put(AllAcrosAbbrs.NAME, new AllAcrosAbbrs())
                            .put(RestrictToSources.NAME, new RestrictToSources())
+                           .put(RestrictToSts.NAME, new RestrictToSts())
                            .build();
 
         DEFAULT_MM_OPTIONS = ImmutableList.of(
@@ -63,21 +72,30 @@ public abstract class Options {
                 new StrictModel(),
                 new IgnoreWordOrder(),
                 new AllowLargeN(),
-                new RestrictToSources(ImmutableList.of(SNOMEDCT_US)));
+                new RestrictToSources(ImmutableList.of(SNOMEDCT_US)),
+                new RestrictToSts(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES));
     }
 
-    private Options() {}
+    private MetaMapOptions() {}
 
     /**
      * Parse an option string (without the leading double hyphens) into an option to pass to MetaMap,
      * e.g. "word_sense_disambiguation".
      */
+    @SuppressWarnings("ReturnOfNull")
     public static Option strToOpt(final String optStr) {
-        final String[] parts = optStr.split(" ", 2);
+        final String[] parts = SPACE.split(optStr, 2);
         final String name = parts[0];
         final String param = 1 < parts.length ? parts[1] : null;
 
         final Option opt = OPTS.get(name);
         return opt == null ? null : opt.newInstance(param);
+    }
+
+    /*package-private*/
+    static List<String> sanitiseAndSplit(final String param) {
+        // sanitize the user input, only keep letters, digits, and any of a small number of approved params
+        final String sanitized = JAVA_LETTER_OR_DIGIT.or(anyOf(".,_-[]")).retainFrom(param);
+        return Splitter.on(',').trimResults().omitEmptyStrings().splitToList(sanitized);
     }
 }

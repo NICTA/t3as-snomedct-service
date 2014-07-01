@@ -30,25 +30,39 @@
  */
 package org.t3as.metamap.options;
 
-public abstract class Option {
+import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableList;
+import org.t3as.metamap.SemanticTypes;
 
-    protected Option() {}
+import java.util.Collection;
+import java.util.List;
 
-    public abstract String name();
+public class RestrictToSts extends Option {
 
-    // IF THE OPTION TAKES A PARAM OVERRIDE THIS
-    @SuppressWarnings("ReturnOfNull")
-    public String param() { return null; }
+    protected static final String NAME = "restrict_to_sts";
+    private static final String USE_METAMAP_DEFAULT_STRING = "[all]";
 
-    // OVERRIDE IF THE OPTION SHOULD BE SET TO THE METAMAP DEFAULT (i.e. don't include it on the command line)
-    // this is probably only for options that take a parameter
-    public boolean useMetamapDefault() { return false; }
+    private final List<String> semTypes;
 
-    // IF THE OPTION TAKES A PARAM OVERRIDE THIS - MAKE SURE TO SANITISE USER INPUT
-    protected Option newInstance(final String param) { return this; }
+    public RestrictToSts() { semTypes = SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES; }
 
-    public String toMmOptStr() { return "--" + toString(); }
+    public RestrictToSts(final Collection<String> semTypes) { this.semTypes = ImmutableList.copyOf(semTypes); }
 
     @Override
-    public String toString() { return name() + (param() == null ? "" : " " + param()); }
+    public String name() { return NAME; }
+
+    @Override
+    public String param() { return Joiner.on(',').skipNulls().join(semTypes); }
+
+    @Override
+    public boolean useMetamapDefault() {
+        return semTypes.size() == 1 && USE_METAMAP_DEFAULT_STRING.equals(semTypes.get(0));
+    }
+
+    @SuppressWarnings("ReturnOfNull")
+    @Override
+    protected Option newInstance(final String param) {
+        final List<String> params = MetaMapOptions.sanitiseAndSplit(param);
+        return params.isEmpty() ? null : new RestrictToSts(params);
+    }
 }

@@ -31,13 +31,10 @@
 package org.t3as.metamap.options;
 
 import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 
+import java.util.Collection;
 import java.util.List;
-
-import static com.google.common.base.CharMatcher.JAVA_LETTER_OR_DIGIT;
-import static com.google.common.base.CharMatcher.anyOf;
 
 public class RestrictToSources extends Option {
 
@@ -49,7 +46,7 @@ public class RestrictToSources extends Option {
 
     public RestrictToSources() { sources = ImmutableList.of(SNOMEDCT_US); }
 
-    public RestrictToSources(final List<String> params) { sources = params; }
+    public RestrictToSources(final Collection<String> params) { sources = ImmutableList.copyOf(params); }
 
     @Override
     public String name() { return NAME; }
@@ -62,11 +59,10 @@ public class RestrictToSources extends Option {
         return sources.size() == 1 && USE_METAMAP_DEFAULT_STRING.equals(sources.get(0));
     }
 
+    @SuppressWarnings("ReturnOfNull")
     @Override
     protected Option newInstance(final String param) {
-        // sanitize the user input, only keep letters, digits, and any of a small number of approved params
-        final String sanitized = JAVA_LETTER_OR_DIGIT.or(anyOf(".,_-[]")).retainFrom(param);
-        final List<String> params = Splitter.on(',').trimResults().omitEmptyStrings().splitToList(sanitized);
+        final List<String> params = MetaMapOptions.sanitiseAndSplit(param);
         return params.isEmpty() ? null : new RestrictToSources(params);
     }
 }

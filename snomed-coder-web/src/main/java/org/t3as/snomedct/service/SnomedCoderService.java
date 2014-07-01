@@ -30,17 +30,17 @@
  */
 package org.t3as.snomedct.service;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import com.sun.jersey.api.Responses;
-import org.apache.commons.io.IOUtils;
 import org.t3as.metamap.JaxbLoader;
 import org.t3as.metamap.MetaMap;
 import org.t3as.metamap.jaxb.MMO;
 import org.t3as.metamap.jaxb.MMOs;
 import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.Utterance;
+import org.t3as.metamap.options.MetaMapOptions;
 import org.t3as.metamap.options.Option;
-import org.t3as.metamap.options.Options;
 import org.t3as.snomedct.lookup.SnomedLookup;
 import org.xml.sax.SAXException;
 
@@ -54,12 +54,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Writer;
 import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -110,25 +107,19 @@ public class SnomedCoderService {
 
         System.out.println(r);
 
-        // metamap options, if nothing was passed use the defaults
+        // metamap options
         final Collection<Option> opts = new ArrayList<>();
-        if (r.getOptions().length == 0) {
-            opts.addAll(Options.DEFAULT_MM_OPTIONS);
-        }
-        else {
-            for (final String o : r.getOptions()) {
-                final Option opt = Options.strToOpt(o);
-                if (opt != null && !opt.useMetamapDefault()) opts.add(opt);
-            }
+        for (final String o : r.getOptions()) {
+            final Option opt = MetaMapOptions.strToOpt(o);
+            if (opt != null && !opt.useMetamapDefault()) opts.add(opt);
         }
 
         // tmp files for metamap in/out
         final File infile = File.createTempFile("metamap-input-", ".txt");
         final File outfile = File.createTempFile("metamap-output-", ".xml");
-        try (Writer w = new BufferedWriter(new FileWriter(infile))) {
-            final String s = r.getText() + (r.getText().endsWith("\n") ? "" : "\n");
-            IOUtils.write(MetaMap.decomposeToAscii(URLDecoder.decode(s, "UTF-8")), w);
-        }
+        final String s = r.getText() + (r.getText().endsWith("\n") ? "" : "\n");
+        final String ascii = MetaMap.decomposeToAscii(URLDecoder.decode(s, "UTF-8"));
+        Files.write(ascii, infile, Charsets.UTF_8);
         // we don't want too much data for a free service
         if (infile.length() > MAX_DATA_BYTES) {
             throw new WebApplicationException(
@@ -139,7 +130,7 @@ public class SnomedCoderService {
         }
 
         // process the data with MetaMap
-        final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, ImmutableList.copyOf(r.getSemanticTypes()), opts);
+        final MetaMap metaMap = new MetaMap(PUBLIC_MM_DIR, opts);
         if (!metaMap.process(infile, outfile)) {
             throw new WebApplicationException(Response.status(INTERNAL_SERVER_ERROR)
                                                       .entity("Processing failed, aborting.")

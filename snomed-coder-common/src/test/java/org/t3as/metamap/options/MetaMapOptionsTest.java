@@ -36,30 +36,30 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
 
-public class OptionsTest {
+public class MetaMapOptionsTest {
 
     @Test
     public void test() throws Exception {
-        final Option o1 = Options.strToOpt("foobar");
+        final Option o1 = MetaMapOptions.strToOpt("foobar");
         assertNull(o1);
 
-        final Option o2 = Options.strToOpt("word_sense_disambiguation");
+        final Option o2 = MetaMapOptions.strToOpt("word_sense_disambiguation");
         assertNotNull(o2);
         assertEquals(WordSenseDisambiguation.class, o2.getClass());
         assertEquals("word_sense_disambiguation", o2.name());
         assertNull(o2.param());
         assertEquals("--word_sense_disambiguation", o2.toMmOptStr());
 
-        final Option o3 = Options.strToOpt("composite_phrases");
+        final Option o3 = MetaMapOptions.strToOpt("composite_phrases");
         assertNull(o3);
 
-        final Option o4 = Options.strToOpt("composite_phrases X");
+        final Option o4 = MetaMapOptions.strToOpt("composite_phrases X");
         assertNull(o4);
 
-        final Option o5 = Options.strToOpt("composite_phrases 20");
+        final Option o5 = MetaMapOptions.strToOpt("composite_phrases 20");
         assertNull(o5);
 
-        final Option o6 = Options.strToOpt("composite_phrases 4");
+        final Option o6 = MetaMapOptions.strToOpt("composite_phrases 4");
         assertNotNull(o6);
         assertEquals(CompositePhrases.class, o6.getClass());
         assertEquals("--composite_phrases 4", o6.toMmOptStr());

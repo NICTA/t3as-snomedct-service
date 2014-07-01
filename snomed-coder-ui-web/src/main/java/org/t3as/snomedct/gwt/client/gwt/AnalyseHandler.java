@@ -30,6 +30,7 @@
  */
 package org.t3as.snomedct.gwt.client.gwt;
 
+import com.google.common.base.Joiner;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -46,6 +47,8 @@ import org.t3as.snomedct.gwt.client.SemanticType;
 import org.t3as.snomedct.gwt.client.snomed.SnomedConcept;
 
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -97,23 +100,21 @@ public class AnalyseHandler implements ClickHandler {
         glassPanel.setPositionAndShow();
 
         // build up the AnalysisRequest JSON object
-        JSONArray array = new JSONArray();
-        boolean all = true;
-        int arrayCounter = 0;
-        for (final SemanticType t : types) {
-            if (t.isSelected()) {
-                array.set(arrayCounter++, new JSONString(t.getCode()));
-            }
-            else all = false;
-        }
-        // if all of the types are set then replace them with the special '[all]' value
-        if (all) {
-            array = new JSONArray();
-            array.set(0, new JSONString(SPECIAL_ALL_SEM_TYPES_VALUE));
-        }
+        // start with any options
+        final JSONArray options = new JSONArray();
+        setSemanticTypesOption(types, options);
+        // defaults
+        options.set(options.size(), new JSONString("word_sense_disambiguation"));
+        options.set(options.size(), new JSONString("composite_phrases 8"));
+        options.set(options.size(), new JSONString("no_derivational_variants"));
+        options.set(options.size(), new JSONString("strict_model"));
+        options.set(options.size(), new JSONString("ignore_word_order"));
+        options.set(options.size(), new JSONString("allow_large_n"));
+        options.set(options.size(), new JSONString("restrict_to_sources SNOMEDCT_US"));
+
         final JSONObject analysisRequest = new JSONObject();
         analysisRequest.put("text", new JSONString(text));
-        analysisRequest.put("semanticTypes", array);
+        analysisRequest.put("options", options);
 
         // send the input to the server
         final RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, webserviceUrl);
@@ -130,5 +131,17 @@ public class AnalyseHandler implements ClickHandler {
             GWT.log("There was a problem performing the analysis: " + e.getMessage(), e);
             glassPanel.hide();
         }
+    }
+
+    private static void setSemanticTypesOption(final Collection<SemanticType> types, final JSONArray options) {
+        final Collection<String> selectedTypes = new ArrayList<>();
+        for (final SemanticType t : types) {
+            if (t.isSelected()) selectedTypes.add(t.getCode());
+        }
+
+        // if all of the types are set then replace them with the special '[all]' value
+        final String option = types.size() == selectedTypes.size() ? SPECIAL_ALL_SEM_TYPES_VALUE
+                                                                   : Joiner.on(',').join(selectedTypes);
+        options.set(options.size(), new JSONString("restrict_to_sts " + option));
     }
 }

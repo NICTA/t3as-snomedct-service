@@ -58,13 +58,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "option"
 })
-@XmlRootElement(name = "Options")
+@XmlRootElement(name = "MetaMapOptions")
 public class Options {
 
     @XmlAttribute(name = "Count", required = true)
     @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String count;
-    @XmlElement(name = "Options")
+    @XmlElement(name = "MetaMapOptions")
     protected List<Option> option;
 
     /**

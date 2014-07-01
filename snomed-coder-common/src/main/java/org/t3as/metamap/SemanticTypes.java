@@ -30,7 +30,6 @@
  */
 package org.t3as.metamap;
 
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedMap;
@@ -41,12 +40,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.io.Resources.getResource;
 import static com.google.common.io.Resources.readLines;
 
-public class SemanticTypes {
+public final class SemanticTypes {
 
     /**
      * This has to be downloaded from the NLM MetaMap site. Last known URL was:
@@ -56,7 +56,7 @@ public class SemanticTypes {
     private static final String DEFAULT_SEMANTIC_TYPES_FILE = "defaultSemanticTypes.txt";
 
     @SuppressWarnings("PublicStaticCollectionField")
-    public static final ImmutableCollection<String> DEFAULT_MM_SEMANTIC_TYPES;
+    public static final ImmutableList<String> DEFAULT_MM_SEMANTIC_TYPES;
     @SuppressWarnings("PublicStaticCollectionField")
     public static final ImmutableMap<String, String> SEMANTIC_TYPES_CODE_TO_DESCRIPTION;
 
@@ -68,8 +68,9 @@ public class SemanticTypes {
 
             // load all the MetaMap Semantic Types and make a static map out of the code and descriptions
             final Collection<String> semanticTypeLines = readLines(getResource(SEMANTIC_TYPES_FILE), UTF_8);
+            final Pattern PIPE = Pattern.compile("\\|");
             for (final String line : semanticTypeLines) {
-                final String[] parts = line.split("\\|");
+                final String[] parts = PIPE.split(line);
                 semanticTypes.put(parts[0], parts[2]);
             }
         }
@@ -81,6 +82,8 @@ public class SemanticTypes {
         DEFAULT_MM_SEMANTIC_TYPES = ImmutableList.copyOf(defaultSemanticTypes);
         SEMANTIC_TYPES_CODE_TO_DESCRIPTION = ImmutableSortedMap.copyOf(semanticTypes);
     }
+
+    private SemanticTypes() {}
 
     /**
      * Sanitise semantic types from user input - if there is a single value '[all]' then an empty Collection is
@@ -103,7 +106,7 @@ public class SemanticTypes {
                 if (SEMANTIC_TYPES_CODE_TO_DESCRIPTION.containsKey(t)) types.add(t);
             }
             // if no valid types then return the default ones
-            types = types.size() > 0 ? types : DEFAULT_MM_SEMANTIC_TYPES;
+            types = types.isEmpty() ? DEFAULT_MM_SEMANTIC_TYPES : types;
         }
 
         return types;

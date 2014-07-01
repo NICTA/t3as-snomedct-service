@@ -38,11 +38,11 @@ import org.t3as.metamap.MetaMap;
 import java.io.File;
 
 import static com.google.common.base.Charsets.UTF_8;
-import static org.t3as.metamap.SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES;
-import static org.t3as.metamap.options.Options.DEFAULT_MM_OPTIONS;
+import static org.t3as.metamap.options.MetaMapOptions.DEFAULT_MM_OPTIONS;
 
 /**
  * Command line tool to exercise MetaMap. Produces output that can then be passed to the snomedct-lookup tool.
+ * Runs with default options.
  */
 public final class Main {
 
@@ -67,7 +67,7 @@ public final class Main {
         Files.write(s, sanitised, UTF_8);
 
         // process the data with MetaMap
-        final MetaMap metaMap = new MetaMap(opts.publicMm, DEFAULT_MM_SEMANTIC_TYPES, DEFAULT_MM_OPTIONS);
+        final MetaMap metaMap = new MetaMap(opts.publicMm, DEFAULT_MM_OPTIONS);
         if (!metaMap.process(sanitised, opts.output)) {
             System.err.println("MetaMap processing failed, aborting.");
             System.exit(1);

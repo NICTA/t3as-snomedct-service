@@ -59,7 +59,7 @@ public class CmdLine {
 
     @XmlElement(name = "Command", required = true)
     protected String command;
-    @XmlElement(name = "Options", required = true)
+    @XmlElement(name = "MetaMapOptions", required = true)
     protected Options options;
 
     /**
