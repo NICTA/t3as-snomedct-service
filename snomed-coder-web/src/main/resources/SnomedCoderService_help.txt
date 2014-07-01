@@ -55,7 +55,7 @@ When using the web service in this way you must set the `Content-Type` header to
         http://snomedct.t3as.org/snomed-coder-web/rest/v1.0/snomedctCodes \
         | python -mjson.tool
 
-Note that if you do not pass any semantic types the analysis will be done with all types. An alternative is that you can also pass the special value '[all]', without the single quotes, to run an analysis using all types.
+Note that if you do not pass any semantic types the analysis will be done with all types.
 
 
 
