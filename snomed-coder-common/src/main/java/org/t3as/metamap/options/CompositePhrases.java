@@ -48,6 +48,7 @@ public class CompositePhrases extends Option {
     @Override
     public String param() { return Integer.toString(numPhrases); }
 
+    @SuppressWarnings("ReturnOfNull")
     @Override
     protected Option newInstance(final String param) {
         try {
@@ -55,7 +56,7 @@ public class CompositePhrases extends Option {
             if (n < MIN_COMPOSITE_WORDS || n > MAX_COMPOSITE_WORDS) return null;
             return new CompositePhrases(n);
         }
-        catch (final Throwable ignore) {}
+        catch (final NumberFormatException ignored) {}
         return null;
     }
 }

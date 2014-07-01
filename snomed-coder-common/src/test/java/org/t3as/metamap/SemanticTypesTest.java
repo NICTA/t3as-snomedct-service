@@ -30,25 +30,23 @@
  */
 package org.t3as.metamap;
 
+import com.google.common.collect.ImmutableList;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
-
-import static java.util.Arrays.asList;
+import static com.google.common.collect.ImmutableList.of;
 import static org.t3as.metamap.SemanticTypes.sanitiseSemanticTypes;
 import static org.testng.Assert.assertEquals;
 
 public class SemanticTypesTest {
 
-
     @Test
     public void testSanitiseSemanticTypes() {
-        assertEquals(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES, sanitiseSemanticTypes(null));
-        assertEquals(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES, sanitiseSemanticTypes(Collections.<String>emptyList()));
-        assertEquals(SemanticTypes.DEFAULT_MM_SEMANTIC_TYPES, sanitiseSemanticTypes(Collections.singleton("foobar")));
+        assertEquals(of(), sanitiseSemanticTypes(null));
+        assertEquals(of(), sanitiseSemanticTypes(ImmutableList.<String>of()));
+        assertEquals(of(), sanitiseSemanticTypes(of("foobar")));
 
-        assertEquals(asList("dsyn"), sanitiseSemanticTypes(Collections.singleton("dsyn")));
-        assertEquals(asList("dsyn"), sanitiseSemanticTypes(asList("dsyn", "foobar")));
-        assertEquals(asList("dsyn", "fish"), sanitiseSemanticTypes(asList("dsyn", "foobar", "fish")));
+        assertEquals(of("dsyn"), sanitiseSemanticTypes(of("dsyn")));
+        assertEquals(of("dsyn"), sanitiseSemanticTypes(of("dsyn", "foobar")));
+        assertEquals(of("dsyn", "fish"), sanitiseSemanticTypes(of("dsyn", "foobar", "fish")));
     }
 }

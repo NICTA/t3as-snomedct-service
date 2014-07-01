@@ -33,6 +33,8 @@ This program links to or is a derivative of:
   Commons IO under The Apache Software License, Version 2.0
   CORS Filter under The Apache Software License, Version 2.0
   Data Mapper for Jackson under The Apache Software License, Version 2.0
+  FindBugs-jsr305 under The Apache Software License, Version 2.0
+  Guava GWT compatible libs under The Apache Software License, Version 2.0
   Guava: Google Core Libraries for Java under The Apache Software License, Version 2.0
   GWT Math 2.0.3 under The Apache Software License, Version 2.0
   gwt-user under GWT Terms

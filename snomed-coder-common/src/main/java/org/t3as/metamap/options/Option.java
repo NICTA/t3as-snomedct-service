@@ -40,10 +40,6 @@ public abstract class Option {
     @SuppressWarnings("ReturnOfNull")
     public String param() { return null; }
 
-    // OVERRIDE IF THE OPTION SHOULD BE SET TO THE METAMAP DEFAULT (i.e. don't include it on the command line)
-    // this is probably only for options that take a parameter
-    public boolean useMetamapDefault() { return false; }
-
     // IF THE OPTION TAKES A PARAM OVERRIDE THIS - MAKE SURE TO SANITISE USER INPUT
     protected Option newInstance(final String param) { return this; }
 

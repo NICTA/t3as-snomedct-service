@@ -54,11 +54,6 @@ public class RestrictToSources extends Option {
     @Override
     public String param() { return Joiner.on(',').skipNulls().join(sources); }
 
-    @Override
-    public boolean useMetamapDefault() {
-        return sources.size() == 1 && USE_METAMAP_DEFAULT_STRING.equals(sources.get(0));
-    }
-
     @SuppressWarnings("ReturnOfNull")
     @Override
     protected Option newInstance(final String param) {

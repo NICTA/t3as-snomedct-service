@@ -54,8 +54,6 @@ import java.util.Map;
 
 public class AnalyseHandler implements ClickHandler {
 
-    private static final String SPECIAL_ALL_SEM_TYPES_VALUE = "[all]";
-
     private final Messages messages = GWT.create(Messages.class);
     private final String webserviceUrl;
     private final TextArea mainTextArea;
@@ -138,10 +136,6 @@ public class AnalyseHandler implements ClickHandler {
         for (final SemanticType t : types) {
             if (t.isSelected()) selectedTypes.add(t.getCode());
         }
-
-        // if all of the types are set then replace them with the special '[all]' value
-        final String option = types.size() == selectedTypes.size() ? SPECIAL_ALL_SEM_TYPES_VALUE
-                                                                   : Joiner.on(',').join(selectedTypes);
-        options.set(options.size(), new JSONString("restrict_to_sts " + option));
+        options.set(options.size(), new JSONString("restrict_to_sts " + Joiner.on(',').join(selectedTypes)));
     }
 }

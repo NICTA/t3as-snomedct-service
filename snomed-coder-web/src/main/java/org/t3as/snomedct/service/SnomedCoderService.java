@@ -111,7 +111,7 @@ public class SnomedCoderService {
         final Collection<Option> opts = new ArrayList<>();
         for (final String o : r.getOptions()) {
             final Option opt = MetaMapOptions.strToOpt(o);
-            if (opt != null && !opt.useMetamapDefault()) opts.add(opt);
+            if (opt != null) opts.add(opt);
         }
 
         // tmp files for metamap in/out

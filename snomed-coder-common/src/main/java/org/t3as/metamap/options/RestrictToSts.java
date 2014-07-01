@@ -40,7 +40,6 @@ import java.util.List;
 public class RestrictToSts extends Option {
 
     protected static final String NAME = "restrict_to_sts";
-    private static final String USE_METAMAP_DEFAULT_STRING = "[all]";
 
     private final List<String> semTypes;
 
@@ -54,15 +53,11 @@ public class RestrictToSts extends Option {
     @Override
     public String param() { return Joiner.on(',').skipNulls().join(semTypes); }
 
-    @Override
-    public boolean useMetamapDefault() {
-        return semTypes.size() == 1 && USE_METAMAP_DEFAULT_STRING.equals(semTypes.get(0));
-    }
-
     @SuppressWarnings("ReturnOfNull")
     @Override
     protected Option newInstance(final String param) {
-        final List<String> params = MetaMapOptions.sanitiseAndSplit(param);
-        return params.isEmpty() ? null : new RestrictToSts(params);
+        final Collection<String> params = MetaMapOptions.sanitiseAndSplit(param);
+        final Collection<String> types = SemanticTypes.sanitiseSemanticTypes(params);
+        return types.isEmpty() ? null : new RestrictToSts(types);
     }
 }

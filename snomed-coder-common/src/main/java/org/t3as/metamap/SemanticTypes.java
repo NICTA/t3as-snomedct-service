@@ -37,9 +37,10 @@ import com.google.common.collect.ImmutableSortedMap;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import static com.google.common.base.Charsets.UTF_8;
@@ -75,8 +76,7 @@ public final class SemanticTypes {
             }
         }
         catch (final IOException e) {
-            System.err.println("Could not load MetaMap Semantic Types: " + e.getMessage());
-            e.printStackTrace();
+            throw new RuntimeException("Could not load MetaMap Semantic Types: " + e.getMessage(), e);
         }
 
         DEFAULT_MM_SEMANTIC_TYPES = ImmutableList.copyOf(defaultSemanticTypes);
@@ -86,29 +86,15 @@ public final class SemanticTypes {
     private SemanticTypes() {}
 
     /**
-     * Sanitise semantic types from user input - if there is a single value '[all]' then an empty Collection is
-     * returned.
+     * Sanitise semantic types from user input.
      * @param semanticTypes the semantic types to be sanitised
-     * @return a non-null but possibly empty Collection of semantic types - if there is a single value '[all]' then
-     * an empty Collection is returned.
+     * @return a non-null but possibly empty Collection of semantic types
      */
-    /*package-private*/ static Collection<String> sanitiseSemanticTypes(final Collection<String> semanticTypes) {
-        if (semanticTypes == null) return DEFAULT_MM_SEMANTIC_TYPES;
+    public static Collection<String> sanitiseSemanticTypes(final Collection<String> semanticTypes) {
+        if (semanticTypes == null) return ImmutableList.of();
 
-        Collection<String> types;
-        if (semanticTypes.size() == 1 && "[all]".equals(semanticTypes.iterator().next())) {
-            types = Collections.emptyList();
-        }
-        else {
-            // check that each of the given types are in the map we have, otherwise throw it away
-            types = new ArrayList<>(semanticTypes.size());
-            for (final String t : semanticTypes) {
-                if (SEMANTIC_TYPES_CODE_TO_DESCRIPTION.containsKey(t)) types.add(t);
-            }
-            // if no valid types then return the default ones
-            types = types.isEmpty() ? DEFAULT_MM_SEMANTIC_TYPES : types;
-        }
-
-        return types;
+        // check that each of the given types are in the map we have, otherwise throw it away
+        final Set<String> s = new LinkedHashSet<>(semanticTypes);
+        return s.retainAll(SEMANTIC_TYPES_CODE_TO_DESCRIPTION.keySet()) ? s : semanticTypes;
     }
 }
