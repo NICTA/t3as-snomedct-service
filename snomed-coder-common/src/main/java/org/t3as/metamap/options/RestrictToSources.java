@@ -40,7 +40,6 @@ public class RestrictToSources extends Option {
 
     protected static final String NAME = "restrict_to_sources";
     protected static final String SNOMEDCT_US = "SNOMEDCT_US";
-    private static final String USE_METAMAP_DEFAULT_STRING = "[default]";
 
     private final List<String> sources;
 

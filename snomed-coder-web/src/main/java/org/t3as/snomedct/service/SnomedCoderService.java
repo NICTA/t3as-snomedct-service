@@ -41,6 +41,7 @@ import org.t3as.metamap.jaxb.Phrase;
 import org.t3as.metamap.jaxb.Utterance;
 import org.t3as.metamap.options.MetaMapOptions;
 import org.t3as.metamap.options.Option;
+import org.t3as.metamap.options.RestrictToSources;
 import org.t3as.snomedct.lookup.SnomedLookup;
 import org.xml.sax.SAXException;
 
@@ -61,6 +62,8 @@ import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
@@ -109,10 +112,16 @@ public class SnomedCoderService {
 
         // metamap options
         final Collection<Option> opts = new ArrayList<>();
+        final Set<String> optionNames = new HashSet<>();
         for (final String o : r.getOptions()) {
             final Option opt = MetaMapOptions.strToOpt(o);
-            if (opt != null) opts.add(opt);
+            if (opt != null) {
+                opts.add(opt);
+                optionNames.add(opt.name());
+            }
         }
+        // always make sure we have a restrict_to_sources option
+        if (!optionNames.contains(new RestrictToSources().name())) opts.add(new RestrictToSources());
 
         // tmp files for metamap in/out
         final File infile = File.createTempFile("metamap-input-", ".txt");
