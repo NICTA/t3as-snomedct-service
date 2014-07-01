@@ -12,7 +12,7 @@
 
     <groupId>org.t3as</groupId>
     <artifactId>t3as-snomedct-service</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>NICTA t3as SNOMED CT Service</name>
