@@ -43,6 +43,9 @@ public abstract class Option {
     // IF THE OPTION TAKES A PARAM OVERRIDE THIS - MAKE SURE TO SANITISE USER INPUT
     protected Option newInstance(final String param) { return this; }
 
+    // IF THE OPTION SHOULD DEFAULT TO THE PROCESSOR DEFAULT (like when [all] or whatever has been passed by the user)
+    public boolean useProcessorDefault() { return false; }
+
     public String toMmOptStr() { return "--" + toString(); }
 
     @Override

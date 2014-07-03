@@ -116,8 +116,8 @@ public class SnomedCoderService {
         for (final String o : r.getOptions()) {
             final Option opt = MetaMapOptions.strToOpt(o);
             if (opt != null) {
-                opts.add(opt);
                 optionNames.add(opt.name());
+                if (!opt.useProcessorDefault()) opts.add(opt);
             }
         }
         // always make sure we have a restrict_to_sources option

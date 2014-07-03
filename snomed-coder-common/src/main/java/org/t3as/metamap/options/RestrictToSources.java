@@ -40,6 +40,7 @@ public class RestrictToSources extends Option {
 
     protected static final String NAME = "restrict_to_sources";
     protected static final String SNOMEDCT_US = "SNOMEDCT_US";
+    private static final String ALL = "[all]";
 
     private final List<String> sources;
 
@@ -52,6 +53,11 @@ public class RestrictToSources extends Option {
 
     @Override
     public String param() { return Joiner.on(',').skipNulls().join(sources); }
+
+    @Override
+    public boolean useProcessorDefault() {
+        return sources.size() == 1 && ALL.equals(sources.get(0));
+    }
 
     @SuppressWarnings("ReturnOfNull")
     @Override
