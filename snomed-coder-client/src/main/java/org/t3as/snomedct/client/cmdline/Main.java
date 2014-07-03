@@ -162,7 +162,7 @@ public class Main {
 
         @Parameter(names = "-options", description = "Semicolon separated list of options to pass to the SNOMED CT "
                                                      + "coder - see web service documentation for which ones are "
-                                                     + "supported.")
+                                                     + "supported. To run with no options at all pass an empty string.")
         String options = Joiner.on("; ").join(MetaMapOptions.DEFAULT_MM_OPTIONS);
 
         @Parameter(description = "[files]")
