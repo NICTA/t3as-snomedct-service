@@ -31,6 +31,7 @@
 package org.t3as.metamap.options;
 
 import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -94,6 +95,7 @@ public abstract class MetaMapOptions {
 
     /*package-private*/
     static List<String> sanitiseAndSplit(final String param) {
+        if (Strings.isNullOrEmpty(param)) return ImmutableList.of();
         // sanitize the user input, only keep letters, digits, and any of a small number of approved params
         final String sanitized = JAVA_LETTER_OR_DIGIT.or(anyOf(".,_-[]")).retainFrom(param);
         return Splitter.on(',').trimResults().omitEmptyStrings().splitToList(sanitized);
