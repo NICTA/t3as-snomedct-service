@@ -83,4 +83,6 @@ public class Source {
         this.value = value;
     }
 
+    @Override
+    public String toString() { return value; }
 }

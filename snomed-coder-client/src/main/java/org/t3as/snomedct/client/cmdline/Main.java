@@ -106,12 +106,13 @@ public class Main {
                             semTypes.add(st.getvalue());
                         }
 
-                        sb.append(String.format("  %-5s %-9s %s %s %s\n",
+                        sb.append(String.format("  %-5s %-9s %s %s %s %s\n",
                                           candidate.getCandidateScore(),
                                           candidate.getCandidateCUI(),
                                           candidate.getSnomedId(),
                                           candidate.getCandidatePreferred(),
-                                          semTypes));
+                                          semTypes,
+                                          candidate.getSources().getSource()));
                     }
                 }
                 sb.append("\n");

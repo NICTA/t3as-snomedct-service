@@ -96,12 +96,13 @@ public final class SnomedLookup implements Closeable {
                             // the actual line of work
                             count += addSnomedId(candidate) ? 1 : 0;
 
-                            System.out.printf("  %-5s %-9s %s %s %s\n",
+                            System.out.printf("  %-5s %-9s %s %s %s %s\n",
                                               candidate.getCandidateScore(),
                                               candidate.getCandidateCUI(),
                                               candidate.getSnomedId(),
                                               candidate.getCandidatePreferred(),
-                                              semTypes);
+                                              semTypes,
+                                              candidate.getSources().getSource());
                         }
                     }
                     System.out.println();
@@ -124,7 +125,7 @@ public final class SnomedLookup implements Closeable {
         }
         else {
             // TODO: log this somewhere?
-            System.err.printf("WARNING! Could not find: %s: '%s'\n",
+            System.err.printf("WARNING! Could not find the SNOMED CT concept id for UMLS CUI: %s: '%s'\n",
                               candidate.getCandidateCUI(), candidate.getCandidatePreferred());
             return false;
         }
