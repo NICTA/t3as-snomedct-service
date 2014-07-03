@@ -65,7 +65,7 @@ It is now possible to specify which sources that you want MetaMap to search for 
  
     "restrict_to_sources SNOMEDCT_US,RXNORM"
 
-If you do not set the `restrict_to_sources` option then the web service will automatically set it to `SNOMEDCT_US`.
+If you do not set the `restrict_to_sources` option then the web service will automatically set it to `SNOMEDCT_US`. If all sources should be used then pass the value '[all]'.
 
 
 
