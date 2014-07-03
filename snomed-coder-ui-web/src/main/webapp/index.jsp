@@ -33,7 +33,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>SNOMED CT Text Analyser</title>
+    <title>SNOMED CT Text Analyser ${project.version}</title>
     <script type="text/javascript">
         document.cookie = "webserviceHost=<%= System.getProperty("webserviceHost", "") %>"
     </script>
@@ -60,7 +60,7 @@
     <img style="float:right; vertical-align:middle; margin: 0 10px 50px;" src="The_Lab_Logo.jpg" alt="The Lab logo" width="110"
          height="110"/>
 </h1>
-
+(v${project.version})
 <p>
     This is a simple front-end for a public demo web service that will analyse English clinical text, and report any
     SNOMED CT concepts that can be detected. To do this it makes use of
