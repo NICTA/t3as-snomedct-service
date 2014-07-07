@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.t3as</groupId>
         <artifactId>t3as-snomedct-service</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.3</version>
     </parent>
 
     <artifactId>snomed-coder-web</artifactId>
