@@ -71,7 +71,7 @@ import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 public class SnomedCoderService {
 
     private static final File PUBLIC_MM_DIR = new File(
-            System.getProperty("publicMmDir", "/opt/snomed-coder-web/metamap/public_mm"));
+            System.getProperty("publicMmDir", "/opt/metamap/public_mm"));
     private static final File DB_PATH = new File(
             System.getProperty("snomedDbPath", "/opt/snomed-coder-web/data/snomedct"));
     private static final long MAX_DATA_BYTES = 10 * 1024; // limit to 10kb for now

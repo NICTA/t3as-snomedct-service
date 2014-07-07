@@ -30,7 +30,7 @@ To make a t3as .tar.gz assembly run:
 
     mvn assembly:single
 
-This requires that the [MetaMap Tagger](metamap-tagger) and [SNOMED CT Lookup](snomedct-lookup) installation instructions has been followed - i.e. that MetaMap has been installed at `/opt/snomed-coder-web/metamap/` and the SNOMED CT lookup db file exists at `/opt/snomed-coder-web/data/snomedct.h2.db`.
+This requires that the [MetaMap Tagger](metamap-tagger) and [SNOMED CT Lookup](snomedct-lookup) installation instructions has been followed - i.e. that MetaMap has been installed at `/opt/metamap/` and the SNOMED CT lookup db file exists at `/opt/snomed-coder-web/data/snomedct.h2.db`.
 
 
 
@@ -40,7 +40,7 @@ This project can be run as a Maven development service or using the WAR file in 
 
 There are a number of system properties available to set:
 
-1. **publicMmDir** (default: /opt/snomed-coder-web/metamap/public_mm), path to the MetaMap installation *public_mm* directory.
+1. **publicMmDir** (default: /opt/metamap/public_mm), path to the MetaMap installation *public_mm* directory.
 2. **snomedDbPath** (default: /opt/snomed-coder-web/data/snomedct), path/base name of the SNOMED CT lookup database.
 
 

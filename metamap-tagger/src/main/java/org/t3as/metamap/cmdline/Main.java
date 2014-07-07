@@ -81,7 +81,7 @@ public final class Main {
         boolean showUsage = false;
 
         @Parameter(names = "-public_mm", description = "Path to the MetaMap 'public_mm' directory.")
-        File publicMm = new File("/opt/snomed-coder-web/metamap/public_mm");
+        File publicMm = new File("/opt/metamap/public_mm");
 
         @Parameter(names = "-infile", description = "The file containing the input text.")
         File input = new File("input.txt");

@@ -18,7 +18,7 @@ Alternative licensing can be arranged, please contact us.
 
 ## Installation
 
-Download and install MetaMap for your OS from the link above. To make things as simple as possible and make use of all the pre-defined options then install MetaMap at the path `/opt/snomed-coder-web/metamap/`. If running the [SNOMED CT Coder web service](../snomed-coder-web) then the MetaMap installation must be available locally to the web service.
+Download and install MetaMap for your OS from the link above. To make things as simple as possible and make use of all the pre-defined options then install MetaMap at the path `/opt/metamap/`. If running the [SNOMED CT Coder web service](../snomed-coder-web) then the MetaMap installation must be available locally to the web service.
 
 ## Building
 
