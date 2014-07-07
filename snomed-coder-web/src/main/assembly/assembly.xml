@@ -39,5 +39,9 @@
             <source>target/snomed-coder-web.war</source>
             <outputDirectory>snomed-coder-web</outputDirectory>
         </file>
+        <file>
+            <source>/opt/snomed-coder-web/data/snomedct.h2.db</source>
+            <outputDirectory>snomed-coder-web/data</outputDirectory>
+        </file>
     </files>
 </assembly>
