@@ -94,8 +94,9 @@ public class SnomedClient {
         finally {
             // belt and braces
             if (response != null) {
+                //noinspection OverlyBroadCatchBlock
                 try { response.close(); }
-                catch (final Throwable t) { /* do nothing */ }
+                catch (final Throwable ignored) { /* do nothing */ }
             }
         }
     }

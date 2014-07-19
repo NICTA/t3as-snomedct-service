@@ -51,14 +51,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Command line implementation of the SNOMED CT web service client.
- */
-public class Main {
+/** Command line implementation of the SNOMED CT web service client. */
+public final class Main {
 
-    /**
-     * Get the relevant options from the command line and invoke the client.
-     */
+    private Main() {}
+
+    /** Get the relevant options from the command line and invoke the client. */
+    @SuppressWarnings("MethodNamesDifferingOnlyByCase")
     public static void main(final String[] args) throws IOException {
         final Options opts = getOptions(args);
 
@@ -66,8 +65,8 @@ public class Main {
         final SnomedClient client = new SnomedClient(opts.url);
 
         // call the webservice with the text and any passed options
-        if (!opts.text.isEmpty()) System.out.println(callService(opts.text, opts, client));
-        else processFiles(opts, client);
+        if (opts.text.isEmpty()) processFiles(opts, client);
+        else System.out.println(callService(opts.text, opts, client));
     }
 
     private static void processFiles(final Options opts, final SnomedClient client) throws IOException {
@@ -121,11 +120,12 @@ public class Main {
         return sb.toString();
     }
 
+    @SuppressWarnings("CallToSystemExit")
     private static Options getOptions(final String[] args) {
         final Options opts = new Options();
         JCommander jc = null;
         try { jc = new JCommander(opts, args); }
-        catch (final Exception e) {
+        catch (final RuntimeException e) {
             System.err.println("Could not parse the options: " + e.getMessage());
             System.exit(1);
         }
