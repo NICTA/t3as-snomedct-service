@@ -63,5 +63,6 @@ This program links to or is a derivative of:
   NICTA t3as UMLS CUI to SNOMED CT Lookup under GNU GENERAL PUBLIC LICENSE Version 3
   Streaming API for XML under GNU General Public Library or COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
   TestNG under Apache License, Version 2.0
+  TestNG System.out printer under Apache License Version 2.0
   Xml Compatibility extensions for Jackson under The Apache Software License, Version 2.0 or GNU Lesser General Public License (LGPL), Version 2.1
 
