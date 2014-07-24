@@ -54,11 +54,13 @@
 <h1>
     t3as SNOMED CT Text Analyser
     <a href="http://nicta.com.au/">
-        <img style="float:right; vertical-align:middle; margin: 0 10px 50px;" src="nicta_logo.jpg" alt="NICTA logo" width="87"
-             height="104"/>
+        <img style="float:right; vertical-align:middle; margin: 0 10px 50px;" src="nicta_logo.jpg" alt="NICTA logo"
+             width="87" height="104"/>
     </a>
-    <img style="float:right; vertical-align:middle; margin: 0 10px 50px;" src="The_Lab_Logo.jpg" alt="The Lab logo" width="110"
-         height="110"/>
+    <a href="http://t3as.org/">
+        <img style="float:right; vertical-align:middle; margin: 0 10px 50px;" src="The_Lab_Logo.jpg" alt="The Lab logo"
+             width="110" height="110"/>
+    </a>
 </h1>
 (v${project.version})
 <p>
@@ -68,12 +70,14 @@
     <a href="http://www.nlm.nih.gov/research/umls/">NLM UMLS</a>. For more information please see the
     <a href="http://t3as.org/">t3as project website</a> and the <a href="http://t3as.wordpress.com/">t3as blog</a>.
 </p>
+
 <p>
     Full instructions on how to use the web service will be published in due course, but simple instructions can be
     had from the web service itself:
     <br/>
     <a href="/snomed-coder-web/rest/v1.0/snomedctCodes">/snomed-coder-web/rest/v1.0/snomedctCodes</a>
 </p>
+
 <p>
     <em><b>WARNING:</b></em>
     <b>DO NOT UPLOAD TEXT CONTAINING PERSONALLY IDENTIFIABLE INFORMATION ABOUT ANY PERSON.</b>
