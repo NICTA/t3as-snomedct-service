@@ -41,12 +41,12 @@ public class SemanticTypesTest {
 
     @Test
     public void testSanitiseSemanticTypes() {
-        assertEquals(of(), sanitiseSemanticTypes(null));
-        assertEquals(of(), sanitiseSemanticTypes(ImmutableList.<String>of()));
-        assertEquals(of(), sanitiseSemanticTypes(of("foobar")));
+        assertEquals(sanitiseSemanticTypes(null), of());
+        assertEquals(sanitiseSemanticTypes(ImmutableList.<String>of()), of());
+        assertEquals(sanitiseSemanticTypes(of("foobar")), of());
 
-        assertEquals(of("dsyn"), sanitiseSemanticTypes(of("dsyn")));
-        assertEquals(of("dsyn"), sanitiseSemanticTypes(of("dsyn", "foobar")));
-        assertEquals(of("dsyn", "fish"), sanitiseSemanticTypes(of("dsyn", "foobar", "fish")));
+        assertEquals(sanitiseSemanticTypes(of("dsyn")), of("dsyn"));
+        assertEquals(sanitiseSemanticTypes(of("dsyn", "foobar")),of("dsyn"));
+        assertEquals(sanitiseSemanticTypes(of("dsyn", "foobar", "fish")), of("dsyn", "fish"));
     }
 }

@@ -50,6 +50,7 @@ public class JaxbLoaderTest {
 
     private static final File TEST_XML = new File("src/test/resources/test.xml");
 
+    @SuppressWarnings("OverlyBroadThrowsClause")
     @Test
     public void testLoadXml() throws Exception {
         final MMOs root = JaxbLoader.loadXml(TEST_XML);
@@ -69,23 +70,25 @@ public class JaxbLoaderTest {
 
         final Candidate candidate = mapping.getMappingCandidates().getCandidate().get(0);
         assertNotNull(candidate);
-        assertEquals("C0004096", candidate.getCandidateCUI());
-        assertEquals("Asthma", candidate.getCandidatePreferred());
+        assertEquals(candidate.getCandidateCUI(), "C0004096");
+        assertEquals(candidate.getCandidatePreferred(), "Asthma");
 
         final SemType semType = candidate.getSemTypes().getSemType().get(0);
-        assertEquals("dsyn", semType.getvalue());
+        assertEquals(semType.getvalue(), "dsyn");
     }
 
     @Test
     public void failToLoad() {
+        //noinspection OverlyBroadCatchBlock
         try {
             JaxbLoader.loadXml(new File("noSuchFile"));
             fail("We should have had an exception before now.");
         }
-        catch (final FileNotFoundException e) {
+        catch (final FileNotFoundException ignored) {
             // do nothing
         }
         catch (final Throwable t) {
+            //noinspection CallToPrintStackTrace
             t.printStackTrace();
             fail("There should be no other throwables.");
         }

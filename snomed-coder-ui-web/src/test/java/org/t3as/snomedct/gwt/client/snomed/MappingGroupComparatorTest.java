@@ -45,7 +45,7 @@ public class MappingGroupComparatorTest {
         final List<SnomedConcept> sorted = new ArrayList<>(TestData.TEST_DATA);
         Collections.sort(sorted, new MappingGroupComparator());
         for (int i = 0; i < sorted.size(); i++) {
-            assertEquals(i, sorted.get(i).candidateScore);
+            assertEquals(sorted.get(i).candidateScore, i);
         }
     }
 }

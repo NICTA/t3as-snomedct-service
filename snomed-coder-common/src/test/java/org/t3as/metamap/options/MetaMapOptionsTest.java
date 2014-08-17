@@ -45,10 +45,10 @@ public class MetaMapOptionsTest {
 
         final Option o2 = MetaMapOptions.strToOpt("word_sense_disambiguation");
         assertNotNull(o2);
-        assertEquals(WordSenseDisambiguation.class, o2.getClass());
-        assertEquals("word_sense_disambiguation", o2.name());
+        assertEquals(o2.getClass(), WordSenseDisambiguation.class);
+        assertEquals(o2.name(), "word_sense_disambiguation");
         assertNull(o2.param());
-        assertEquals("--word_sense_disambiguation", o2.toMmOptStr());
+        assertEquals(o2.toMmOptStr(), "--word_sense_disambiguation");
 
         final Option o3 = MetaMapOptions.strToOpt("composite_phrases");
         assertNull(o3);
@@ -61,7 +61,7 @@ public class MetaMapOptionsTest {
 
         final Option o6 = MetaMapOptions.strToOpt("composite_phrases 4");
         assertNotNull(o6);
-        assertEquals(CompositePhrases.class, o6.getClass());
-        assertEquals("--composite_phrases 4", o6.toMmOptStr());
+        assertEquals(o6.getClass(), CompositePhrases.class);
+        assertEquals(o6.toMmOptStr(), "--composite_phrases 4");
     }
 }

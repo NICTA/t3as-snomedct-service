@@ -45,4 +45,6 @@ public final class TestData {
             new SnomedConcept("129006008", "Walking", false, "4", 4, "AA", "4"),
             new SnomedConcept("91251008", "Physiotherapy", false, "3", 3, "H", "3"),
             new SnomedConcept("8966001", "Left eye structure", false, "0", 0, "A", "0"));
+
+    private TestData() {}
 }

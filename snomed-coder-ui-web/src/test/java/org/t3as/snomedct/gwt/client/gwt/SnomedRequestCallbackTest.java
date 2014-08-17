@@ -38,25 +38,25 @@ public class SnomedRequestCallbackTest {
 
     @Test
     public void testNextMappingGroup() throws Exception {
-        assertEquals("A", SnomedRequestCallback.nextMappingGroup(null));
-        assertEquals("A", SnomedRequestCallback.nextMappingGroup(""));
+        assertEquals(SnomedRequestCallback.nextMappingGroup(null), "A");
+        assertEquals(SnomedRequestCallback.nextMappingGroup(""), "A");
 
-        assertEquals("B", SnomedRequestCallback.nextMappingGroup("A"));
-        assertEquals("C", SnomedRequestCallback.nextMappingGroup("B"));
-        assertEquals("AA", SnomedRequestCallback.nextMappingGroup("Z"));
+        assertEquals(SnomedRequestCallback.nextMappingGroup("A"), "B");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("B"), "C");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("Z"), "AA");
 
-        assertEquals("AB", SnomedRequestCallback.nextMappingGroup("AA"));
-        assertEquals("AD", SnomedRequestCallback.nextMappingGroup("AC"));
-        assertEquals("BA", SnomedRequestCallback.nextMappingGroup("AZ"));
+        assertEquals(SnomedRequestCallback.nextMappingGroup("AA"), "AB");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("AC"), "AD");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("AZ"), "BA");
 
-        assertEquals("BB", SnomedRequestCallback.nextMappingGroup("BA"));
-        assertEquals("AAA", SnomedRequestCallback.nextMappingGroup("ZZ"));
+        assertEquals(SnomedRequestCallback.nextMappingGroup("BA"), "BB");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("ZZ"), "AAA");
 
-        assertEquals("AAB", SnomedRequestCallback.nextMappingGroup("AAA"));
-        assertEquals("AZB", SnomedRequestCallback.nextMappingGroup("AZA"));
-        assertEquals("BAA", SnomedRequestCallback.nextMappingGroup("AZZ"));
-        assertEquals("AAAA", SnomedRequestCallback.nextMappingGroup("ZZZ"));
+        assertEquals(SnomedRequestCallback.nextMappingGroup("AAA"), "AAB");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("AZA"), "AZB");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("AZZ"), "BAA");
+        assertEquals(SnomedRequestCallback.nextMappingGroup("ZZZ"), "AAAA");
 
-        assertEquals("ACAA", SnomedRequestCallback.nextMappingGroup("ABZZ"));
+        assertEquals(SnomedRequestCallback.nextMappingGroup("ABZZ"), "ACAA");
     }
 }

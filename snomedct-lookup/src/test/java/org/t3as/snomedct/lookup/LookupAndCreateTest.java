@@ -90,13 +90,13 @@ public class LookupAndCreateTest {
 
         try (final SnomedLookup snomedLookup = new SnomedLookup(DB_FILE_PREFIX)) {
             assertTrue(snomedLookup.addSnomedId(found1));
-            assertEquals("196003006", found1.getSnomedId());
+            assertEquals(found1.getSnomedId(), "196003006");
 
             assertFalse(snomedLookup.addSnomedId(notFound));
             assertNull(notFound.getSnomedId());
 
             assertTrue(snomedLookup.addSnomedId(found2));
-            assertEquals("5541000124106", found2.getSnomedId());
+            assertEquals(found2.getSnomedId(), "5541000124106");
         }
     }
 
@@ -110,23 +110,23 @@ public class LookupAndCreateTest {
                                         .getPhrases().getPhrase().get(0)
                                         .getMappings().getMapping().get(0)
                                         .getMappingCandidates().getCandidate().get(0);
-        assertEquals("C2712160", candidate.getCandidateCUI());
-        assertEquals("Normal nervous system function", candidate.getCandidatePreferred());
+        assertEquals(candidate.getCandidateCUI(), "C2712160");
+        assertEquals(candidate.getCandidatePreferred(), "Normal nervous system function");
         assertNull(candidate.getSnomedId());
 
         try (final SnomedLookup snomedLookup = new SnomedLookup(DB_FILE_PREFIX)) {
             snomedLookup.enrichXml(root);
         }
 
-        assertEquals("18460000", candidate.getSnomedId());
+        assertEquals(candidate.getSnomedId(), "18460000");
     }
 
     @Test
     public void testFindSnomedConcept() throws SQLException, IOException {
         try (final SnomedLookup snomedLookup = new SnomedLookup(DB_FILE_PREFIX)) {
             final SnomedTerm result = snomedLookup.findFromCuiAndDesc("C2712160", "Normal nervous system function");
-            assertEquals("18460000", result.snomedId);
-            assertEquals("PT", result.termType);
+            assertEquals(result.snomedId, "18460000");
+            assertEquals(result.termType, "PT");
         }
     }
 }

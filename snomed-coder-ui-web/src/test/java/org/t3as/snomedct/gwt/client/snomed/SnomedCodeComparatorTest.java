@@ -45,7 +45,7 @@ public class SnomedCodeComparatorTest {
         final List<SnomedConcept> sorted = new ArrayList<>(TestData.TEST_DATA);
         Collections.sort(sorted, new SnomedCodeComparator());
         for (int i = 0; i < sorted.size(); i++) {
-            assertEquals(i, sorted.get(i).candidateScore);
+            assertEquals(sorted.get(i).candidateScore, i);
         }
     }
 }

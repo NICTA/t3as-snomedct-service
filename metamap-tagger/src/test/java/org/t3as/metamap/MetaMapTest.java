@@ -38,13 +38,13 @@ public class MetaMapTest {
 
     @Test
     public void testDecomposeToAscii() throws Exception {
-        assertEquals("xyaaaoooxy", MetaMap.decomposeToAscii("xyâåäöốởxy"));
-        assertEquals("a  b", MetaMap.decomposeToAscii("a µ b"));
-        assertEquals("1234567890abcdefghijklmnopqrstuvwxyz\"!@#$%^&*()?",
-                     MetaMap.decomposeToAscii("1234567890abcdefghijklmnopqrstuvwxyz\"!@#$%^&*()?"));
-        assertEquals("", MetaMap.decomposeToAscii("Ƣ"));
-        assertEquals("ae", MetaMap.decomposeToAscii("ǽ"));
-        assertEquals("O", MetaMap.decomposeToAscii("Ǿ"));
-        assertEquals("t", MetaMap.decomposeToAscii("ȶ"));
+        assertEquals(MetaMap.decomposeToAscii("xyâåäöốởxy"), "xyaaaoooxy");
+        assertEquals(MetaMap.decomposeToAscii("a µ b"), "a  b");
+        assertEquals(MetaMap.decomposeToAscii("1234567890abcdefghijklmnopqrstuvwxyz\"!@#$%^&*()?"),
+                     "1234567890abcdefghijklmnopqrstuvwxyz\"!@#$%^&*()?");
+        assertEquals(MetaMap.decomposeToAscii("Ƣ"), "");
+        assertEquals(MetaMap.decomposeToAscii("ǽ"), "ae");
+        assertEquals(MetaMap.decomposeToAscii("Ǿ"), "O");
+        assertEquals(MetaMap.decomposeToAscii("ȶ"), "t");
     }
 }
